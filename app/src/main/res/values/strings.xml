@@ -113,4 +113,9 @@
     <string name="terms_of_use_url">https://vhospice.org/#/terms-of-use</string>
     <string name="company_info">© I-Teco, 2022</string>
     <string name="our_mission_title_text">Love is all</string>
+    <string name="ward_number">№ ward</string>
+    <string name="post">Post</string>
+    <string name="block">Block</string>
+    <string name="available_seats">Available seats</string>
+    <string name="сomment">Comment</string>
 </resources>

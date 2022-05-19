@@ -43,11 +43,11 @@
             app:icon="@drawable/ic_sort_18"
             app:iconGravity="end"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/filter_news_material_button"
+            app:layout_constraintEnd_toStartOf="@id/info_material_button"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/filter_news_material_button"
+            android:id="@+id/info_material_button"
             style="@style/materialButtonTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -59,11 +59,11 @@
             app:icon="@drawable/ic_filters_icon"
             app:iconGravity="end"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/add_news_image_view"
+            app:layout_constraintEnd_toStartOf="@+id/add_chambers_image_view"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/add_news_image_view"
+            android:id="@+id/add_chambers_image_view"
             style="@style/materialButtonTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

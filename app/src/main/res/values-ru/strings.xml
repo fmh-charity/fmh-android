@@ -113,7 +113,7 @@
     <string name="terms_of_use_url">https://vhospice.org/#/terms-of-use</string>
     <string name="company_info">© Айтеко, 2022</string>
     <string name="our_mission_title_text">Главное - жить любя</string>
-    <string name="ward_number">№ палаты</string>
+    <string name="room_number">№ палаты</string>
     <string name="post">Пост</string>
     <string name="block">Блок</string>
     <string name="available_seats">Свободных мест</string>

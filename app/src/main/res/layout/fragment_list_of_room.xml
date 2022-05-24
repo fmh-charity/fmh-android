@@ -7,24 +7,23 @@
     android:orientation="vertical">
 
     <include
-        android:id="@+id/container_custom_app_bar_include_on_fragment_news_control_panel"
+        android:id="@+id/container_custom_app_bar_include_on_fragment_list_of_room"
         layout="@layout/top_custom_app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="wrap_content"
         android:background="@color/light_grey"
+        android:padding="@dimen/card_view_padding"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:gravity="center"
-            android:maxLines="2"
-            android:text="@string/list_of_a_сhambers"
+            android:text="@string/list_of_a_room"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,24 +34,24 @@
             style="@style/materialButtonTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="12dp"
             android:background="@color/transparent"
             android:checkable="true"
             android:minWidth="48dp"
             android:minHeight="48dp"
-            app:icon="@drawable/ic_baseline_info_24"
+            app:icon="@drawable/ic_info_24"
             app:iconGravity="end"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/add_chambers_image_view"
+            app:layout_constraintEnd_toStartOf="@+id/add_room_image_view"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/add_chambers_image_view"
+            android:id="@+id/add_room_image_view"
             style="@style/materialButtonTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
             android:contentDescription="@string/add_chambers_button"
+            android:background="@android:color/transparent"
             android:minWidth="48dp"
             android:minHeight="48dp"
             app:icon="@drawable/ic_add"
@@ -76,7 +75,7 @@
             android:visibility="visible" />
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/news_control_panel_swipe_to_refresh"
+            android:id="@+id/list_of_room_swipe_to_refresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -85,7 +84,7 @@
                 android:layout_height="wrap_content">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/news_list_recycler_view"
+                    android:id="@+id/room_list_recycler_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -95,12 +94,12 @@
                     tools:listitem="@layout/item_list_of_room" />
 
                 <ImageView
-                    android:id="@+id/control_panel_empty_news_list_image_view"
+                    android:id="@+id/empty_room_list_image_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@android:color/transparent"
                     android:src="@drawable/empty_list_image"
-                    app:layout_constraintBottom_toTopOf="@+id/control_panel_empty_news_list_text_view"
+                    app:layout_constraintBottom_toTopOf="@+id/empty_room_list_text_view"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -108,37 +107,37 @@
                     tools:ignore="ContentDescription" />
 
                 <TextView
-                    android:id="@+id/control_panel_empty_news_list_text_view"
+                    android:id="@+id/empty_room_list_text_view"
                     style="@style/EmptyListTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/card_view_padding"
                     android:text="@string/empty_claim_list_text"
                     android:textAlignment="center"
-                    app:layout_constraintBottom_toTopOf="@+id/control_panel_news_retry_material_button"
-                    app:layout_constraintEnd_toEndOf="@id/control_panel_empty_news_list_image_view"
-                    app:layout_constraintStart_toStartOf="@id/control_panel_empty_news_list_image_view"
-                    app:layout_constraintTop_toBottomOf="@+id/control_panel_empty_news_list_image_view" />
+                    app:layout_constraintBottom_toTopOf="@+id/room_list_retry_material_button"
+                    app:layout_constraintEnd_toEndOf="@id/empty_room_list_image_view"
+                    app:layout_constraintStart_toStartOf="@id/empty_room_list_image_view"
+                    app:layout_constraintTop_toBottomOf="@+id/empty_room_list_image_view" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/control_panel_news_retry_material_button"
+                    android:id="@+id/room_list_retry_material_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/card_view_padding"
                     android:text="@string/refresh"
                     android:textAlignment="center"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@id/control_panel_empty_news_list_image_view"
+                    app:layout_constraintEnd_toEndOf="@id/empty_room_list_image_view"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="@id/control_panel_empty_news_list_image_view"
-                    app:layout_constraintTop_toBottomOf="@+id/control_panel_empty_news_list_text_view" />
+                    app:layout_constraintStart_toStartOf="@id/empty_room_list_image_view"
+                    app:layout_constraintTop_toBottomOf="@+id/empty_room_list_text_view" />
 
                 <androidx.constraintlayout.widget.Group
-                    android:id="@+id/control_panel_empty_news_list_group"
+                    android:id="@+id/empty_room_list_group"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:visibility="gone"
-                    app:constraint_referenced_ids="control_panel_empty_news_list_image_view, control_panel_empty_news_list_text_view, control_panel_news_retry_material_button" />
+                    app:constraint_referenced_ids="empty_room_list_image_view, empty_room_list_text_view, room_list_retry_material_button" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

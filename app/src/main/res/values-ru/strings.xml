@@ -119,6 +119,6 @@
     <string name="available_seats">Свободных мест</string>
     <string name="сomment">Комментарий</string>
     <string name="add_chambers_button">Кнопка добавления палаты</string>
-    <string name="list_of_a_сhambers">Список палат</string>
+    <string name="list_of_a_room">Список палат</string>
     <string name="Comments">Палата адаптирована для лежачих больных</string>
 </resources>

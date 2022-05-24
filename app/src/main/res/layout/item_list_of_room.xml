@@ -13,7 +13,6 @@
     android:checkable="true"
     android:clickable="true"
     android:focusable="true"
-    android:foregroundTint="@color/execution_priority_low"
     app:cardElevation="@dimen/card_item_elevation">
 
     <androidx.constraintlayout.widget.ConstraintLayout

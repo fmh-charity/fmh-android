@@ -119,6 +119,6 @@
     <string name="available_seats">Available seats</string>
     <string name="сomment">Comment</string>
     <string name="add_chambers_button">Add chambers button</string>
-    <string name="list_of_a_сhambers">List of a chambers</string>
+    <string name="list_of_a_room">List of a room</string>
     <string name="Comments">The ward is adapted for bedridden patients</string>
 </resources>

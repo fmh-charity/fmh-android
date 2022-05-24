@@ -92,7 +92,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:listitem="@layout/item_list_of_chambers" />
+                    tools:listitem="@layout/item_list_of_room" />
 
                 <ImageView
                     android:id="@+id/control_panel_empty_news_list_image_view"

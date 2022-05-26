@@ -4,10 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import ru.iteco.fmhandroid.dao.*
-import ru.iteco.fmhandroid.entity.ClaimCommentEntity
-import ru.iteco.fmhandroid.entity.ClaimEntity
-import ru.iteco.fmhandroid.entity.NewsCategoryEntity
-import ru.iteco.fmhandroid.entity.NewsEntity
+import ru.iteco.fmhandroid.entity.*
 
 @Database(
     entities = [
@@ -15,8 +12,11 @@ import ru.iteco.fmhandroid.entity.NewsEntity
         ClaimCommentEntity::class,
         NewsEntity::class,
         NewsCategoryEntity::class,
+        RoomEntity::class,
+        BlockEntity::class,
+        NurseStationEntity::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 

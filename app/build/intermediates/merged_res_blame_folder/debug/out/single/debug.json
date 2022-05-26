@@ -64,12 +64,12 @@
         "source": "C:\\Users\\ronrs\\AndroidStudioProjects\\fmh-android\\app\\src\\main\\res\\drawable\\icon_edit.png"
     },
     {
-        "merged": "C:\\Users\\ronrs\\AndroidStudioProjects\\fmh-android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\ronrs\\AndroidStudioProjects\\fmh-android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
-    },
-    {
         "merged": "C:\\Users\\ronrs\\AndroidStudioProjects\\fmh-android\\app\\build\\intermediates\\merged_res\\debug\\drawable_separator.xml.flat",
         "source": "C:\\Users\\ronrs\\AndroidStudioProjects\\fmh-android\\app\\src\\main\\res\\drawable\\separator.xml"
+    },
+    {
+        "merged": "C:\\Users\\ronrs\\AndroidStudioProjects\\fmh-android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\ronrs\\AndroidStudioProjects\\fmh-android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
     },
     {
         "merged": "C:\\Users\\ronrs\\AndroidStudioProjects\\fmh-android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
@@ -112,12 +112,12 @@
         "source": "C:\\Users\\ronrs\\AndroidStudioProjects\\fmh-android\\app\\src\\main\\res\\drawable\\image_splashscreen_8.jpg"
     },
     {
-        "merged": "C:\\Users\\ronrs\\AndroidStudioProjects\\fmh-android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\ronrs\\AndroidStudioProjects\\fmh-android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
-    },
-    {
         "merged": "C:\\Users\\ronrs\\AndroidStudioProjects\\fmh-android\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_splash_screen.xml.flat",
         "source": "C:\\Users\\ronrs\\AndroidStudioProjects\\fmh-android\\app\\src\\main\\res\\layout\\fragment_splash_screen.xml"
+    },
+    {
+        "merged": "C:\\Users\\ronrs\\AndroidStudioProjects\\fmh-android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\ronrs\\AndroidStudioProjects\\fmh-android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
     },
     {
         "merged": "C:\\Users\\ronrs\\AndroidStudioProjects\\fmh-android\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_pen_light.xml.flat",
@@ -306,6 +306,10 @@
     {
         "merged": "C:\\Users\\ronrs\\AndroidStudioProjects\\fmh-android\\app\\build\\intermediates\\merged_res\\debug\\menu_menu_claim_status_processing.xml.flat",
         "source": "C:\\Users\\ronrs\\AndroidStudioProjects\\fmh-android\\app\\src\\main\\res\\menu\\menu_claim_status_processing.xml"
+    },
+    {
+        "merged": "C:\\Users\\ronrs\\AndroidStudioProjects\\fmh-android\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_add_room.xml.flat",
+        "source": "C:\\Users\\ronrs\\AndroidStudioProjects\\fmh-android\\app\\src\\main\\res\\layout\\fragment_add_room.xml"
     },
     {
         "merged": "C:\\Users\\ronrs\\AndroidStudioProjects\\fmh-android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher_round.png.flat",

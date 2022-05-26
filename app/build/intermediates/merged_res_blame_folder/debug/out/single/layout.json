@@ -8,6 +8,10 @@
         "source": "C:\\Users\\ronrs\\AndroidStudioProjects\\fmh-android\\app\\src\\main\\res\\layout\\fragment_news_control_panel.xml"
     },
     {
+        "merged": "C:\\Users\\ronrs\\AndroidStudioProjects\\fmh-android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_add_room.xml",
+        "source": "C:\\Users\\ronrs\\AndroidStudioProjects\\fmh-android\\app\\src\\main\\res\\layout\\fragment_add_room.xml"
+    },
+    {
         "merged": "C:\\Users\\ronrs\\AndroidStudioProjects\\fmh-android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_news_list.xml",
         "source": "C:\\Users\\ronrs\\AndroidStudioProjects\\fmh-android\\app\\src\\main\\res\\layout\\fragment_news_list.xml"
     },

@@ -4,7 +4,8 @@
     <string name="add_chambers_button">Кнопка добавления палаты</string>
     <string name="available_seats">Свободных мест</string>
     <string name="block">Блок</string>
-    <string name="list_of_a_сhambers">List of a chambers</string>
+    <string name="list_of_a_room">List of a chambers</string>
+    <string name="patients_room">Patients room</string>
     <string name="post">Пост</string>
     <string name="room_number">№ палаты</string>
     <string name="сomment">Комментарий</string>
@@ -16,18 +17,18 @@
     <style name="Theme.AppCompat.DayNight.DialogWhenLarge" parent="Theme.AppCompat.DialogWhenLarge"/>
     <style name="Theme.AppCompat.DayNight.NoActionBar" parent="Theme.AppCompat.NoActionBar"/>
     <style name="Theme.FMHAndroid" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
+        
         <item name="colorPrimary">@color/blue</item>
         <item name="colorPrimaryVariant">@color/blue</item>
         <item name="colorOnPrimary">@color/black</item>
-        <!-- Secondary brand color. -->
+        
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
+        
         <item name="android:statusBarColor" ns1:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
-<!--        <item name="android:dropDownListViewStyle">@style/PopupMenuListView</item>-->
+        
+
     </style>
     <style name="Theme.Material3.DayNight" parent="Theme.Material3.Dark"/>
     <style name="Theme.Material3.DayNight.BottomSheetDialog" parent="Theme.Material3.Dark.BottomSheetDialog"/>

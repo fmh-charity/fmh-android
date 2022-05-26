@@ -2885,6 +2885,7 @@ id decelerateAndComplete
 id decor_content_parent
 id default_activity_button
 id delete_news_item_image_view
+id delete_room_material_button
 id deltaRelative
 id dependency_ordering
 id description_edit_text
@@ -2912,6 +2913,7 @@ id divider2_view
 id divider3_image_view
 id divider3_view
 id divider4_image_view
+id divider4_view
 id divider5_image_view
 id divider6_image_view
 id dragAnticlockwise
@@ -2933,6 +2935,7 @@ id edit_news_item_image_view
 id edit_news_material_button
 id edit_processing_image_button
 id edit_query
+id edit_room_image_view
 id elastic
 id empty_claim_list_group
 id empty_claim_list_image_view
@@ -2999,6 +3002,7 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
+id imageView
 id immediateStop
 id in_progress_list_item
 id in_progress_menu_group
@@ -3182,6 +3186,7 @@ id password_text_input_layout
 id password_toggle
 id path
 id pathRelative
+id patients_text_view
 id peekHeight
 id percent
 id pin
@@ -3206,6 +3211,7 @@ id right_icon
 id right_side
 id room_item_material_card_view
 id room_list_item_comment_text_view
+id room_list_item_patient_text_view
 id room_list_item_title_background_image_view
 id room_list_recycler_view
 id room_list_retry_material_button
@@ -3475,6 +3481,7 @@ layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout fragment_about
+layout fragment_add_room
 layout fragment_auth
 layout fragment_create_edit_claim
 layout fragment_create_edit_comment
@@ -3587,6 +3594,7 @@ raw icon_massage
 raw icon_salary
 raw icon_union
 string Comments
+string Patient
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description
@@ -3698,7 +3706,6 @@ string irrevocable_deletion
 string item_view_role_description
 string line_divider_description
 string list_of_a_room
-string list_of_a_сhambers
 string log_out
 string login
 string lost_network_connection
@@ -3820,6 +3827,7 @@ string path_password_eye
 string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
+string patients_room
 string plan_date
 string post
 string privacy_policy
@@ -3827,6 +3835,7 @@ string privacy_policy_url
 string project_id
 string refresh
 string retry_loading
+string room
 string room_number
 string save
 string search_menu_title

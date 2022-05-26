@@ -20,9 +20,12 @@ ru/iteco/fmhandroid/ui/AppActivity_GeneratedInjector.java
  ru.iteco.fmhandroid.ui.AppActivity_GeneratedInjector
 ru/iteco/fmhandroid/api/NetworkModule_AuthorizedOkhttpFactory.java
  ru.iteco.fmhandroid.api.NetworkModule_AuthorizedOkhttpFactory
-ru/iteco/fmhandroid/viewmodel/ClaimViewModel_HiltModules_KeyModule_ProvideFactory.java
- ru.iteco.fmhandroid.viewmodel.ClaimViewModel_HiltModules_KeyModule_ProvideFactory
- ru.iteco.fmhandroid.viewmodel.ClaimViewModel_HiltModules_KeyModule_ProvideFactory$InstanceHolder
+ru/iteco/fmhandroid/dao/ClaimCommentDao_Impl.java
+ ru.iteco.fmhandroid.dao.ClaimCommentDao_Impl
+ ru.iteco.fmhandroid.dao.ClaimCommentDao_Impl$1
+ ru.iteco.fmhandroid.dao.ClaimCommentDao_Impl$2
+ ru.iteco.fmhandroid.dao.ClaimCommentDao_Impl$3
+ ru.iteco.fmhandroid.dao.ClaimCommentDao_Impl$4
 ru/iteco/fmhandroid/databinding/MenuItemBinding.java
  ru.iteco.fmhandroid.databinding.MenuItemBinding
 ru/iteco/fmhandroid/databinding/TopCustomAppBarBinding.java
@@ -45,6 +48,8 @@ ru/iteco/fmhandroid/api/NetworkModule_ProvideAuthorizedRetrofitFactory.java
  ru.iteco.fmhandroid.api.NetworkModule_ProvideAuthorizedRetrofitFactory
 hilt_aggregated_deps/_ru_iteco_fmhandroid_api_ApiModule.java
  hilt_aggregated_deps._ru_iteco_fmhandroid_api_ApiModule
+ru/iteco/fmhandroid/databinding/FragmentAddRoomBinding.java
+ ru.iteco.fmhandroid.databinding.FragmentAddRoomBinding
 ru/iteco/fmhandroid/ui/Hilt_AuthFragment.java
  ru.iteco.fmhandroid.ui.Hilt_AuthFragment
 ru/iteco/fmhandroid/ui/ClaimListFilteringDialogFragment_GeneratedInjector.java
@@ -58,8 +63,8 @@ ru/iteco/fmhandroid/ui/Hilt_MainFragment.java
  ru.iteco.fmhandroid.ui.Hilt_MainFragment
 ru/iteco/fmhandroid/ui/Hilt_OpenClaimFragment.java
  ru.iteco.fmhandroid.ui.Hilt_OpenClaimFragment
-ru/iteco/fmhandroid/databinding/FragmentMainBinding.java
- ru.iteco.fmhandroid.databinding.FragmentMainBinding
+ru/iteco/fmhandroid/dao/DaoModule_ProvideClaimCommentDaoFactory.java
+ ru.iteco.fmhandroid.dao.DaoModule_ProvideClaimCommentDaoFactory
 hilt_aggregated_deps/_ru_iteco_fmhandroid_api_AuthApiModule.java
  hilt_aggregated_deps._ru_iteco_fmhandroid_api_AuthApiModule
 ru/iteco/fmhandroid/viewmodel/AuthViewModel_HiltModules_KeyModule_ProvideFactory.java
@@ -76,8 +81,8 @@ ru/iteco/fmhandroid/ui/CreateEditClaimCommentFragment_GeneratedInjector.java
  ru.iteco.fmhandroid.ui.CreateEditClaimCommentFragment_GeneratedInjector
 ru/iteco/fmhandroid/databinding/ItemCommentBinding.java
  ru.iteco.fmhandroid.databinding.ItemCommentBinding
-hilt_aggregated_deps/_ru_iteco_fmhandroid_ui_MainFragment_GeneratedInjector.java
- hilt_aggregated_deps._ru_iteco_fmhandroid_ui_MainFragment_GeneratedInjector
+ru/iteco/fmhandroid/db/DbModule_ProvideDbFactory.java
+ ru.iteco.fmhandroid.db.DbModule_ProvideDbFactory
 ru/iteco/fmhandroid/viewmodel/AuthViewModel_HiltModules.java
  ru.iteco.fmhandroid.viewmodel.AuthViewModel_HiltModules
  ru.iteco.fmhandroid.viewmodel.AuthViewModel_HiltModules$BindsModule
@@ -88,10 +93,14 @@ ru/iteco/fmhandroid/viewmodel/ClaimViewModel_Factory.java
  ru.iteco.fmhandroid.viewmodel.ClaimViewModel_Factory
 ru/iteco/fmhandroid/ui/MainFragment_GeneratedInjector.java
  ru.iteco.fmhandroid.ui.MainFragment_GeneratedInjector
-ru/iteco/fmhandroid/ui/Hilt_ClaimListFilteringDialogFragment.java
- ru.iteco.fmhandroid.ui.Hilt_ClaimListFilteringDialogFragment
-hilt_aggregated_deps/_ru_iteco_fmhandroid_ui_NewsControlPanelFragment_GeneratedInjector.java
- hilt_aggregated_deps._ru_iteco_fmhandroid_ui_NewsControlPanelFragment_GeneratedInjector
+ru/iteco/fmhandroid/dao/NewsCategoryDao_Impl.java
+ ru.iteco.fmhandroid.dao.NewsCategoryDao_Impl
+ ru.iteco.fmhandroid.dao.NewsCategoryDao_Impl$1
+ ru.iteco.fmhandroid.dao.NewsCategoryDao_Impl$2
+ ru.iteco.fmhandroid.dao.NewsCategoryDao_Impl$3
+ ru.iteco.fmhandroid.dao.NewsCategoryDao_Impl$4
+ru/iteco/fmhandroid/dao/DaoModule_ProvideNewsDaoFactory.java
+ ru.iteco.fmhandroid.dao.DaoModule_ProvideNewsDaoFactory
 hilt_aggregated_deps/_ru_iteco_fmhandroid_ui_CreateEditClaimFragment_GeneratedInjector.java
  hilt_aggregated_deps._ru_iteco_fmhandroid_ui_CreateEditClaimFragment_GeneratedInjector
 hilt_aggregated_deps/_ru_iteco_fmhandroid_application_FhmApplication_GeneratedInjector.java
@@ -128,12 +137,19 @@ ru/iteco/fmhandroid/viewmodel/NewsViewModel_HiltModules.java
  ru.iteco.fmhandroid.viewmodel.NewsViewModel_HiltModules
  ru.iteco.fmhandroid.viewmodel.NewsViewModel_HiltModules$BindsModule
  ru.iteco.fmhandroid.viewmodel.NewsViewModel_HiltModules$KeyModule
-ru/iteco/fmhandroid/viewmodel/ClaimViewModel_HiltModules.java
- ru.iteco.fmhandroid.viewmodel.ClaimViewModel_HiltModules
- ru.iteco.fmhandroid.viewmodel.ClaimViewModel_HiltModules$BindsModule
- ru.iteco.fmhandroid.viewmodel.ClaimViewModel_HiltModules$KeyModule
-ru/iteco/fmhandroid/repository/authRepository/AuthRepositoryImpl_Factory.java
- ru.iteco.fmhandroid.repository.authRepository.AuthRepositoryImpl_Factory
+ru/iteco/fmhandroid/dao/NewsDao_Impl.java
+ ru.iteco.fmhandroid.dao.NewsDao_Impl
+ ru.iteco.fmhandroid.dao.NewsDao_Impl$1
+ ru.iteco.fmhandroid.dao.NewsDao_Impl$2
+ ru.iteco.fmhandroid.dao.NewsDao_Impl$3
+ ru.iteco.fmhandroid.dao.NewsDao_Impl$4
+ ru.iteco.fmhandroid.dao.NewsDao_Impl$5
+ ru.iteco.fmhandroid.dao.NewsDao_Impl$6
+ ru.iteco.fmhandroid.dao.NewsDao_Impl$7
+ ru.iteco.fmhandroid.dao.NewsDao_Impl$8
+ru/iteco/fmhandroid/db/AppDb_Impl.java
+ ru.iteco.fmhandroid.db.AppDb_Impl
+ ru.iteco.fmhandroid.db.AppDb_Impl$1
 ru/iteco/fmhandroid/ui/SplashScreenFragment_MembersInjector.java
  ru.iteco.fmhandroid.ui.SplashScreenFragment_MembersInjector
 ru/iteco/fmhandroid/databinding/FragmentNewsControlPanelBinding.java
@@ -154,8 +170,15 @@ ru/iteco/fmhandroid/databinding/FragmentNewsListBinding.java
  ru.iteco.fmhandroid.databinding.FragmentNewsListBinding
 hilt_aggregated_deps/_ru_iteco_fmhandroid_viewmodel_ClaimViewModel_HiltModules_BindsModule.java
  hilt_aggregated_deps._ru_iteco_fmhandroid_viewmodel_ClaimViewModel_HiltModules_BindsModule
-ru/iteco/fmhandroid/ui/OurMissionFragment_GeneratedInjector.java
- ru.iteco.fmhandroid.ui.OurMissionFragment_GeneratedInjector
+ru/iteco/fmhandroid/dao/ClaimDao_Impl.java
+ ru.iteco.fmhandroid.dao.ClaimDao_Impl
+ ru.iteco.fmhandroid.dao.ClaimDao_Impl$1
+ ru.iteco.fmhandroid.dao.ClaimDao_Impl$2
+ ru.iteco.fmhandroid.dao.ClaimDao_Impl$3
+ ru.iteco.fmhandroid.dao.ClaimDao_Impl$4
+ ru.iteco.fmhandroid.dao.ClaimDao_Impl$5
+ ru.iteco.fmhandroid.dao.ClaimDao_Impl$6
+ ru.iteco.fmhandroid.dao.ClaimDao_Impl$7
 hilt_aggregated_deps/_ru_iteco_fmhandroid_ui_CreateEditClaimCommentFragment_GeneratedInjector.java
  hilt_aggregated_deps._ru_iteco_fmhandroid_ui_CreateEditClaimCommentFragment_GeneratedInjector
 hilt_aggregated_deps/_ru_iteco_fmhandroid_ui_AuthFragment_GeneratedInjector.java
@@ -226,8 +249,8 @@ ru/iteco/fmhandroid/ui/ClaimListFragment_GeneratedInjector.java
  ru.iteco.fmhandroid.ui.ClaimListFragment_GeneratedInjector
 hilt_aggregated_deps/_ru_iteco_fmhandroid_ui_ClaimListFragment_GeneratedInjector.java
  hilt_aggregated_deps._ru_iteco_fmhandroid_ui_ClaimListFragment_GeneratedInjector
-hilt_aggregated_deps/_ru_iteco_fmhandroid_ui_NewsListFragment_GeneratedInjector.java
- hilt_aggregated_deps._ru_iteco_fmhandroid_ui_NewsListFragment_GeneratedInjector
+ru/iteco/fmhandroid/dao/DaoModule_ProvideClaimDaoFactory.java
+ ru.iteco.fmhandroid.dao.DaoModule_ProvideClaimDaoFactory
 ru/iteco/fmhandroid/api/NetworkModule_NonAuthorizedOkhttpFactory.java
  ru.iteco.fmhandroid.api.NetworkModule_NonAuthorizedOkhttpFactory
 hilt_aggregated_deps/_ru_iteco_fmhandroid_ui_OpenClaimFragment_GeneratedInjector.java
@@ -257,8 +280,8 @@ hilt_aggregated_deps/_ru_iteco_fmhandroid_viewmodel_NewsControlPanelViewModel_Hi
  hilt_aggregated_deps._ru_iteco_fmhandroid_viewmodel_NewsControlPanelViewModel_HiltModules_BindsModule
 ru/iteco/fmhandroid/viewmodel/ClaimCardViewModel_Factory.java
  ru.iteco.fmhandroid.viewmodel.ClaimCardViewModel_Factory
-hilt_aggregated_deps/_ru_iteco_fmhandroid_repository_authRepository_AuthRepositoryModule.java
- hilt_aggregated_deps._ru_iteco_fmhandroid_repository_authRepository_AuthRepositoryModule
+ru/iteco/fmhandroid/dao/DaoModule_ProvideNewsCategoryDaoFactory.java
+ ru.iteco.fmhandroid.dao.DaoModule_ProvideNewsCategoryDaoFactory
 hilt_aggregated_deps/_ru_iteco_fmhandroid_dao_DaoModule.java
  hilt_aggregated_deps._ru_iteco_fmhandroid_dao_DaoModule
 ru/iteco/fmhandroid/ui/FilterNewsListFragment_GeneratedInjector.java
@@ -267,47 +290,26 @@ hilt_aggregated_deps/_ru_iteco_fmhandroid_viewmodel_AuthViewModel_HiltModules_Ke
  hilt_aggregated_deps._ru_iteco_fmhandroid_viewmodel_AuthViewModel_HiltModules_KeyModule
 ru/iteco/fmhandroid/databinding/ItemNewsBinding.java
  ru.iteco.fmhandroid.databinding.ItemNewsBinding
-ru/iteco/fmhandroid/dao/NewsCategoryDao_Impl.java
- ru.iteco.fmhandroid.dao.NewsCategoryDao_Impl
- ru.iteco.fmhandroid.dao.NewsCategoryDao_Impl$1
- ru.iteco.fmhandroid.dao.NewsCategoryDao_Impl$2
- ru.iteco.fmhandroid.dao.NewsCategoryDao_Impl$3
- ru.iteco.fmhandroid.dao.NewsCategoryDao_Impl$4
-ru/iteco/fmhandroid/dao/ClaimDao_Impl.java
- ru.iteco.fmhandroid.dao.ClaimDao_Impl
- ru.iteco.fmhandroid.dao.ClaimDao_Impl$1
- ru.iteco.fmhandroid.dao.ClaimDao_Impl$2
- ru.iteco.fmhandroid.dao.ClaimDao_Impl$3
- ru.iteco.fmhandroid.dao.ClaimDao_Impl$4
- ru.iteco.fmhandroid.dao.ClaimDao_Impl$5
- ru.iteco.fmhandroid.dao.ClaimDao_Impl$6
- ru.iteco.fmhandroid.dao.ClaimDao_Impl$7
-ru/iteco/fmhandroid/dao/NewsDao_Impl.java
- ru.iteco.fmhandroid.dao.NewsDao_Impl
- ru.iteco.fmhandroid.dao.NewsDao_Impl$1
- ru.iteco.fmhandroid.dao.NewsDao_Impl$2
- ru.iteco.fmhandroid.dao.NewsDao_Impl$3
- ru.iteco.fmhandroid.dao.NewsDao_Impl$4
- ru.iteco.fmhandroid.dao.NewsDao_Impl$5
- ru.iteco.fmhandroid.dao.NewsDao_Impl$6
- ru.iteco.fmhandroid.dao.NewsDao_Impl$7
- ru.iteco.fmhandroid.dao.NewsDao_Impl$8
-ru/iteco/fmhandroid/dao/ClaimCommentDao_Impl.java
- ru.iteco.fmhandroid.dao.ClaimCommentDao_Impl
- ru.iteco.fmhandroid.dao.ClaimCommentDao_Impl$1
- ru.iteco.fmhandroid.dao.ClaimCommentDao_Impl$2
- ru.iteco.fmhandroid.dao.ClaimCommentDao_Impl$3
- ru.iteco.fmhandroid.dao.ClaimCommentDao_Impl$4
-ru/iteco/fmhandroid/dao/DaoModule_ProvideClaimDaoFactory.java
- ru.iteco.fmhandroid.dao.DaoModule_ProvideClaimDaoFactory
-ru/iteco/fmhandroid/dao/DaoModule_ProvideNewsCategoryDaoFactory.java
- ru.iteco.fmhandroid.dao.DaoModule_ProvideNewsCategoryDaoFactory
-ru/iteco/fmhandroid/db/DbModule_ProvideDbFactory.java
- ru.iteco.fmhandroid.db.DbModule_ProvideDbFactory
-ru/iteco/fmhandroid/dao/DaoModule_ProvideNewsDaoFactory.java
- ru.iteco.fmhandroid.dao.DaoModule_ProvideNewsDaoFactory
-ru/iteco/fmhandroid/dao/DaoModule_ProvideClaimCommentDaoFactory.java
- ru.iteco.fmhandroid.dao.DaoModule_ProvideClaimCommentDaoFactory
-ru/iteco/fmhandroid/db/AppDb_Impl.java
- ru.iteco.fmhandroid.db.AppDb_Impl
- ru.iteco.fmhandroid.db.AppDb_Impl$1
+ru/iteco/fmhandroid/repository/authRepository/AuthRepositoryImpl_Factory.java
+ ru.iteco.fmhandroid.repository.authRepository.AuthRepositoryImpl_Factory
+ru/iteco/fmhandroid/viewmodel/ClaimViewModel_HiltModules.java
+ ru.iteco.fmhandroid.viewmodel.ClaimViewModel_HiltModules
+ ru.iteco.fmhandroid.viewmodel.ClaimViewModel_HiltModules$BindsModule
+ ru.iteco.fmhandroid.viewmodel.ClaimViewModel_HiltModules$KeyModule
+ru/iteco/fmhandroid/viewmodel/ClaimViewModel_HiltModules_KeyModule_ProvideFactory.java
+ ru.iteco.fmhandroid.viewmodel.ClaimViewModel_HiltModules_KeyModule_ProvideFactory
+ ru.iteco.fmhandroid.viewmodel.ClaimViewModel_HiltModules_KeyModule_ProvideFactory$InstanceHolder
+ru/iteco/fmhandroid/databinding/FragmentMainBinding.java
+ ru.iteco.fmhandroid.databinding.FragmentMainBinding
+hilt_aggregated_deps/_ru_iteco_fmhandroid_ui_NewsControlPanelFragment_GeneratedInjector.java
+ hilt_aggregated_deps._ru_iteco_fmhandroid_ui_NewsControlPanelFragment_GeneratedInjector
+ru/iteco/fmhandroid/ui/Hilt_ClaimListFilteringDialogFragment.java
+ ru.iteco.fmhandroid.ui.Hilt_ClaimListFilteringDialogFragment
+hilt_aggregated_deps/_ru_iteco_fmhandroid_ui_MainFragment_GeneratedInjector.java
+ hilt_aggregated_deps._ru_iteco_fmhandroid_ui_MainFragment_GeneratedInjector
+hilt_aggregated_deps/_ru_iteco_fmhandroid_repository_authRepository_AuthRepositoryModule.java
+ hilt_aggregated_deps._ru_iteco_fmhandroid_repository_authRepository_AuthRepositoryModule
+ru/iteco/fmhandroid/ui/OurMissionFragment_GeneratedInjector.java
+ ru.iteco.fmhandroid.ui.OurMissionFragment_GeneratedInjector
+hilt_aggregated_deps/_ru_iteco_fmhandroid_ui_NewsListFragment_GeneratedInjector.java
+ hilt_aggregated_deps._ru_iteco_fmhandroid_ui_NewsListFragment_GeneratedInjector

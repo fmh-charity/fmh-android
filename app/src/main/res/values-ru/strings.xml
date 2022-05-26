@@ -123,4 +123,6 @@
     <string name="Comments">Палата адаптирована для лежачих больных</string>
     <string name="patients_room">Пациенты палаты</string>
     <string name="Patient">Иванов П.И.</string>
+    <string name="room">Палата</string>
+    <string name="add_patient">Добавить пациента</string>
 </resources>

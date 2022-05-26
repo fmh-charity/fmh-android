@@ -7,6 +7,7 @@
     <item quantity="other">%d нового уведомления</item>
   </plurals>
     <string name="Comments">Палата адаптирована для лежачих больных</string>
+    <string name="Patient">Иванов П.И.</string>
     <string msgid="5976598919945601918" name="abc_action_bar_home_description">"Перейти на главный экран"</string>
     <string msgid="8388173803310557296" name="abc_action_bar_up_description">"Перейти вверх"</string>
     <string msgid="3937310113216875497" name="abc_action_menu_overflow_description">"Ещё"</string>
@@ -183,12 +184,14 @@
     <string name="our_mission_title_text">Главное - жить любя</string>
     <string name="password">Пароль</string>
     <string name="password_toggle_content_description">Показать пароль</string>
+    <string name="patients_room">Пациенты палаты</string>
     <string name="plan_date">Плановая дата</string>
     <string name="post">Пост</string>
     <string name="privacy_policy">Политика конфиденциальности:</string>
     <string name="privacy_policy_url">https://vhospice.org/#/privacy-policy</string>
     <string name="refresh">Обновить</string>
     <string name="retry_loading">Повторить</string>
+    <string name="room">Палата</string>
     <string name="room_number">№ палаты</string>
     <string name="save">Сохранить</string>
     <string msgid="6264217191555673260" name="search_menu_title">"Поиск"</string>

@@ -123,4 +123,6 @@
     <string name="Comments">The ward is adapted for bedridden patients</string>
     <string name="patients_room">Patients room</string>
     <string name="Patient">Ivanov P.I</string>
+    <string name="room">Room</string>
+    <string name="add_patient">Add patient</string>
 </resources>

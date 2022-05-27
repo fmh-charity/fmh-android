@@ -17,8 +17,8 @@ import ru.iteco.fmhandroid.entity.*
         BlockEntity::class,
         NurseStationEntity::class
     ],
-    version = 2,
     exportSchema = true,
+    version = 2,
     autoMigrations = [AutoMigration(from = 1, to = 2)]
 )
 

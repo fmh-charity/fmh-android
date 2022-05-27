@@ -47,6 +47,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":data"))
+
     def retrofit_version = "2.9.0"
     def retrofit_gson_version = "2.9.0"
     def okhttp_logging_version = "4.9.2"

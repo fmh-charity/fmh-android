@@ -3,7 +3,7 @@ package ru.iteco.fmhandroid.auth
 import android.content.Context
 import android.content.SharedPreferences
 import dagger.hilt.android.qualifiers.ApplicationContext
-import ru.iteco.fmhandroid.dto.AuthState
+import ru.iteco.fmh.model.AuthState
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlin.properties.Delegates

@@ -1,2 +1,4 @@
-include ':app'
 rootProject.name = "FMHAndroid"
+include ':app'
+include ':data'
+include ':model'

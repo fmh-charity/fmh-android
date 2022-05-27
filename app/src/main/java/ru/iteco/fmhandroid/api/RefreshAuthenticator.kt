@@ -5,8 +5,8 @@ import okhttp3.Authenticator
 import okhttp3.Request
 import okhttp3.Response
 import okhttp3.Route
+import ru.iteco.fmh.data.AuthRepository
 import ru.iteco.fmhandroid.auth.AppAuth
-import ru.iteco.fmhandroid.repository.authRepository.AuthRepository
 import javax.inject.Provider
 
 class RefreshAuthenticator(

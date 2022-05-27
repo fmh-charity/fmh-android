@@ -5,7 +5,8 @@ import com.google.gson.reflect.TypeToken
 import ru.iteco.fmhandroid.api.AuthApi
 import ru.iteco.fmhandroid.api.RefreshTokensApi
 import ru.iteco.fmhandroid.auth.AppAuth
-import ru.iteco.fmhandroid.dto.AuthState
+import ru.iteco.fmh.data.AuthRepository
+import ru.iteco.fmh.model.AuthState
 import ru.iteco.fmhandroid.dto.JwtResponse
 import ru.iteco.fmhandroid.dto.LoginData
 import ru.iteco.fmhandroid.dto.RefreshRequest

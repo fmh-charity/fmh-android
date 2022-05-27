@@ -4,7 +4,7 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.Header
 import retrofit2.http.POST
-import ru.iteco.fmhandroid.dto.AuthState
+import ru.iteco.fmh.model.AuthState
 import ru.iteco.fmhandroid.dto.RefreshRequest
 
 interface RefreshTokensApi {

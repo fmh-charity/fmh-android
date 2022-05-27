@@ -8,12 +8,12 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import ru.iteco.fmh.data.AuthRepository
 import ru.iteco.fmhandroid.BuildConfig
 import ru.iteco.fmhandroid.api.qualifier.Authorized
 import ru.iteco.fmhandroid.api.qualifier.NonAuthorized
 import ru.iteco.fmhandroid.api.qualifier.Refresh
 import ru.iteco.fmhandroid.auth.AppAuth
-import ru.iteco.fmhandroid.repository.authRepository.AuthRepository
 import javax.inject.Provider
 
 @InstallIn(SingletonComponent::class)

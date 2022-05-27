@@ -52,8 +52,8 @@ class OpenClaimFragment : Fragment() {
             claimCardViewModel.openClaimCommentEvent.collect {
                 val action = OpenClaimFragmentDirections
                     .actionOpenClaimFragmentToCreateEditClaimCommentFragment(
-                        it,
-                        it.claimId
+                        argClaimId = it.claimId,
+                        argComment = it,
                     )
                 findNavController().navigate(action)
             }

@@ -125,4 +125,6 @@
     <string name="Patient">Ivanov P.I</string>
     <string name="room">Room</string>
     <string name="add_patient">Add patient</string>
+    <string name="post_number">№ post</string>
+    <string name="Comments2">the post serves only bedridden patients</string>
 </resources>

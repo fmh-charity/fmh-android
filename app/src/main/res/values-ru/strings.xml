@@ -125,4 +125,6 @@
     <string name="Patient">Иванов П.И.</string>
     <string name="room">Палата</string>
     <string name="add_patient">Добавить пациента</string>
+    <string name="post_number">№ поста</string>
+    <string name="Comments2">Пост обслуживает только лежачих больных</string>
 </resources>

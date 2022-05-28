@@ -7,10 +7,10 @@ import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import ru.iteco.fmhandroid.dto.News
-import ru.iteco.fmhandroid.dto.NewsWithCategory
-import ru.iteco.fmhandroid.dto.User
-import ru.iteco.fmhandroid.repository.newsRepository.NewsRepository
-import ru.iteco.fmhandroid.repository.userRepository.UserRepository
+import ru.iteco.fmh.model.NewsWithCategory
+import ru.iteco.fmh.model.User
+import ru.iteco.fmh.data.NewsRepository
+import ru.iteco.fmh.data.UserRepository
 import javax.inject.Inject
 
 @HiltViewModel

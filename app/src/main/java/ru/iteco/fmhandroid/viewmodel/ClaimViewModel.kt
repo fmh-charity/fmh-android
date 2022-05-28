@@ -11,8 +11,8 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
 import ru.iteco.fmhandroid.adapter.OnClaimItemClickListener
 import ru.iteco.fmhandroid.dto.Claim
-import ru.iteco.fmhandroid.dto.FullClaim
-import ru.iteco.fmhandroid.repository.claimRepository.ClaimRepository
+import ru.iteco.fmh.data.ClaimRepository
+import ru.iteco.fmh.model.FullClaim
 import javax.inject.Inject
 
 @HiltViewModel

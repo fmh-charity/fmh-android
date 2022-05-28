@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import ru.iteco.fmh.model.FullClaim
 import ru.iteco.fmhandroid.databinding.ItemClaimBinding
-import ru.iteco.fmhandroid.dto.FullClaim
 import ru.iteco.fmhandroid.utils.Utils
 
 interface OnClaimItemClickListener {

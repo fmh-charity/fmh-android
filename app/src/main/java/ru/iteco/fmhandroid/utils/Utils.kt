@@ -5,12 +5,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.widget.EditText
-import retrofit2.Response
 import ru.iteco.fmhandroid.dto.ClaimComment
-import ru.iteco.fmhandroid.dto.User
-import ru.iteco.fmhandroid.exceptions.*
-import java.io.IOException
-import java.net.ConnectException
 import java.text.SimpleDateFormat
 import java.time.*
 import java.time.format.DateTimeFormatter
@@ -25,13 +20,6 @@ object Utils {
             creatorId = 0,
             creatorName = "",
             createDate = 0,
-        )
-        val emptyUser = User(
-            id = 0,
-            admin = false,
-            firstName = "",
-            lastName = "",
-            middleName = "",
         )
     }
 
@@ -100,28 +88,6 @@ object Utils {
             Locale.getDefault()
         )
         return formatter.format(localDateTime)
-    }
-
-    suspend fun <T, R> makeRequest(
-        request: suspend () -> Response<T>,
-        onSuccess: suspend (body: T) -> R,
-        onFailure: (response: Response<T>) -> R = { throw ApiException(it.code(), it.message()) }
-    ): R {
-        try {
-            val response = request()
-            if (!response.isSuccessful) return onFailure(response)
-            val body =
-                response.body() ?: throw ApiException(response.code(), response.message())
-            return onSuccess(body)
-        } catch (e: ConnectException) {
-            throw LostConnectException
-        } catch (e: IOException) {
-            throw ServerException
-        } catch (e: AuthorizationException) {
-            throw AuthorizationException
-        } catch (e: Exception) {
-            throw UnknownException
-        }
     }
 
     fun fullUserNameGenerator(lastName: String, firstName: String, middleName: String): String {

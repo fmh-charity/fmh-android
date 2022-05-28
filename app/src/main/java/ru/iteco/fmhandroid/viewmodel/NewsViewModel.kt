@@ -8,9 +8,9 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import ru.iteco.fmhandroid.adapter.OnNewsItemClickListener
 import ru.iteco.fmhandroid.dto.News
-import ru.iteco.fmhandroid.dto.User
-import ru.iteco.fmhandroid.repository.newsRepository.NewsRepository
-import ru.iteco.fmhandroid.repository.userRepository.UserRepository
+import ru.iteco.fmh.model.User
+import ru.iteco.fmh.data.NewsRepository
+import ru.iteco.fmh.data.UserRepository
 import ru.iteco.fmhandroid.ui.viewdata.NewsViewData
 import ru.iteco.fmhandroid.utils.Utils
 import java.time.LocalDateTime

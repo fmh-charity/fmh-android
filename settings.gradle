@@ -1,4 +1,4 @@
 rootProject.name = "FMHAndroid"
 include ':app'
-include ':data'
 include ':model'
+include ':data:impl', ':data:di', ':data:db', ':data:api'

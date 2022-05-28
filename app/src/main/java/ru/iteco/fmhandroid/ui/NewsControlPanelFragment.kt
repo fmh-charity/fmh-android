@@ -23,7 +23,7 @@ import ru.iteco.fmhandroid.adapter.NewsOnInteractionListener
 import ru.iteco.fmhandroid.databinding.FragmentNewsControlPanelBinding
 import ru.iteco.fmhandroid.dto.News
 import ru.iteco.fmhandroid.dto.NewsFilterArgs
-import ru.iteco.fmhandroid.dto.NewsWithCategory
+import ru.iteco.fmh.model.NewsWithCategory
 import ru.iteco.fmhandroid.enum.FragmentsTags
 import ru.iteco.fmhandroid.utils.Utils
 import ru.iteco.fmhandroid.viewmodel.AuthViewModel

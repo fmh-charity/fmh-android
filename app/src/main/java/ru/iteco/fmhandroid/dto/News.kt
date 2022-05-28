@@ -1,9 +1,6 @@
 package ru.iteco.fmhandroid.dto
 
 import android.os.Parcelable
-import androidx.room.Embedded
-import androidx.room.Relation
-import ru.iteco.fmhandroid.entity.NewsCategoryEntity
 
 @kotlinx.parcelize.Parcelize
 data class News(
@@ -31,21 +28,3 @@ data class News(
     }
 }
 
-@kotlinx.parcelize.Parcelize
-data class NewsWithCategory(
-    @Embedded
-    val newsItem: News,
-    @Relation(
-        entity = NewsCategoryEntity::class,
-        parentColumn = "newsCategoryId",
-        entityColumn = "id"
-    )
-    val category: News.Category
-) : Parcelable
-
-@kotlinx.parcelize.Parcelize
-data class NewsFilterArgs(
-    val category: String? = null,
-    val dates: List<Long>? = null,
-    val status: Boolean? = null
-) : Parcelable

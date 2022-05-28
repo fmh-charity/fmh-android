@@ -9,10 +9,9 @@ import kotlinx.coroutines.launch
 import ru.iteco.fmhandroid.adapter.OnClaimCommentItemClickListener
 import ru.iteco.fmhandroid.dto.Claim
 import ru.iteco.fmhandroid.dto.ClaimComment
-import ru.iteco.fmhandroid.dto.FullClaim
-import ru.iteco.fmhandroid.dto.User
-import ru.iteco.fmhandroid.repository.claimRepository.ClaimRepository
-import ru.iteco.fmhandroid.repository.userRepository.UserRepository
+import ru.iteco.fmh.model.User
+import ru.iteco.fmh.data.ClaimRepository
+import ru.iteco.fmh.data.UserRepository
 import javax.inject.Inject
 import kotlin.properties.Delegates
 

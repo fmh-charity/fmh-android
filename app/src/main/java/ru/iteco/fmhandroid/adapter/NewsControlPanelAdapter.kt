@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.databinding.ItemNewsControlPanelBinding
 import ru.iteco.fmhandroid.dto.News
-import ru.iteco.fmhandroid.dto.NewsWithCategory
+import ru.iteco.fmh.model.NewsWithCategory
 import ru.iteco.fmhandroid.extensions.getType
 import ru.iteco.fmhandroid.utils.Utils
 import ru.iteco.fmhandroid.utils.Utils.generateShortUserName

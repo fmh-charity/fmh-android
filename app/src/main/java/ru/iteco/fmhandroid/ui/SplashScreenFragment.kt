@@ -14,8 +14,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import ru.iteco.fmhandroid.R
-import ru.iteco.fmhandroid.api.UserApi
-import ru.iteco.fmhandroid.auth.AppAuth
+import ru.iteco.fmh.data.impl.UserApi
+import ru.iteco.fmh.data.impl.AppAuth
 import ru.iteco.fmhandroid.databinding.FragmentSplashScreenBinding
 import ru.iteco.fmhandroid.dto.SplashScreenData
 import ru.iteco.fmhandroid.viewmodel.AuthViewModel
@@ -26,10 +26,10 @@ import javax.inject.Inject
 class SplashScreenFragment : Fragment(R.layout.fragment_splash_screen) {
 
     @Inject
-    lateinit var auth: AppAuth
+    lateinit var auth: ru.iteco.fmh.data.impl.AppAuth
 
     @Inject
-    lateinit var userApi: UserApi
+    lateinit var userApi: ru.iteco.fmh.data.impl.UserApi
     private val authViewModel: AuthViewModel by viewModels()
 
     private lateinit var binding: FragmentSplashScreenBinding

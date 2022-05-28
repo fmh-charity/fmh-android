@@ -24,7 +24,6 @@ import ru.iteco.fmhandroid.adapter.OnClaimCommentItemClickListener
 import ru.iteco.fmhandroid.databinding.FragmentOpenClaimBinding
 import ru.iteco.fmhandroid.dto.Claim
 import ru.iteco.fmhandroid.dto.ClaimComment
-import ru.iteco.fmhandroid.dto.FullClaim
 import ru.iteco.fmhandroid.utils.Utils
 import ru.iteco.fmhandroid.viewmodel.AuthViewModel
 import ru.iteco.fmhandroid.viewmodel.ClaimCardViewModel

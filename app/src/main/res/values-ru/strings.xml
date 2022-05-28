@@ -127,4 +127,5 @@
     <string name="add_patient">Добавить пациента</string>
     <string name="post_number">№ поста</string>
     <string name="Comments2">Пост обслуживает только лежачих больных</string>
+    <string name="list_of_post">Список постов</string>
 </resources>

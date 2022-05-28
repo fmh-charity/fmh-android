@@ -127,4 +127,5 @@
     <string name="add_patient">Add patient</string>
     <string name="post_number">№ post</string>
     <string name="Comments2">the post serves only bedridden patients</string>
+    <string name="list_of_post">List of posts</string>
 </resources>

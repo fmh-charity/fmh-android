@@ -48,10 +48,10 @@
                     app:layout_constraintBottom_toBottomOf="@+id/post_list_item_title_background_image_view"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="@string/post_number" />
+                    tools:text="@string/block_number" />
 
                 <TextView
-                    android:id="@+id/post_number_text_view"
+                    android:id="@+id/block_number_text_view"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/card_view_padding"
@@ -125,7 +125,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/comment_text_view"
                     app:layout_constraintTop_toBottomOf="@+id/comment_text_view"
-                    tools:text="@string/Comments2" />
+                    tools:text="@string/Comments3" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>

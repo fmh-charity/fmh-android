@@ -1,9 +1,7 @@
 package ru.iteco.fmh.data.db.entity
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import ru.iteco.fmh.model.Claim
+import androidx.room.*
+import ru.iteco.fmh.data.db.converter.ClaimStatusConverter
 
 @Entity(tableName = "ClaimEntity")
 data class ClaimEntity(
@@ -29,5 +27,26 @@ data class ClaimEntity(
     @ColumnInfo(name = "factExecuteDate")
     val factExecuteDate: Long?,
     @ColumnInfo(name = "status")
-    val status: Claim.Status,
-)
+    @TypeConverters(ClaimStatusConverter::class)
+    val status: Status,
+) {
+
+    enum class Status {
+        CANCELLED,
+        EXECUTED,
+        IN_PROGRESS,
+        OPEN
+    }
+
+    class WithComments(
+        @Embedded
+        val claim: ClaimEntity,
+
+        @Relation(
+            entity = ClaimCommentEntity::class,
+            parentColumn = "id",
+            entityColumn = "claimId"
+        )
+        val comments: List<ClaimCommentEntity>?
+    )
+}

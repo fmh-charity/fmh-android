@@ -3,7 +3,6 @@ package ru.iteco.fmh.data.db.dao
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 import ru.iteco.fmh.data.db.entity.NewsEntity
-import ru.iteco.fmh.model.News
 
 @Dao
 interface NewsDao {
@@ -26,11 +25,11 @@ interface NewsDao {
         dateStart: Long? = null,
         dateEnd: Long? = null,
         status: Boolean? = null
-    ): Flow<List<News.WithCategory>>
+    ): Flow<List<NewsEntity.WithCategory>>
 
     @Transaction
     @Query("SELECT * FROM NewsEntity")
-    suspend fun getAllNewsList(): List<News.WithCategory>
+    suspend fun getAllNewsList(): List<NewsEntity.WithCategory>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(newsItem: NewsEntity)

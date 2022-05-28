@@ -31,4 +31,5 @@ abstract class AppDb : RoomDatabase() {
     abstract fun getNewsDao(): NewsDao
     abstract fun getNewsCategoryDao(): NewsCategoryDao
     abstract fun getRoomDao(): RoomDao
+    abstract fun getBlockDao(): BlockDao
 }

@@ -23,4 +23,7 @@ object DaoModule {
 
     @Provides
     fun provideRoomDao(db: AppDb): RoomDao = db.getRoomDao()
+
+    @Provides
+    fun provideBlockDao(db: AppDb): BlockDao = db.getBlockDao()
 }

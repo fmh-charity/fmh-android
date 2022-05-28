@@ -18,10 +18,10 @@ interface BlockDao {
     fun getBlockById(id: Int): Flow<Block>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertBlocks(rooms: List<BlockEntity>)
+    suspend fun insertBlocks(blocks: List<BlockEntity>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertBlock(room: List<BlockEntity>)
+    suspend fun insertBlock(block: BlockEntity)
 
     @Query("DELETE FROM BlockEntity WHERE id IN (:idList)")
     suspend fun removeBlocksItemsByIdList(idList: List<Int?>)

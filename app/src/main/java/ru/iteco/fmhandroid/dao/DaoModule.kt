@@ -26,4 +26,7 @@ object DaoModule {
 
     @Provides
     fun provideBlockDao(db: AppDb): BlockDao = db.getBlockDao()
+
+    @Provides
+    fun provideNurseStationDao(db: AppDb): NurseStationDao = db.getNurseStationDao()
 }

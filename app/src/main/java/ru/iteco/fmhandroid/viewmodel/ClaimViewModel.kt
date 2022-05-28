@@ -9,10 +9,10 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
-import ru.iteco.fmhandroid.adapter.OnClaimItemClickListener
-import ru.iteco.fmhandroid.dto.Claim
 import ru.iteco.fmh.data.ClaimRepository
+import ru.iteco.fmh.model.Claim
 import ru.iteco.fmh.model.FullClaim
+import ru.iteco.fmhandroid.adapter.OnClaimItemClickListener
 import javax.inject.Inject
 
 @HiltViewModel

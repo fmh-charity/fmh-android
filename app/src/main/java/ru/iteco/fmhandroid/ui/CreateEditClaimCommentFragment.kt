@@ -11,9 +11,9 @@ import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import ru.iteco.fmh.model.Claim
 import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.databinding.FragmentCreateEditCommentBinding
-import ru.iteco.fmhandroid.dto.ClaimComment
 import ru.iteco.fmhandroid.utils.Utils
 import ru.iteco.fmhandroid.viewmodel.ClaimCardViewModel
 import java.time.Instant
@@ -56,7 +56,7 @@ class CreateEditClaimCommentFragment : Fragment(R.layout.fragment_create_edit_co
         val binding = FragmentCreateEditCommentBinding.bind(view)
 
         val args: CreateEditClaimCommentFragmentArgs by navArgs()
-        val comment: ClaimComment? = args.argComment
+        val comment: Claim.Comment? = args.argComment
         val claimId: Int = args.argClaimId
 
         with(binding.containerCustomAppBarIncludeOnFragmentCreateEditClaimComment) {
@@ -102,7 +102,7 @@ class CreateEditClaimCommentFragment : Fragment(R.layout.fragment_create_edit_co
 
                 if (newCommentDescription.isNotBlank()) {
                     claimCardViewModel.createClaimComment(
-                        ClaimComment(
+                        Claim.Comment(
                             claimId = claimId,
                             description = newCommentDescription,
                             creatorId = claimCardViewModel.currentUser.id,

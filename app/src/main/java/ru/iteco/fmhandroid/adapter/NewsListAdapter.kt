@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import ru.iteco.fmh.model.News
 import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.databinding.ItemNewsBinding
-import ru.iteco.fmhandroid.dto.News
 import ru.iteco.fmhandroid.extensions.getType
 import ru.iteco.fmhandroid.ui.viewdata.NewsViewData
 import ru.iteco.fmhandroid.utils.Utils

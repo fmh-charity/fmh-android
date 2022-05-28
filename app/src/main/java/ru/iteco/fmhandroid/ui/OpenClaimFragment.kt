@@ -18,12 +18,12 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import ru.iteco.fmh.model.Claim
+import ru.iteco.fmh.model.FullClaim
 import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.adapter.ClaimCommentListAdapter
 import ru.iteco.fmhandroid.adapter.OnClaimCommentItemClickListener
 import ru.iteco.fmhandroid.databinding.FragmentOpenClaimBinding
-import ru.iteco.fmhandroid.dto.Claim
-import ru.iteco.fmhandroid.dto.ClaimComment
 import ru.iteco.fmhandroid.utils.Utils
 import ru.iteco.fmhandroid.viewmodel.AuthViewModel
 import ru.iteco.fmhandroid.viewmodel.ClaimCardViewModel
@@ -144,7 +144,7 @@ class OpenClaimFragment : Fragment() {
         }
 
         val adapter = ClaimCommentListAdapter(object : OnClaimCommentItemClickListener {
-            override fun onCard(claimComment: ClaimComment) {
+            override fun onCard(claimComment: Claim.Comment) {
                 claimCardViewModel.onCard(claimComment)
             }
         }, claimCardViewModel)
@@ -329,12 +329,13 @@ class OpenClaimFragment : Fragment() {
                             if (text.isBlank()) {
                                 showErrorToast(R.string.toast_empty_field)
                             } else {
+                                val claimId = fullClaim.claim.id!!
                                 claimCardViewModel.changeClaimStatus(
-                                    fullClaim.claim.id!!,
+                                    claimId,
                                     Claim.Status.OPEN,
                                     executorId = null,
-                                    claimComment = ClaimComment(
-                                        claimId = fullClaim.claim.id,
+                                    claimComment = Claim.Comment(
+                                        claimId = claimId,
                                         creatorName = Utils.fullUserNameGenerator(
                                             claimCardViewModel.currentUser.lastName,
                                             claimCardViewModel.currentUser.firstName,
@@ -384,12 +385,13 @@ class OpenClaimFragment : Fragment() {
                             if (text.isBlank()) {
                                 showErrorToast(R.string.toast_empty_field)
                             } else {
+                                val claimId = fullClaim.claim.id!!
                                 claimCardViewModel.changeClaimStatus(
-                                    fullClaim.claim.id!!,
+                                    claimId,
                                     Claim.Status.EXECUTED,
                                     executorId = fullClaim.claim.executorId,
-                                    claimComment = ClaimComment(
-                                        claimId = fullClaim.claim.id,
+                                    claimComment = Claim.Comment(
+                                        claimId = claimId,
                                         creatorName = Utils.fullUserNameGenerator(
                                             claimCardViewModel.currentUser.lastName,
                                             claimCardViewModel.currentUser.firstName,

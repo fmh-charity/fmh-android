@@ -5,7 +5,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.widget.EditText
-import ru.iteco.fmhandroid.dto.ClaimComment
+import ru.iteco.fmh.model.Claim
 import java.text.SimpleDateFormat
 import java.time.*
 import java.time.format.DateTimeFormatter
@@ -13,7 +13,7 @@ import java.util.*
 
 object Utils {
     object Empty {
-        val emptyClaimComment = ClaimComment(
+        val emptyClaimComment = Claim.Comment(
             id = 0,
             claimId = 0,
             description = "",

@@ -6,12 +6,12 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
-import ru.iteco.fmhandroid.adapter.OnClaimCommentItemClickListener
-import ru.iteco.fmhandroid.dto.Claim
-import ru.iteco.fmhandroid.dto.ClaimComment
-import ru.iteco.fmh.model.User
 import ru.iteco.fmh.data.ClaimRepository
 import ru.iteco.fmh.data.UserRepository
+import ru.iteco.fmh.model.Claim
+import ru.iteco.fmh.model.FullClaim
+import ru.iteco.fmh.model.User
+import ru.iteco.fmhandroid.adapter.OnClaimCommentItemClickListener
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
@@ -33,7 +33,7 @@ class ClaimCardViewModel @Inject constructor(
     val userList: List<User>
         get() = userRepository.userList
 
-    val openClaimCommentEvent = MutableSharedFlow<ClaimComment>()
+    val openClaimCommentEvent = MutableSharedFlow<Claim.Comment>()
     private val claimStatusChangedEvent = MutableSharedFlow<Unit>()
     val claimStatusChangeExceptionEvent = MutableSharedFlow<Unit>()
     val claimUpdateExceptionEvent = MutableSharedFlow<Unit>()
@@ -45,7 +45,7 @@ class ClaimCardViewModel @Inject constructor(
     val claimCommentCreateExceptionEvent = MutableSharedFlow<Unit>()
     val updateClaimCommentExceptionEvent = MutableSharedFlow<Unit>()
 
-    fun createClaimComment(claimComment: ClaimComment) {
+    fun createClaimComment(claimComment: Claim.Comment) {
         viewModelScope.launch {
             try {
                 claimRepository.saveClaimComment(claimComment.claimId, claimComment)
@@ -57,7 +57,7 @@ class ClaimCardViewModel @Inject constructor(
         }
     }
 
-    fun updateClaimComment(comment: ClaimComment) {
+    fun updateClaimComment(comment: Claim.Comment) {
         viewModelScope.launch {
             try {
                 claimRepository.changeClaimComment(comment)
@@ -97,7 +97,7 @@ class ClaimCardViewModel @Inject constructor(
         claimId: Int,
         newClaimStatus: Claim.Status,
         executorId: Int?,
-        claimComment: ClaimComment
+        claimComment: Claim.Comment
     ) {
         viewModelScope.launch {
             try {
@@ -120,7 +120,7 @@ class ClaimCardViewModel @Inject constructor(
     }
 
     // region OnClaimCommentItemClickListener
-    override fun onCard(claimComment: ClaimComment) {
+    override fun onCard(claimComment: Claim.Comment) {
         viewModelScope.launch {
             openClaimCommentEvent.emit(claimComment)
         }

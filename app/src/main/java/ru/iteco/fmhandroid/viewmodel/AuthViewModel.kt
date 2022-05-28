@@ -5,19 +5,14 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
-import ru.iteco.fmh.data.AuthRepository
-import ru.iteco.fmh.data.impl.AppAuth
-import ru.iteco.fmhandroid.exceptions.AuthorizationException
-import ru.iteco.fmhandroid.exceptions.LostConnectException
-import ru.iteco.fmhandroid.exceptions.UnknownException
-import ru.iteco.fmh.data.UserRepository
+import ru.iteco.fmh.data.*
 import javax.inject.Inject
 
 @HiltViewModel
 class AuthViewModel @Inject constructor(
     private val userRepository: UserRepository,
     private val authRepository: AuthRepository,
-    private val appAuth: ru.iteco.fmh.data.impl.AppAuth
+    private val appAuth: AppAuth
 ) : ViewModel() {
 
     val nonAuthorizedEvent = MutableSharedFlow<Unit>()

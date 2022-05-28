@@ -17,13 +17,12 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import ru.iteco.fmh.model.News
 import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.adapter.NewsControlPanelListAdapter
 import ru.iteco.fmhandroid.adapter.NewsOnInteractionListener
 import ru.iteco.fmhandroid.databinding.FragmentNewsControlPanelBinding
-import ru.iteco.fmhandroid.dto.News
 import ru.iteco.fmhandroid.dto.NewsFilterArgs
-import ru.iteco.fmh.model.NewsWithCategory
 import ru.iteco.fmhandroid.enum.FragmentsTags
 import ru.iteco.fmhandroid.utils.Utils
 import ru.iteco.fmhandroid.viewmodel.AuthViewModel
@@ -112,13 +111,13 @@ class NewsControlPanelFragment : Fragment(R.layout.fragment_news_control_panel) 
                 viewModel.onCard(newsItem)
             }
 
-            override fun onEdit(newItemWithCategory: NewsWithCategory) {
+            override fun onEdit(newItemWithCategory: News.WithCategory) {
                 val action = NewsControlPanelFragmentDirections
                     .actionNewsControlPanelFragmentToCreateEditNewsFragment(newItemWithCategory)
                 findNavController().navigate(action)
             }
 
-            override fun onRemove(newItemWithCategory: NewsWithCategory) {
+            override fun onRemove(newItemWithCategory: News.WithCategory) {
                 dialog.setMessage(R.string.irrevocable_deletion)
                     .setPositiveButton(R.string.fragment_positive_button) { alertDialog, _ ->
                         newItemWithCategory.newsItem.id?.let { viewModel.remove(it) }

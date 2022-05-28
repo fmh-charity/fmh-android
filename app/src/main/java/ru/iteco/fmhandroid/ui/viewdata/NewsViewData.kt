@@ -1,6 +1,7 @@
 package ru.iteco.fmhandroid.ui.viewdata
 
-import ru.iteco.fmhandroid.dto.News
+import ru.iteco.fmh.model.News
+
 
 /**
  * Модель представления новости в списке

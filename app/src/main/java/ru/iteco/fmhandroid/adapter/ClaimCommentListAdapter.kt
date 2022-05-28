@@ -5,20 +5,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import ru.iteco.fmh.model.Claim
 import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.databinding.ItemCommentBinding
-import ru.iteco.fmhandroid.dto.ClaimComment
 import ru.iteco.fmhandroid.utils.Utils
 import ru.iteco.fmhandroid.viewmodel.ClaimCardViewModel
 
 interface OnClaimCommentItemClickListener {
-    fun onCard(claimComment: ClaimComment)
+    fun onCard(claimComment: Claim.Comment)
 }
 
 class ClaimCommentListAdapter(
     private val onClaimCommentItemClickListener: OnClaimCommentItemClickListener,
     private val claimCardViewModel: ClaimCardViewModel
-) : ListAdapter<ClaimComment, ClaimCommentListAdapter.ClaimCommentViewHolder>(
+) : ListAdapter<Claim.Comment, ClaimCommentListAdapter.ClaimCommentViewHolder>(
     ClaimCommentDiffCallback
 ) {
 
@@ -42,7 +42,7 @@ class ClaimCommentListAdapter(
         private val claimCardViewModel: ClaimCardViewModel
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(claimComment: ClaimComment) {
+        fun bind(claimComment: Claim.Comment) {
             with(binding) {
                 commentDescriptionTextView.text = claimComment.description
                 commentatorNameTextView.text = claimComment.creatorName
@@ -66,17 +66,17 @@ class ClaimCommentListAdapter(
         }
     }
 
-    private object ClaimCommentDiffCallback : DiffUtil.ItemCallback<ClaimComment>() {
+    private object ClaimCommentDiffCallback : DiffUtil.ItemCallback<Claim.Comment>() {
         override fun areItemsTheSame(
-            oldItem: ClaimComment,
-            newItem: ClaimComment
+            oldItem: Claim.Comment,
+            newItem: Claim.Comment
         ): Boolean {
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: ClaimComment,
-            newItem: ClaimComment
+            oldItem: Claim.Comment,
+            newItem: Claim.Comment
         ): Boolean {
             return oldItem == newItem
         }

@@ -17,9 +17,9 @@ import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import ru.iteco.fmh.model.News
 import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.databinding.FragmentCreateEditNewsBinding
-import ru.iteco.fmhandroid.dto.News
 import ru.iteco.fmhandroid.utils.Utils
 import ru.iteco.fmhandroid.utils.Utils.convertNewsCategory
 import ru.iteco.fmhandroid.utils.Utils.saveDateTime

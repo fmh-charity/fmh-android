@@ -6,12 +6,12 @@ import okhttp3.Request
 import okhttp3.Response
 import okhttp3.Route
 import ru.iteco.fmh.data.AuthRepository
-import ru.iteco.fmh.data.impl.AppAuth
+import ru.iteco.fmh.data.impl.AppAuthImpl
 import javax.inject.Provider
 
 class RefreshAuthenticator(
     private val authRepositoryProvider: Provider<AuthRepository>,
-    private val appAuth: AppAuth
+    private val appAuth: AppAuthImpl
 ) : Authenticator {
     override fun authenticate(route: Route?, response: Response): Request? {
         synchronized(this) {

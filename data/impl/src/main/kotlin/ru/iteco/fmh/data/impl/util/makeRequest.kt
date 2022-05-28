@@ -1,7 +1,7 @@
 package ru.iteco.fmh.data.impl.util
 
 import retrofit2.Response
-import ru.iteco.fmh.data.impl.exception.*
+import ru.iteco.fmh.data.*
 import java.io.IOException
 import java.net.ConnectException
 

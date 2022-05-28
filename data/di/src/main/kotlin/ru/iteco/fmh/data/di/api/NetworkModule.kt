@@ -13,7 +13,7 @@ import ru.iteco.fmh.data.di.BuildConfig
 import ru.iteco.fmh.data.di.qualifier.Authorized
 import ru.iteco.fmh.data.di.qualifier.NonAuthorized
 import ru.iteco.fmh.data.di.qualifier.Refresh
-import ru.iteco.fmh.data.impl.AppAuth
+import ru.iteco.fmh.data.impl.AppAuthImpl
 import ru.iteco.fmh.data.impl.interceptor.AuthInterceptor
 import ru.iteco.fmh.data.impl.interceptor.RefreshAuthenticator
 import ru.iteco.fmh.data.impl.interceptor.RefreshInterceptor
@@ -51,7 +51,7 @@ object NetworkModule {
     @Provides
     fun authorizedOkhttp(
         interceptor: HttpLoggingInterceptor,
-        appAuth: AppAuth,
+        appAuth: AppAuthImpl,
         authRepositoryProvider: Provider<AuthRepository>
     ): OkHttpClient {
         val authInterceptor = AuthInterceptor(appAuth)
@@ -73,7 +73,7 @@ object NetworkModule {
 
     @Refresh
     @Provides
-    fun refreshOkhttp(interceptor: HttpLoggingInterceptor, appAuth: AppAuth): OkHttpClient {
+    fun refreshOkhttp(interceptor: HttpLoggingInterceptor, appAuth: AppAuthImpl): OkHttpClient {
         val refreshInterceptor = RefreshInterceptor(appAuth)
         return OkHttpClient.Builder()
             .addInterceptor(refreshInterceptor)

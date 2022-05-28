@@ -8,9 +8,9 @@ import ru.iteco.fmh.data.api.RefreshTokensApi
 import ru.iteco.fmh.data.api.dto.JwtResponse
 import ru.iteco.fmh.data.api.dto.LoginData
 import ru.iteco.fmh.data.api.dto.RefreshRequest
-import ru.iteco.fmh.data.impl.exception.ApiException
-import ru.iteco.fmh.data.impl.exception.AuthorizationException
-import ru.iteco.fmh.data.impl.exception.UnknownException
+import ru.iteco.fmh.data.ApiException
+import ru.iteco.fmh.data.AuthorizationException
+import ru.iteco.fmh.data.UnknownException
 import ru.iteco.fmh.data.impl.util.makeRequest
 import ru.iteco.fmh.model.AuthState
 import javax.inject.Inject
@@ -20,7 +20,7 @@ import javax.inject.Singleton
 class AuthRepositoryImpl @Inject constructor(
     private val authApi: AuthApi,
     private val refreshTokensApi: RefreshTokensApi,
-    private val appAuth: AppAuth
+    private val appAuth: AppAuthImpl
 ) : AuthRepository {
 
     override suspend fun login(login: String, password: String) =

@@ -3,8 +3,8 @@ package ru.iteco.fmh.data.impl
 import retrofit2.Response
 import ru.iteco.fmh.data.UserRepository
 import ru.iteco.fmh.data.api.UserApi
-import ru.iteco.fmh.data.impl.exception.AuthorizationException
-import ru.iteco.fmh.data.impl.exception.UnknownException
+import ru.iteco.fmh.data.AuthorizationException
+import ru.iteco.fmh.data.UnknownException
 import ru.iteco.fmh.data.impl.util.makeRequest
 import ru.iteco.fmh.model.User
 import javax.inject.Inject

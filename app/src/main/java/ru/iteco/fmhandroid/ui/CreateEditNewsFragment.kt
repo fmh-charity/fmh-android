@@ -268,15 +268,11 @@ class CreateEditNewsFragment : Fragment(R.layout.fragment_create_edit_news) {
             val newsWithCategoryNavArg = args.newsItemArg
             if (newsWithCategoryNavArg != null) {
                 val news = newsWithCategoryNavArg.news
-                val editedNews = News(
-                    id = news.id,
+                val editedNews = news.copy(
                     title = newsItemTitleTextInputEditText.text.toString(),
                     newsCategoryId = convertNewsCategory(
                         newsItemCategoryTextAutoCompleteTextView.text.toString()
                     ),
-                    creatorName = news.creatorName,
-                    createDate = news.createDate,
-                    creatorId = news.creatorId,
                     publishDate = saveDateTime(
                         newsItemPublishDateTextInputEditText.text.toString(),
                         newsItemPublishTimeTextInputEditText.text.toString()

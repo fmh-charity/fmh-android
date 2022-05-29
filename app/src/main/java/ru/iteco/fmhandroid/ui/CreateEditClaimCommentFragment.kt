@@ -56,7 +56,7 @@ class CreateEditClaimCommentFragment : Fragment(R.layout.fragment_create_edit_co
         val binding = FragmentCreateEditCommentBinding.bind(view)
 
         val args: CreateEditClaimCommentFragmentArgs by navArgs()
-        val comment: Claim.Comment? = args.argComment
+        val comment: Claim.Comment? = args.argComment?.comment
         val claimId: Int = args.argClaimId
 
         with(binding.containerCustomAppBarIncludeOnFragmentCreateEditClaimComment) {

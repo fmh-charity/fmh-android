@@ -24,6 +24,7 @@ import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.adapter.ClaimCommentListAdapter
 import ru.iteco.fmhandroid.adapter.OnClaimCommentItemClickListener
 import ru.iteco.fmhandroid.databinding.FragmentOpenClaimBinding
+import ru.iteco.fmhandroid.dto.ClaimCommentNavArg
 import ru.iteco.fmhandroid.dto.FullClaimNavArg
 import ru.iteco.fmhandroid.utils.Utils
 import ru.iteco.fmhandroid.viewmodel.AuthViewModel
@@ -53,7 +54,7 @@ class OpenClaimFragment : Fragment() {
                 val action = OpenClaimFragmentDirections
                     .actionOpenClaimFragmentToCreateEditClaimCommentFragment(
                         argClaimId = it.claimId,
-                        argComment = it,
+                        argComment = ClaimCommentNavArg(it),
                     )
                 findNavController().navigate(action)
             }

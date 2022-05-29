@@ -25,7 +25,7 @@ import ru.iteco.fmhandroid.utils.Utils.convertNewsCategory
 import ru.iteco.fmhandroid.utils.Utils.saveDateTime
 import ru.iteco.fmhandroid.utils.Utils.updateDateLabel
 import ru.iteco.fmhandroid.utils.Utils.updateTimeLabel
-import ru.iteco.fmhandroid.viewmodel.NewsControlPanelViewModel
+import ru.iteco.fmh.viewmodel.NewsControlPanelViewModel
 import java.time.Instant.now
 import java.time.LocalDateTime
 import java.time.ZoneId

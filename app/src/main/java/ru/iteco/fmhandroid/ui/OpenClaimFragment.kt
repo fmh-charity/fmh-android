@@ -22,13 +22,13 @@ import ru.iteco.fmh.model.Claim
 import ru.iteco.fmh.model.FullClaim
 import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.adapter.ClaimCommentListAdapter
-import ru.iteco.fmhandroid.adapter.OnClaimCommentItemClickListener
+import ru.iteco.fmh.viewmodel.claim.card.OnClaimCommentItemClickListener
 import ru.iteco.fmhandroid.databinding.FragmentOpenClaimBinding
 import ru.iteco.fmhandroid.dto.ClaimCommentNavArg
 import ru.iteco.fmhandroid.dto.FullClaimNavArg
 import ru.iteco.fmhandroid.utils.Utils
-import ru.iteco.fmhandroid.viewmodel.AuthViewModel
-import ru.iteco.fmhandroid.viewmodel.ClaimCardViewModel
+import ru.iteco.fmh.viewmodel.AuthViewModel
+import ru.iteco.fmh.viewmodel.claim.card.ClaimCardViewModel
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId

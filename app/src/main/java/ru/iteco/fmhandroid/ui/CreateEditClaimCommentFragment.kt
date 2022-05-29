@@ -15,7 +15,7 @@ import ru.iteco.fmh.model.Claim
 import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.databinding.FragmentCreateEditCommentBinding
 import ru.iteco.fmhandroid.utils.Utils
-import ru.iteco.fmhandroid.viewmodel.ClaimCardViewModel
+import ru.iteco.fmh.viewmodel.claim.card.ClaimCardViewModel
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId

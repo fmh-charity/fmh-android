@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 import ru.iteco.fmh.model.News
 import ru.iteco.fmhandroid.R
-import ru.iteco.fmhandroid.viewmodel.NewsViewModel
+import ru.iteco.fmh.viewmodel.news.NewsViewModel
 
 @AndroidEntryPoint
 class AppActivity : AppCompatActivity() {

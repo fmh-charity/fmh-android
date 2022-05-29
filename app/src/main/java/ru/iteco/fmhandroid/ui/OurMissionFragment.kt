@@ -13,9 +13,9 @@ import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.adapter.OnOurMissionItemClickListener
 import ru.iteco.fmhandroid.adapter.OurMissionItemListAdapter
 import ru.iteco.fmhandroid.databinding.FragmentOurMissionBinding
-import ru.iteco.fmhandroid.ui.viewdata.OurMissionItemViewData
-import ru.iteco.fmhandroid.viewmodel.AuthViewModel
-import ru.iteco.fmhandroid.viewmodel.OurMissionViewModel
+import ru.iteco.fmh.viewmodel.ourMission.OurMissionItemViewData
+import ru.iteco.fmh.viewmodel.AuthViewModel
+import ru.iteco.fmh.viewmodel.ourMission.OurMissionViewModel
 
 @AndroidEntryPoint
 class OurMissionFragment : Fragment(R.layout.fragment_our_mission) {

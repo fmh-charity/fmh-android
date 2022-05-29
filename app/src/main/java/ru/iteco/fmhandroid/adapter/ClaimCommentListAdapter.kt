@@ -6,14 +6,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.iteco.fmh.model.Claim
+import ru.iteco.fmh.viewmodel.claim.card.ClaimCardViewModel
+import ru.iteco.fmh.viewmodel.claim.card.OnClaimCommentItemClickListener
 import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.databinding.ItemCommentBinding
 import ru.iteco.fmhandroid.utils.Utils
-import ru.iteco.fmhandroid.viewmodel.ClaimCardViewModel
-
-interface OnClaimCommentItemClickListener {
-    fun onCard(claimComment: Claim.Comment)
-}
 
 class ClaimCommentListAdapter(
     private val onClaimCommentItemClickListener: OnClaimCommentItemClickListener,

@@ -5,6 +5,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.widget.EditText
+import ru.iteco.fmh.core.Utils.fromLocalDateTimeToTimeStamp
 import ru.iteco.fmh.model.Claim
 import java.text.SimpleDateFormat
 import java.time.*
@@ -57,13 +58,6 @@ object Utils {
         val localTime = LocalTime.parse(time, timeFormatter)
         val localDateTime = LocalDateTime.of(localDate, localTime)
         return fromLocalDateTimeToTimeStamp(localDateTime)
-    }
-
-    fun fromLocalDateTimeToTimeStamp(date: LocalDateTime): Long {
-        return date.toEpochSecond(
-            ZoneId.systemDefault()
-                .rules.getOffset(Instant.now())
-        )
     }
 
     fun formatDate(date: Long): String {

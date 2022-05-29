@@ -26,8 +26,8 @@ import ru.iteco.fmhandroid.dto.NewsFilterArgs
 import ru.iteco.fmhandroid.dto.NewsWithCategoryNavArg
 import ru.iteco.fmhandroid.enum.FragmentsTags
 import ru.iteco.fmhandroid.utils.Utils
-import ru.iteco.fmhandroid.viewmodel.AuthViewModel
-import ru.iteco.fmhandroid.viewmodel.NewsControlPanelViewModel
+import ru.iteco.fmh.viewmodel.AuthViewModel
+import ru.iteco.fmh.viewmodel.NewsControlPanelViewModel
 
 @AndroidEntryPoint
 class NewsControlPanelFragment : Fragment(R.layout.fragment_news_control_panel) {

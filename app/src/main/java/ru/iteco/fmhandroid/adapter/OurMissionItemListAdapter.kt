@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.databinding.ItemOurMissionBinding
-import ru.iteco.fmhandroid.ui.viewdata.OurMissionItemViewData
-import ru.iteco.fmhandroid.viewmodel.OurMissionViewModel
+import ru.iteco.fmh.viewmodel.ourMission.OurMissionItemViewData
+import ru.iteco.fmh.viewmodel.ourMission.OurMissionViewModel
 
 interface OnOurMissionItemClickListener {
     fun onCard(ourMissionItem: OurMissionItemViewData)

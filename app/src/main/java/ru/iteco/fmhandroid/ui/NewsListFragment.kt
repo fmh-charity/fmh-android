@@ -22,8 +22,8 @@ import ru.iteco.fmhandroid.databinding.FragmentNewsListBinding
 import ru.iteco.fmhandroid.dto.NewsFilterArgs
 import ru.iteco.fmhandroid.enum.FragmentsTags
 import ru.iteco.fmhandroid.utils.Utils.convertNewsCategory
-import ru.iteco.fmhandroid.viewmodel.AuthViewModel
-import ru.iteco.fmhandroid.viewmodel.NewsViewModel
+import ru.iteco.fmh.viewmodel.AuthViewModel
+import ru.iteco.fmh.viewmodel.news.NewsViewModel
 
 @AndroidEntryPoint
 class NewsListFragment : Fragment(R.layout.fragment_news_list) {

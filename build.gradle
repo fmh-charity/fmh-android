@@ -9,6 +9,7 @@ buildscript {
         gson_version = '2.9.0'
         coroutines_version = '1.5.2'
         room_version = '2.4.2'
+        lifecycle_version = "2.4.1"
     }
 
     repositories {

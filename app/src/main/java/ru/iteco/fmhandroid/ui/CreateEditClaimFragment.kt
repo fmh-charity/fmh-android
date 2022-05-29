@@ -26,7 +26,7 @@ import ru.iteco.fmhandroid.utils.Utils.fullUserNameGenerator
 import ru.iteco.fmhandroid.utils.Utils.saveDateTime
 import ru.iteco.fmhandroid.utils.Utils.updateDateLabel
 import ru.iteco.fmhandroid.utils.Utils.updateTimeLabel
-import ru.iteco.fmhandroid.viewmodel.ClaimCardViewModel
+import ru.iteco.fmh.viewmodel.claim.card.ClaimCardViewModel
 import java.time.LocalDateTime
 import java.util.*
 

@@ -24,6 +24,7 @@ import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.adapter.ClaimCommentListAdapter
 import ru.iteco.fmhandroid.adapter.OnClaimCommentItemClickListener
 import ru.iteco.fmhandroid.databinding.FragmentOpenClaimBinding
+import ru.iteco.fmhandroid.dto.FullClaimNavArg
 import ru.iteco.fmhandroid.utils.Utils
 import ru.iteco.fmhandroid.viewmodel.AuthViewModel
 import ru.iteco.fmhandroid.viewmodel.ClaimCardViewModel
@@ -233,8 +234,9 @@ class OpenClaimFragment : Fragment() {
                 this.setOnClickListener {
                     viewLifecycleOwner.lifecycleScope.launch {
                         authViewModel.userListLoadedEvent.collectLatest {
+                            val navArg = FullClaimNavArg(fullClaim)
                             val action = OpenClaimFragmentDirections
-                                .actionOpenClaimFragmentToCreateEditClaimFragment(fullClaim)
+                                .actionOpenClaimFragmentToCreateEditClaimFragment(navArg)
                             findNavController().navigate(action)
                         }
                     }

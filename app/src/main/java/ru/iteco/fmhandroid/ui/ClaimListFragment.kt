@@ -17,6 +17,7 @@ import kotlinx.coroutines.launch
 import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.adapter.ClaimListAdapter
 import ru.iteco.fmhandroid.databinding.FragmentListClaimBinding
+import ru.iteco.fmhandroid.dto.FullClaimNavArg
 import ru.iteco.fmhandroid.viewmodel.AuthViewModel
 import ru.iteco.fmhandroid.viewmodel.ClaimViewModel
 
@@ -55,8 +56,9 @@ class ClaimListFragment : Fragment(R.layout.fragment_list_claim) {
 
         lifecycleScope.launch {
             viewModel.openClaimEvent.collectLatest {
+                val navArg = FullClaimNavArg(it)
                 val action = ClaimListFragmentDirections
-                    .actionClaimListFragmentToOpenClaimFragment(it)
+                    .actionClaimListFragmentToOpenClaimFragment(navArg)
                 findNavController().navigate(action)
             }
         }

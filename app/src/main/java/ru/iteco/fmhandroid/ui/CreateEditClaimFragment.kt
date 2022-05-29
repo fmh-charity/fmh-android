@@ -17,6 +17,7 @@ import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import ru.iteco.fmh.core.Utils.fromLocalDateTimeToTimeStamp
 import ru.iteco.fmh.model.Claim
 import ru.iteco.fmh.model.User
 import ru.iteco.fmhandroid.R
@@ -264,7 +265,7 @@ class CreateEditClaimFragment : Fragment(R.layout.fragment_create_edit_claim) {
                         firstName = claimCardViewModel.currentUser.firstName,
                         middleName = claimCardViewModel.currentUser.middleName
                     ),
-                    createDate = Utils.fromLocalDateTimeToTimeStamp(
+                    createDate = fromLocalDateTimeToTimeStamp(
                         LocalDateTime.now()
                     ),
                     creatorId = claimCardViewModel.currentUser.id,

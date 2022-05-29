@@ -1,27 +1,39 @@
 package ru.iteco.fmhandroid.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
+import androidx.core.content.res.getColorOrThrow
+import androidx.core.content.res.use
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import ru.iteco.fmh.viewmodel.ourMission.OnOurMissionItemClickListener
+import ru.iteco.fmh.viewmodel.ourMission.OurMissionItemViewData
 import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.databinding.ItemOurMissionBinding
-import ru.iteco.fmh.viewmodel.ourMission.OurMissionItemViewData
-import ru.iteco.fmh.viewmodel.ourMission.OurMissionViewModel
-
-interface OnOurMissionItemClickListener {
-    fun onCard(ourMissionItem: OurMissionItemViewData)
-}
 
 class OurMissionItemListAdapter(
+    context: Context,
     private val onOurMissionItemClickListener: OnOurMissionItemClickListener,
-    val viewModel: OurMissionViewModel
 ) : ListAdapter<OurMissionItemViewData, OurMissionItemListAdapter.OurMissionViewHolder>(
     OurMissionDiffCallback
 ) {
+    private val titles by lazy {
+        context.resources.getStringArray(R.array.our_mission_titles)
+    }
+
+    private val descriptions by lazy {
+        context.resources.getStringArray(R.array.our_mission_descriptions)
+    }
+
+    private val backgroundColors by lazy {
+        context.resources.obtainTypedArray(R.array.our_mission_background_colors).use {
+            List(it.length()) { index -> it.getColorOrThrow(index) }
+        }
+    }
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -31,37 +43,23 @@ class OurMissionItemListAdapter(
             parent,
             false
         )
-        return OurMissionViewHolder(
-            binding,
-            onOurMissionItemClickListener,
-            viewModel
-        )
+        return OurMissionViewHolder(binding)
     }
 
-    override fun onBindViewHolder(
-        holder: OurMissionViewHolder,
-        position: Int
-    ) {
+    override fun onBindViewHolder(holder: OurMissionViewHolder, position: Int) {
         val ourMissionItem = getItem(position)
         holder.bind(ourMissionItem)
     }
 
-    class OurMissionViewHolder(
-        val binding: ItemOurMissionBinding,
-        val onOurMissionItemClickListener: OnOurMissionItemClickListener,
-        val viewModel: OurMissionViewModel
+    inner class OurMissionViewHolder(
+        private val binding: ItemOurMissionBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(ourMissionItem: OurMissionItemViewData) {
             with(binding) {
-                ourMissionItemTitleTextView.text = ourMissionItem.title
-                ourMissionItemTitleTextView.setBackgroundColor(
-                    ContextCompat.getColor(
-                        itemView.context,
-                        ourMissionItem.titleBackgroundColor
-                    )
-                )
-                ourMissionItemDescriptionTextView.text = ourMissionItem.description
+                ourMissionItemTitleTextView.text = titles[ourMissionItem.index]
+                ourMissionItemTitleTextView.setBackgroundColor(backgroundColors[ourMissionItem.index])
+                ourMissionItemDescriptionTextView.text = descriptions[ourMissionItem.index]
 
                 if (ourMissionItem.isOpen) {
                     ourMissionItemDescriptionTextView.visibility = View.VISIBLE
@@ -83,7 +81,7 @@ class OurMissionItemListAdapter(
             oldItem: OurMissionItemViewData,
             newItem: OurMissionItemViewData
         ): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.index == newItem.index
         }
 
         override fun areContentsTheSame(

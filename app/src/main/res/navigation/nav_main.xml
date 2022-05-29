@@ -180,7 +180,7 @@
         <argument
             android:name="newsItemArg"
             android:defaultValue="@null"
-            app:argType="ru.iteco.fmh.model.News.WithCategory"
+            app:argType="ru.iteco.fmhandroid.dto.NewsWithCategoryNavArg"
             app:nullable="true" />
     </fragment>
 

@@ -101,17 +101,19 @@ class CreateEditNewsFragment : Fragment(R.layout.fragment_create_edit_news) {
                     setText(R.string.news)
                 }
             }
-            args.newsItemArg?.let { newsItem ->
-                newsItemCategoryTextAutoCompleteTextView.setText(newsItem.category.name)
-                newsItemTitleTextInputEditText.setText(newsItem.newsItem.title)
+            args.newsItemArg?.let { newsWithCategoryNavArg ->
+                newsItemCategoryTextAutoCompleteTextView.setText(newsWithCategoryNavArg.category.name)
+                
+                val news = newsWithCategoryNavArg.news
+                newsItemTitleTextInputEditText.setText(news.title)
                 newsItemPublishDateTextInputEditText.setText(
-                    Utils.formatDate(newsItem.newsItem.publishDate)
+                    Utils.formatDate(news.publishDate)
                 )
                 newsItemPublishTimeTextInputEditText.setText(
-                    Utils.formatTime(newsItem.newsItem.publishDate)
+                    Utils.formatTime(news.publishDate)
                 )
-                newsItemDescriptionTextInputEditText.setText(newsItem.newsItem.description)
-                switcher.isChecked = newsItem.newsItem.publishEnabled
+                newsItemDescriptionTextInputEditText.setText(news.description)
+                switcher.isChecked = news.publishEnabled
             }
 
             if (args.newsItemArg == null) {
@@ -263,17 +265,18 @@ class CreateEditNewsFragment : Fragment(R.layout.fragment_create_edit_news) {
 
     private fun fillNewsItem() {
         with(binding) {
-            val news = args.newsItemArg
-            if (news != null) {
+            val newsWithCategoryNavArg = args.newsItemArg
+            if (newsWithCategoryNavArg != null) {
+                val news = newsWithCategoryNavArg.news
                 val editedNews = News(
-                    id = news.newsItem.id,
+                    id = news.id,
                     title = newsItemTitleTextInputEditText.text.toString(),
                     newsCategoryId = convertNewsCategory(
                         newsItemCategoryTextAutoCompleteTextView.text.toString()
                     ),
-                    creatorName = news.newsItem.creatorName,
-                    createDate = news.newsItem.createDate,
-                    creatorId = news.newsItem.creatorId,
+                    creatorName = news.creatorName,
+                    createDate = news.createDate,
+                    creatorId = news.creatorId,
                     publishDate = saveDateTime(
                         newsItemPublishDateTextInputEditText.text.toString(),
                         newsItemPublishTimeTextInputEditText.text.toString()

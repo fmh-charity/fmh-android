@@ -23,6 +23,7 @@ import ru.iteco.fmhandroid.adapter.NewsControlPanelListAdapter
 import ru.iteco.fmhandroid.adapter.NewsOnInteractionListener
 import ru.iteco.fmhandroid.databinding.FragmentNewsControlPanelBinding
 import ru.iteco.fmhandroid.dto.NewsFilterArgs
+import ru.iteco.fmhandroid.dto.NewsWithCategoryNavArg
 import ru.iteco.fmhandroid.enum.FragmentsTags
 import ru.iteco.fmhandroid.utils.Utils
 import ru.iteco.fmhandroid.viewmodel.AuthViewModel
@@ -112,8 +113,9 @@ class NewsControlPanelFragment : Fragment(R.layout.fragment_news_control_panel) 
             }
 
             override fun onEdit(newItemWithCategory: News.WithCategory) {
+                val navArg = NewsWithCategoryNavArg(newItemWithCategory)
                 val action = NewsControlPanelFragmentDirections
-                    .actionNewsControlPanelFragmentToCreateEditNewsFragment(newItemWithCategory)
+                    .actionNewsControlPanelFragmentToCreateEditNewsFragment(navArg)
                 findNavController().navigate(action)
             }
 

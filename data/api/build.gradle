@@ -29,5 +29,4 @@ android {
 
 dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.google.code.gson:gson:$gson_version"
 }

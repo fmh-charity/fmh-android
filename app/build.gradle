@@ -19,6 +19,16 @@ android {
         targetSdkVersion 32
         versionCode 14
         versionName "1.0.0"
+        signingConfig signingConfigs.debug
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file('C:\\Users\\mshestoperov\\Desktop\\fmh.jks')
+            storePassword '123456'
+            keyAlias 'fmh'
+            keyPassword '123456'
+        }
     }
 
     compileOptions {

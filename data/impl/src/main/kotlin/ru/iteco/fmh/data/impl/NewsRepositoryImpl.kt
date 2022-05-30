@@ -9,6 +9,7 @@ import ru.iteco.fmh.data.NewsRepository
 import ru.iteco.fmh.data.api.NewsApi
 import ru.iteco.fmh.data.db.dao.NewsCategoryDao
 import ru.iteco.fmh.data.db.dao.NewsDao
+import ru.iteco.fmh.data.impl.converter.toDto
 import ru.iteco.fmh.data.impl.converter.toEntity
 import ru.iteco.fmh.data.impl.converter.toModel
 import ru.iteco.fmh.data.impl.util.makeRequest
@@ -48,32 +49,32 @@ class NewsRepositoryImpl @Inject constructor(
     override suspend fun refreshNews() = makeRequest(
         request = { newsApi.getAllNews() },
         onSuccess = { body ->
-            val apiId = body
+            val apiIds = body
                 .map { it.id }
-            val databaseId = newsDao.getAllNewsList()
+            val databaseIds = newsDao.getAllNewsList()
                 .map { it.newsItem.id }
                 .toMutableList()
-            databaseId.removeAll(apiId)
-            newsDao.removeNewsItemsByIdList(databaseId)
-            newsDao.insert(body.toEntity())
+            databaseIds.removeAll(apiIds)
+            newsDao.removeNewsItemsByIdList(databaseIds)
+            newsDao.insert(body.map { it.toEntity() })
         }
     )
 
     override suspend fun modificationOfExistingNews(newsItem: News): News =
         makeRequest(
-            request = { newsApi.editNewsItem(newsItem) },
+            request = { newsApi.editNewsItem(newsItem.toDto()) },
             onSuccess = { body ->
                 newsDao.insert(body.toEntity())
-                body
+                body.toModel()
             }
         )
 
     override suspend fun createNews(newsItem: News): News =
         makeRequest(
-            request = { newsApi.saveNewsItem(newsItem) },
+            request = { newsApi.saveNewsItem(newsItem.toDto()) },
             onSuccess = { body ->
                 newsDao.insert(body.toEntity())
-                body
+                body.toModel()
             }
         )
 

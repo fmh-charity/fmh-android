@@ -1,5 +1,6 @@
 package ru.iteco.fmh.data.impl.converter
 
+import ru.iteco.fmh.data.api.dto.ClaimDto
 import ru.iteco.fmh.data.db.entity.ClaimCommentEntity
 import ru.iteco.fmh.model.Claim
 
@@ -14,7 +15,34 @@ internal fun Claim.Comment.toEntity() = ClaimCommentEntity(
     createDate = createDate
 )
 
+internal fun Claim.Comment.toDto() = ClaimDto.Comment(
+    id = id,
+    claimId = claimId,
+    description = description,
+    creatorId = creatorId,
+    creatorName = creatorName,
+    createDate = createDate
+)
+
+internal fun ClaimDto.Comment.toEntity() = ClaimCommentEntity(
+    id = id,
+    claimId = claimId,
+    description = description,
+    creatorId = creatorId,
+    creatorName = creatorName,
+    createDate = createDate
+)
+
 internal fun ClaimCommentEntity.toModel() = Claim.Comment(
+    id = id,
+    claimId = claimId,
+    description = description,
+    creatorId = creatorId,
+    creatorName = creatorName,
+    createDate = createDate
+)
+
+internal fun ClaimDto.Comment.toModel() = Claim.Comment(
     id = id,
     claimId = claimId,
     description = description,

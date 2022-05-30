@@ -1,10 +1,10 @@
 package ru.iteco.fmh.data.impl
 
-import retrofit2.Response
-import ru.iteco.fmh.data.UserRepository
-import ru.iteco.fmh.data.api.UserApi
 import ru.iteco.fmh.data.AuthorizationException
 import ru.iteco.fmh.data.UnknownException
+import ru.iteco.fmh.data.UserRepository
+import ru.iteco.fmh.data.api.UserApi
+import ru.iteco.fmh.data.impl.converter.toModel
 import ru.iteco.fmh.data.impl.util.makeRequest
 import ru.iteco.fmh.model.User
 import javax.inject.Inject
@@ -23,11 +23,12 @@ class UserRepositoryImpl @Inject constructor(
 
     override suspend fun getUserInfo() {
         try {
-            val response: Response<User> = userApi.getUserInfo()
+            val response = userApi.getUserInfo()
             if (!response.isSuccessful && response.code() == 401) {
                 throw AuthorizationException
             }
-            currentUser = response.body() ?: throw UnknownException
+            val userDto = response.body() ?: throw UnknownException
+            currentUser = userDto.toModel()
         } catch (e: AuthorizationException) {
             throw AuthorizationException
         } catch (e: Exception) {
@@ -39,7 +40,9 @@ class UserRepositoryImpl @Inject constructor(
         makeRequest(
             request = { userApi.getAllUsers() },
             onSuccess = { body ->
-                body.also {
+                body.map {
+                    it.toModel()
+                }.also {
                     userList = it
                 }
             }

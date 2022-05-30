@@ -15,6 +15,7 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
+            consumerProguardFiles "proguard-rules.pro"
         }
     }
     compileOptions {
@@ -27,7 +28,6 @@ android {
 }
 
 dependencies {
-    api(project(":model"))
-
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.google.code.gson:gson:$gson_version"
 }

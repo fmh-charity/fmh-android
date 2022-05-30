@@ -1,6 +1,6 @@
 package ru.iteco.fmhandroid.extensions
 
-import ru.iteco.fmhandroid.dto.News
+import ru.iteco.fmh.model.News
 
 fun News.Category.getType(): News.Category.Type =
     when (id) {

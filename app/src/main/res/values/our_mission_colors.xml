@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="our_mission_background_colors">
+        <item>@color/splash_screen_title_1</item>
+        <item>@color/splash_screen_title_2</item>
+        <item>@color/splash_screen_title_3</item>
+        <item>@color/splash_screen_title_4</item>
+        <item>@color/splash_screen_title_5</item>
+        <item>@color/splash_screen_title_6</item>
+        <!--
+        Цветов должно быть 8 по аналогии
+        с массивами our_mission_titles и our_mission_descriptions,
+        по этому закольцовываем массив цветов
+        -->
+        <item>@color/splash_screen_title_1</item>
+        <item>@color/splash_screen_title_2</item>
+    </array>
+</resources>

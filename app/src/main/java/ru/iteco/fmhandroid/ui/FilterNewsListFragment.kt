@@ -21,7 +21,7 @@ import ru.iteco.fmhandroid.dto.NewsFilterArgs
 import ru.iteco.fmhandroid.enum.FragmentsTags
 import ru.iteco.fmhandroid.utils.Utils.saveDateTime
 import ru.iteco.fmhandroid.utils.Utils.updateDateLabel
-import ru.iteco.fmhandroid.viewmodel.NewsViewModel
+import ru.iteco.fmh.viewmodel.news.NewsViewModel
 import java.util.*
 
 @AndroidEntryPoint

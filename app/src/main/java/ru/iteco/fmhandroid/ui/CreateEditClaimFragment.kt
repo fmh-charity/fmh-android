@@ -17,16 +17,17 @@ import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import ru.iteco.fmh.core.Utils.fromLocalDateTimeToTimeStamp
+import ru.iteco.fmh.model.Claim
+import ru.iteco.fmh.model.User
 import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.databinding.FragmentCreateEditClaimBinding
-import ru.iteco.fmhandroid.dto.Claim
-import ru.iteco.fmhandroid.dto.User
 import ru.iteco.fmhandroid.utils.Utils
 import ru.iteco.fmhandroid.utils.Utils.fullUserNameGenerator
 import ru.iteco.fmhandroid.utils.Utils.saveDateTime
 import ru.iteco.fmhandroid.utils.Utils.updateDateLabel
 import ru.iteco.fmhandroid.utils.Utils.updateTimeLabel
-import ru.iteco.fmhandroid.viewmodel.ClaimCardViewModel
+import ru.iteco.fmh.viewmodel.claim.card.ClaimCardViewModel
 import java.time.LocalDateTime
 import java.util.*
 
@@ -264,7 +265,7 @@ class CreateEditClaimFragment : Fragment(R.layout.fragment_create_edit_claim) {
                         firstName = claimCardViewModel.currentUser.firstName,
                         middleName = claimCardViewModel.currentUser.middleName
                     ),
-                    createDate = Utils.fromLocalDateTimeToTimeStamp(
+                    createDate = fromLocalDateTimeToTimeStamp(
                         LocalDateTime.now()
                     ),
                     creatorId = claimCardViewModel.currentUser.id,

@@ -6,23 +6,22 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import ru.iteco.fmh.model.News
 import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.databinding.ItemNewsControlPanelBinding
-import ru.iteco.fmhandroid.dto.News
-import ru.iteco.fmhandroid.dto.NewsWithCategory
 import ru.iteco.fmhandroid.extensions.getType
 import ru.iteco.fmhandroid.utils.Utils
 import ru.iteco.fmhandroid.utils.Utils.generateShortUserName
 
 interface NewsOnInteractionListener {
     fun onCard(newsItem: News)
-    fun onEdit(newItemWithCategory: NewsWithCategory)
-    fun onRemove(newItemWithCategory: NewsWithCategory)
+    fun onEdit(newItemWithCategory: News.WithCategory)
+    fun onRemove(newItemWithCategory: News.WithCategory)
 }
 
 class NewsControlPanelListAdapter(
     private val onInteractionListener: NewsOnInteractionListener
-) : ListAdapter<NewsWithCategory, NewsControlPanelListAdapter.NewsControlPanelViewHolder>(
+) : ListAdapter<News.WithCategory, NewsControlPanelListAdapter.NewsControlPanelViewHolder>(
     NewsControlPanelDiffCallBack
 ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsControlPanelViewHolder {
@@ -45,7 +44,7 @@ class NewsControlPanelListAdapter(
         private val onInteractionListener: NewsOnInteractionListener
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(newsItem: NewsWithCategory) {
+        fun bind(newsItem: News.WithCategory) {
             with(binding) {
                 newsItemTitleTextView.text = newsItem.newsItem.title
                 newsItemDescriptionTextView.text = newsItem.newsItem.description
@@ -90,7 +89,7 @@ class NewsControlPanelListAdapter(
             }
         }
 
-        private fun setCategoryIcon(newsItem: NewsWithCategory) {
+        private fun setCategoryIcon(newsItem: News.WithCategory) {
             val iconResId = when (newsItem.category.getType()) {
                 News.Category.Type.Advertisement -> R.raw.icon_advertisement
                 News.Category.Type.Salary -> R.raw.icon_salary
@@ -107,12 +106,15 @@ class NewsControlPanelListAdapter(
     }
 }
 
-private object NewsControlPanelDiffCallBack : DiffUtil.ItemCallback<NewsWithCategory>() {
-    override fun areItemsTheSame(oldItem: NewsWithCategory, newItem: NewsWithCategory): Boolean {
+private object NewsControlPanelDiffCallBack : DiffUtil.ItemCallback<News.WithCategory>() {
+    override fun areItemsTheSame(oldItem: News.WithCategory, newItem: News.WithCategory): Boolean {
         return oldItem.newsItem.id == newItem.newsItem.id
     }
 
-    override fun areContentsTheSame(oldItem: NewsWithCategory, newItem: NewsWithCategory): Boolean {
+    override fun areContentsTheSame(
+        oldItem: News.WithCategory,
+        newItem: News.WithCategory
+    ): Boolean {
         return oldItem == newItem
     }
 }

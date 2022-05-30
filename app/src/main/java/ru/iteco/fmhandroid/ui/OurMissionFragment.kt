@@ -10,12 +10,12 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import ru.iteco.fmhandroid.R
-import ru.iteco.fmhandroid.adapter.OnOurMissionItemClickListener
+import ru.iteco.fmh.viewmodel.ourMission.OnOurMissionItemClickListener
 import ru.iteco.fmhandroid.adapter.OurMissionItemListAdapter
 import ru.iteco.fmhandroid.databinding.FragmentOurMissionBinding
-import ru.iteco.fmhandroid.ui.viewdata.OurMissionItemViewData
-import ru.iteco.fmhandroid.viewmodel.AuthViewModel
-import ru.iteco.fmhandroid.viewmodel.OurMissionViewModel
+import ru.iteco.fmh.viewmodel.ourMission.OurMissionItemViewData
+import ru.iteco.fmh.viewmodel.AuthViewModel
+import ru.iteco.fmh.viewmodel.ourMission.OurMissionViewModel
 
 @AndroidEntryPoint
 class OurMissionFragment : Fragment(R.layout.fragment_our_mission) {
@@ -77,11 +77,7 @@ class OurMissionFragment : Fragment(R.layout.fragment_our_mission) {
             }
         }
 
-        val adapter = OurMissionItemListAdapter(object : OnOurMissionItemClickListener {
-            override fun onCard(ourMissionItem: OurMissionItemViewData) {
-                viewModel.onCard(ourMissionItem)
-            }
-        }, viewModel)
+        val adapter = OurMissionItemListAdapter(requireContext(), viewModel)
 
         binding.ourMissionItemListRecyclerView.adapter = adapter
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {

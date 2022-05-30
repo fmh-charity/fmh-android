@@ -18,16 +18,17 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import ru.iteco.fmh.model.Claim
+import ru.iteco.fmh.model.FullClaim
+import ru.iteco.fmh.viewmodel.AuthViewModel
+import ru.iteco.fmh.viewmodel.claim.card.ClaimCardViewModel
+import ru.iteco.fmh.viewmodel.claim.card.OnClaimCommentItemClickListener
 import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.adapter.ClaimCommentListAdapter
-import ru.iteco.fmhandroid.adapter.OnClaimCommentItemClickListener
 import ru.iteco.fmhandroid.databinding.FragmentOpenClaimBinding
-import ru.iteco.fmhandroid.dto.Claim
-import ru.iteco.fmhandroid.dto.ClaimComment
-import ru.iteco.fmhandroid.dto.FullClaim
+import ru.iteco.fmhandroid.dto.ClaimCommentNavArg
+import ru.iteco.fmhandroid.dto.ClaimNavArg
 import ru.iteco.fmhandroid.utils.Utils
-import ru.iteco.fmhandroid.viewmodel.AuthViewModel
-import ru.iteco.fmhandroid.viewmodel.ClaimCardViewModel
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -52,8 +53,8 @@ class OpenClaimFragment : Fragment() {
             claimCardViewModel.openClaimCommentEvent.collect {
                 val action = OpenClaimFragmentDirections
                     .actionOpenClaimFragmentToCreateEditClaimCommentFragment(
-                        it,
-                        it.claimId
+                        argClaimId = it.claimId,
+                        argComment = ClaimCommentNavArg(it),
                     )
                 findNavController().navigate(action)
             }
@@ -145,7 +146,7 @@ class OpenClaimFragment : Fragment() {
         }
 
         val adapter = ClaimCommentListAdapter(object : OnClaimCommentItemClickListener {
-            override fun onCard(claimComment: ClaimComment) {
+            override fun onCard(claimComment: Claim.Comment) {
                 claimCardViewModel.onCard(claimComment)
             }
         }, claimCardViewModel)
@@ -205,37 +206,39 @@ class OpenClaimFragment : Fragment() {
     }
 
     private fun renderingContentOfClaim(fullClaim: FullClaim) {
+        val claim = fullClaim.claim
         val statusProcessingMenu = PopupMenu(context, binding.statusProcessingImageButton)
         statusProcessingMenu.inflate(R.menu.menu_claim_status_processing)
-        binding.titleTextView.text = fullClaim.claim.title
-        binding.planeDateTextView.text = Utils.formatDate(fullClaim.claim.planExecuteDate)
-        binding.planTimeTextView.text = Utils.formatTime(fullClaim.claim.planExecuteDate)
-        binding.descriptionTextView.text = fullClaim.claim.description
-        binding.authorNameTextView.text = fullClaim.claim.creatorName
-        binding.createDataTextView.text = Utils.formatDate(fullClaim.claim.createDate)
-        binding.createTimeTextView.text = Utils.formatTime(fullClaim.claim.createDate)
-        binding.statusLabelTextView.text = displayingStatusOfClaim(fullClaim.claim.status)
+        binding.titleTextView.text = claim.title
+        binding.planeDateTextView.text = Utils.formatDate(claim.planExecuteDate)
+        binding.planTimeTextView.text = Utils.formatTime(claim.planExecuteDate)
+        binding.descriptionTextView.text = claim.description
+        binding.authorNameTextView.text = claim.creatorName
+        binding.createDataTextView.text = Utils.formatDate(claim.createDate)
+        binding.createTimeTextView.text = Utils.formatTime(claim.createDate)
+        binding.statusLabelTextView.text = displayingStatusOfClaim(claim.status)
 
         statusMenuVisibility(
-            fullClaim.claim.status,
+            claim.status,
             statusProcessingMenu
         )
 
         binding.executorNameTextView.text =
-            fullClaim.claim.executorName ?: getString(R.string.not_assigned)
+            claim.executorName ?: getString(R.string.not_assigned)
 
         binding.editProcessingImageButton.apply {
             if (
-                (fullClaim.claim.status == Claim.Status.OPEN && fullClaim.claim.creatorId == claimCardViewModel.currentUser.id) ||
-                (fullClaim.claim.status == Claim.Status.OPEN && claimCardViewModel.currentUser.admin)
+                (claim.status == Claim.Status.OPEN && claim.creatorId == claimCardViewModel.currentUser.id) ||
+                (claim.status == Claim.Status.OPEN && claimCardViewModel.currentUser.admin)
             ) {
                 this.setImageResource(R.drawable.ic_pen)
                 this.isClickable = true
                 this.setOnClickListener {
                     viewLifecycleOwner.lifecycleScope.launch {
                         authViewModel.userListLoadedEvent.collectLatest {
+                            val navArg = ClaimNavArg(claim)
                             val action = OpenClaimFragmentDirections
-                                .actionOpenClaimFragmentToCreateEditClaimFragment(fullClaim)
+                                .actionOpenClaimFragmentToCreateEditClaimFragment(navArg)
                             findNavController().navigate(action)
                         }
                     }
@@ -252,13 +255,13 @@ class OpenClaimFragment : Fragment() {
             }
         }
 
-        when (fullClaim.claim.status) {
+        when (claim.status) {
             Claim.Status.OPEN -> {
                 statusProcessingMenu.menu.findItem(R.id.cancel_list_item).isEnabled =
-                    claimCardViewModel.currentUser.id == fullClaim.claim.creatorId
+                    claimCardViewModel.currentUser.id == claim.creatorId
             }
             Claim.Status.IN_PROGRESS -> {
-                if (claimCardViewModel.currentUser.id != fullClaim.claim.executorId) {
+                if (claimCardViewModel.currentUser.id != claim.executorId) {
                     binding.statusProcessingImageButton.setImageResource(R.drawable.ic_status_processing_non_clickable)
                     statusProcessingMenu.menu.clear()
                 }
@@ -279,8 +282,7 @@ class OpenClaimFragment : Fragment() {
         binding.addCommentImageButton.setOnClickListener {
             val action = OpenClaimFragmentDirections
                 .actionOpenClaimFragmentToCreateEditClaimCommentFragment(
-                    argComment = null,
-                    argClaimId = fullClaim.claim.id!!
+                    argClaimId = claim.id!!
                 )
             findNavController().navigate(action)
         }
@@ -289,7 +291,7 @@ class OpenClaimFragment : Fragment() {
             when (menuItem.itemId) {
                 R.id.in_progress_list_item -> {
                     claimCardViewModel.changeClaimStatus(
-                        claimId = fullClaim.claim.id!!,
+                        claimId = claim.id!!,
                         newClaimStatus = Claim.Status.IN_PROGRESS,
                         executorId = claimCardViewModel.currentUser.id,
                         claimComment = Utils.Empty.emptyClaimComment
@@ -299,7 +301,7 @@ class OpenClaimFragment : Fragment() {
 
                 R.id.cancel_list_item -> {
                     claimCardViewModel.changeClaimStatus(
-                        fullClaim.claim.id!!,
+                        claim.id!!,
                         Claim.Status.CANCELLED,
                         executorId = null,
                         claimComment = Utils.Empty.emptyClaimComment
@@ -330,12 +332,13 @@ class OpenClaimFragment : Fragment() {
                             if (text.isBlank()) {
                                 showErrorToast(R.string.toast_empty_field)
                             } else {
+                                val claimId = claim.id!!
                                 claimCardViewModel.changeClaimStatus(
-                                    fullClaim.claim.id!!,
+                                    claimId,
                                     Claim.Status.OPEN,
                                     executorId = null,
-                                    claimComment = ClaimComment(
-                                        claimId = fullClaim.claim.id,
+                                    claimComment = Claim.Comment(
+                                        claimId = claimId,
                                         creatorName = Utils.fullUserNameGenerator(
                                             claimCardViewModel.currentUser.lastName,
                                             claimCardViewModel.currentUser.firstName,
@@ -385,12 +388,13 @@ class OpenClaimFragment : Fragment() {
                             if (text.isBlank()) {
                                 showErrorToast(R.string.toast_empty_field)
                             } else {
+                                val claimId = claim.id!!
                                 claimCardViewModel.changeClaimStatus(
-                                    fullClaim.claim.id!!,
+                                    claimId,
                                     Claim.Status.EXECUTED,
-                                    executorId = fullClaim.claim.executorId,
-                                    claimComment = ClaimComment(
-                                        claimId = fullClaim.claim.id,
+                                    executorId = claim.executorId,
+                                    claimComment = Claim.Comment(
+                                        claimId = claimId,
                                         creatorName = Utils.fullUserNameGenerator(
                                             claimCardViewModel.currentUser.lastName,
                                             claimCardViewModel.currentUser.firstName,

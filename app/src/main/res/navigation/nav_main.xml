@@ -75,7 +75,7 @@
         android:label="openClaimFragment">
         <argument
             android:name="argClaim"
-            app:argType="ru.iteco.fmhandroid.dto.FullClaim" />
+            app:argType="ru.iteco.fmhandroid.dto.ClaimNavArg" />
         <action
             android:id="@+id/action_openClaimFragment_to_createEditClaimCommentFragment"
             app:destination="@id/createEditClaimCommentFragment" />
@@ -109,7 +109,7 @@
         <argument
             android:name="argClaim"
             android:defaultValue="@null"
-            app:argType="ru.iteco.fmhandroid.dto.FullClaim"
+            app:argType="ru.iteco.fmhandroid.dto.ClaimNavArg"
             app:nullable="true" />
         <action
             android:id="@+id/action_createEditClaimFragment_to_openClaimFragment"
@@ -123,7 +123,7 @@
         <argument
             android:name="argComment"
             android:defaultValue="@null"
-            app:argType="ru.iteco.fmhandroid.dto.ClaimComment"
+            app:argType="ru.iteco.fmhandroid.dto.ClaimCommentNavArg"
             app:nullable="true" />
         <argument
             android:name="argClaimId"
@@ -180,7 +180,7 @@
         <argument
             android:name="newsItemArg"
             android:defaultValue="@null"
-            app:argType="ru.iteco.fmhandroid.dto.NewsWithCategory"
+            app:argType="ru.iteco.fmhandroid.dto.NewsWithCategoryNavArg"
             app:nullable="true" />
     </fragment>
 

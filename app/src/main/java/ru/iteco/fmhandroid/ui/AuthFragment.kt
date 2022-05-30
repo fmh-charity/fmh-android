@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.databinding.FragmentAuthBinding
-import ru.iteco.fmhandroid.viewmodel.AuthViewModel
+import ru.iteco.fmh.viewmodel.AuthViewModel
 
 @AndroidEntryPoint
 class AuthFragment : Fragment(R.layout.fragment_auth) {

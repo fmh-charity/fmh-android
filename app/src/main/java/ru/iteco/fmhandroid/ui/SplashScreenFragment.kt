@@ -14,22 +14,14 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import ru.iteco.fmhandroid.R
-import ru.iteco.fmhandroid.api.UserApi
-import ru.iteco.fmhandroid.auth.AppAuth
 import ru.iteco.fmhandroid.databinding.FragmentSplashScreenBinding
 import ru.iteco.fmhandroid.dto.SplashScreenData
-import ru.iteco.fmhandroid.viewmodel.AuthViewModel
-import javax.inject.Inject
+import ru.iteco.fmh.viewmodel.AuthViewModel
 
 @SuppressLint("CustomSplashScreen")
 @AndroidEntryPoint
 class SplashScreenFragment : Fragment(R.layout.fragment_splash_screen) {
 
-    @Inject
-    lateinit var auth: AppAuth
-
-    @Inject
-    lateinit var userApi: UserApi
     private val authViewModel: AuthViewModel by viewModels()
 
     private lateinit var binding: FragmentSplashScreenBinding

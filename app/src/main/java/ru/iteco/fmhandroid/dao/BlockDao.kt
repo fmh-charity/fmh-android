@@ -1,5 +1,6 @@
 package ru.iteco.fmhandroid.dao
 
+import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -8,6 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import ru.iteco.fmhandroid.dto.Block
 import ru.iteco.fmhandroid.entity.BlockEntity
 
+@Dao
 interface BlockDao {
     @Transaction
     @Query("SELECT * FROM BlockEntity")

@@ -1,13 +1,11 @@
 package ru.iteco.fmhandroid.dao
 
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import androidx.room.Transaction
+import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 import ru.iteco.fmhandroid.dto.NurseStation
 import ru.iteco.fmhandroid.entity.NurseStationEntity
 
+@Dao
 interface NurseStationDao {
     @Transaction
     @Query("SELECT * FROM NurseStationEntity")

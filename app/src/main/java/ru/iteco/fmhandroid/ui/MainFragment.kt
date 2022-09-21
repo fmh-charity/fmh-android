@@ -18,9 +18,10 @@ import ru.iteco.fmhandroid.adapter.ClaimListAdapter
 import ru.iteco.fmhandroid.adapter.NewsListAdapter
 import ru.iteco.fmhandroid.databinding.FragmentMainBinding
 import ru.iteco.fmhandroid.utils.Utils
-import ru.iteco.fmhandroid.viewmodel.AuthViewModel
-import ru.iteco.fmhandroid.viewmodel.ClaimViewModel
-import ru.iteco.fmhandroid.viewmodel.NewsViewModel
+import ru.iteco.fmh.viewmodel.AuthViewModel
+import ru.iteco.fmh.viewmodel.claim.ClaimViewModel
+import ru.iteco.fmh.viewmodel.news.NewsViewModel
+import ru.iteco.fmhandroid.dto.ClaimNavArg
 
 @AndroidEntryPoint
 class MainFragment : Fragment(R.layout.fragment_main) {
@@ -39,8 +40,9 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         lifecycleScope.launchWhenStarted {
             claimViewModel.openClaimEvent.collectLatest {
+                val navArg = ClaimNavArg(it.claim)
                 val action = MainFragmentDirections
-                    .actionMainFragmentToOpenClaimFragment(it)
+                    .actionMainFragmentToOpenClaimFragment(navArg)
                 findNavController().navigate(action)
             }
         }

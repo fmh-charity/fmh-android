@@ -17,15 +17,15 @@ import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import ru.iteco.fmh.model.News
 import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.databinding.FragmentCreateEditNewsBinding
-import ru.iteco.fmhandroid.dto.News
 import ru.iteco.fmhandroid.utils.Utils
 import ru.iteco.fmhandroid.utils.Utils.convertNewsCategory
 import ru.iteco.fmhandroid.utils.Utils.saveDateTime
 import ru.iteco.fmhandroid.utils.Utils.updateDateLabel
 import ru.iteco.fmhandroid.utils.Utils.updateTimeLabel
-import ru.iteco.fmhandroid.viewmodel.NewsControlPanelViewModel
+import ru.iteco.fmh.viewmodel.NewsControlPanelViewModel
 import java.time.Instant.now
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -101,17 +101,19 @@ class CreateEditNewsFragment : Fragment(R.layout.fragment_create_edit_news) {
                     setText(R.string.news)
                 }
             }
-            args.newsItemArg?.let { newsItem ->
-                newsItemCategoryTextAutoCompleteTextView.setText(newsItem.category.name)
-                newsItemTitleTextInputEditText.setText(newsItem.newsItem.title)
+            args.newsItemArg?.let { newsWithCategoryNavArg ->
+                newsItemCategoryTextAutoCompleteTextView.setText(newsWithCategoryNavArg.category.name)
+                
+                val news = newsWithCategoryNavArg.news
+                newsItemTitleTextInputEditText.setText(news.title)
                 newsItemPublishDateTextInputEditText.setText(
-                    Utils.formatDate(newsItem.newsItem.publishDate)
+                    Utils.formatDate(news.publishDate)
                 )
                 newsItemPublishTimeTextInputEditText.setText(
-                    Utils.formatTime(newsItem.newsItem.publishDate)
+                    Utils.formatTime(news.publishDate)
                 )
-                newsItemDescriptionTextInputEditText.setText(newsItem.newsItem.description)
-                switcher.isChecked = newsItem.newsItem.publishEnabled
+                newsItemDescriptionTextInputEditText.setText(news.description)
+                switcher.isChecked = news.publishEnabled
             }
 
             if (args.newsItemArg == null) {
@@ -263,17 +265,14 @@ class CreateEditNewsFragment : Fragment(R.layout.fragment_create_edit_news) {
 
     private fun fillNewsItem() {
         with(binding) {
-            val news = args.newsItemArg
-            if (news != null) {
-                val editedNews = News(
-                    id = news.newsItem.id,
+            val newsWithCategoryNavArg = args.newsItemArg
+            if (newsWithCategoryNavArg != null) {
+                val news = newsWithCategoryNavArg.news
+                val editedNews = news.copy(
                     title = newsItemTitleTextInputEditText.text.toString(),
                     newsCategoryId = convertNewsCategory(
                         newsItemCategoryTextAutoCompleteTextView.text.toString()
                     ),
-                    creatorName = news.newsItem.creatorName,
-                    createDate = news.newsItem.createDate,
-                    creatorId = news.newsItem.creatorId,
                     publishDate = saveDateTime(
                         newsItemPublishDateTextInputEditText.text.toString(),
                         newsItemPublishTimeTextInputEditText.text.toString()

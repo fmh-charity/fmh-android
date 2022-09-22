@@ -42,11 +42,11 @@
             app:icon="@drawable/icon_delete"
             app:iconGravity="end"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/edit_room_image_view"
+            app:layout_constraintEnd_toStartOf="@+id/edit_block_image_view"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/edit_room_image_view"
+            android:id="@+id/edit_block_image_view"
             style="@style/materialButtonTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

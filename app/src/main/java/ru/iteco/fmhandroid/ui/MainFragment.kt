@@ -104,6 +104,11 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                     findNavController().navigate(R.id.action_mainFragment_to_listOfRoomFragment)
                     true
                 }
+                R.id.menu_item_blocks -> {
+                    findNavController().navigate(R.id.action_mainFragment_to_listOfBlockFragment)
+                    true
+                }
+
                 else -> false
             }
         }

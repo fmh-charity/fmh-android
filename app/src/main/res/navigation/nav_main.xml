@@ -210,6 +210,9 @@
         <action
             android:id="@+id/action_mainFragment_to_our_mission_fragment"
             app:destination="@id/our_mission_fragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_listOfRoomFragment"
+            app:destination="@id/listOfRoomFragment" />
     </fragment>
     <fragment
         android:id="@+id/authFragment"
@@ -261,5 +264,17 @@
             android:id="@+id/action_our_mission_fragment_to_authFragment"
             app:destination="@id/authFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/listOfRoomFragment"
+        android:name="ru.iteco.fmhandroid.ui.ListOfRoomFragment"
+        android:label="ListOfRoomFragment" >
+        <action
+            android:id="@+id/action_listOfRoomFragment_to_addRoomFragment2"
+            app:destination="@id/addRoomFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/addRoomFragment2"
+        android:name="ru.iteco.fmhandroid.ui.AddRoomFragment"
+        android:label="AddRoomFragment" />
 
 </navigation>

@@ -132,4 +132,6 @@
     <string name="Comments3">the block on the plan is colored yellow</string>
     <string name="list_of_block">List of block</string>
     <string name="Rooms">Rooms</string>
+    <string name="Blocks">Block</string>
+    <string name="Posts">Posts</string>
 </resources>

@@ -61,7 +61,7 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ScrollView
+        <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
@@ -103,7 +103,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/post_list_item_title_background_image_view"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="@string/block_number" />
+                    android:text="@string/block_number" />
 
                 <TextView
                     android:id="@+id/block_number_text_view"
@@ -182,7 +182,9 @@
                     app:layout_constraintTop_toBottomOf="@+id/comment_text_view"
                     tools:text="@string/Comments3" />
 
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
+
     </ScrollView>
 </LinearLayout>

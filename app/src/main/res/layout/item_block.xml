@@ -48,7 +48,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/post_list_item_title_background_image_view"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="@string/block_number" />
+                    android:text="@string/block_number" />
 
                 <TextView
                     android:id="@+id/block_number_text_view"

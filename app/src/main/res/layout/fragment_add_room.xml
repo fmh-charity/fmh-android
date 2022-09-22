@@ -103,7 +103,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/room_list_item_title_background_image_view"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="@string/room_number" />
+                    android:text="@string/room_number" />
 
                 <TextView
                     android:id="@+id/room_number_text_view"

@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/block"
-            android:textSize="16sp"
+            style="@style/BottomToolbarTextStyle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -111,7 +111,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/card_view_padding"
                     android:ellipsize="end"
-                    android:textSize="13sp"
+                    style="@style/PatientAndExecutorTextSize"
                     app:layout_constraintBottom_toBottomOf="@+id/block_text_view"
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:text="1" />
@@ -133,7 +133,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/card_view_padding"
                     android:ellipsize="end"
-                    android:textSize="13sp"
+                    style="@style/PatientAndExecutorTextSize"
                     app:layout_constraintBottom_toBottomOf="@+id/room_text_view"
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:text="1-10" />
@@ -168,7 +168,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/divider1_view" />
 
                 <TextView
-                    android:id="@+id/room_list_item_comment_text_view"
+                    android:id="@+id/block_list_item_comment_text_view"
                     style="@style/RoomCardForListCommentTextStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

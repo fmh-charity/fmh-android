@@ -108,6 +108,10 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                     findNavController().navigate(R.id.action_mainFragment_to_listOfBlockFragment)
                     true
                 }
+                R.id.menu_item_posts -> {
+                    findNavController().navigate(R.id.action_mainFragment_to_listOfPostFragment)
+                    true
+                }
 
                 else -> false
             }

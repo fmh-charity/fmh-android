@@ -216,6 +216,9 @@
         <action
             android:id="@+id/action_mainFragment_to_listOfBlockFragment"
             app:destination="@id/listOfBlockFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_listOfPostFragment"
+            app:destination="@id/listOfPostFragment" />
     </fragment>
     <fragment
         android:id="@+id/authFragment"
@@ -290,6 +293,18 @@
         <action
             android:id="@+id/action_listOfBlockFragment_to_addBlockFragment"
             app:destination="@id/addBlockFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPostFragment"
+        android:name="ru.iteco.fmhandroid.ui.AddPostFragment"
+        android:label="AddPostFragment" />
+    <fragment
+        android:id="@+id/listOfPostFragment"
+        android:name="ru.iteco.fmhandroid.ui.ListOfPostFragment"
+        android:label="ListOfPostFragment" >
+        <action
+            android:id="@+id/action_listOfPostFragment_to_addPostFragment"
+            app:destination="@id/addPostFragment" />
     </fragment>
 
 </navigation>

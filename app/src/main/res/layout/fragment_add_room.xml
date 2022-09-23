@@ -69,6 +69,7 @@
         android:padding="12dp">
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/item_room"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="8dp"
@@ -247,18 +248,18 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/vacancies_text_view" />
 
-<!--                <androidx.recyclerview.widget.RecyclerView-->
-<!--                    android:id="@+id/patients_list_recycler_view"-->
-<!--                    android:layout_width="383dp"-->
-<!--                    android:layout_height="148dp"-->
-<!--                    android:layout_marginTop="8dp"-->
-<!--                    android:visibility="invisible"-->
-<!--                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                    app:layout_constraintEnd_toEndOf="@+id/divider4_view"-->
-<!--                    app:layout_constraintStart_toStartOf="@+id/divider4_view"-->
-<!--                    app:layout_constraintTop_toBottomOf="@+id/patients_text_view"-->
-<!--                    app:layout_constraintVertical_bias="1.0" />-->
+                <!--                <androidx.recyclerview.widget.RecyclerView-->
+                <!--                    android:id="@+id/patients_list_recycler_view"-->
+                <!--                    android:layout_width="383dp"-->
+                <!--                    android:layout_height="148dp"-->
+                <!--                    android:layout_marginTop="8dp"-->
+                <!--                    android:visibility="invisible"-->
+                <!--                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+                <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+                <!--                    app:layout_constraintEnd_toEndOf="@+id/divider4_view"-->
+                <!--                    app:layout_constraintStart_toStartOf="@+id/divider4_view"-->
+                <!--                    app:layout_constraintTop_toBottomOf="@+id/patients_text_view"-->
+                <!--                    app:layout_constraintVertical_bias="1.0" />-->
 
                 <TextView
                     android:id="@+id/room_list_item_patient_text_view"
@@ -325,34 +326,24 @@
                     app:layout_constraintStart_toStartOf="@+id/comment_text_view"
                     app:layout_constraintTop_toBottomOf="@+id/comment_text_view"
                     tools:text="@string/Comments" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/save_room_material_button"
-                    style="@style/materialButtonTheme"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@color/transparent"
-                    android:checkable="true"
-                    android:minWidth="48dp"
-                    android:minHeight="48dp"
-                    android:visibility="visible"
-                    app:icon="@drawable/ic_save"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="parent"
-                    tools:visibility="visible" />
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
         </com.google.android.material.card.MaterialCardView>
-
-
-
-
     </ScrollView>
 
+    <Button
+        android:id="@+id/save_room_material_button"
+        style="@style/materialButtonTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:checkable="true"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:visibility="visible"
+        app:icon="@drawable/ic_save"
+        app:layout_constraintEnd_toEndOf="@id/item_room"
+        app:layout_constraintTop_toBottomOf="@id/item_room"
+        tools:visibility="visible" />
 
 </LinearLayout>

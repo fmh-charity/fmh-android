@@ -61,6 +61,19 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/layout_background_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/app_background_image"
+        android:scaleType="centerCrop"
+        android:src="@drawable/app_background_4000x4000"
+        android:visibility="visible" />
+
         <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -185,6 +198,6 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
-
     </ScrollView>
+    </RelativeLayout>
 </LinearLayout>

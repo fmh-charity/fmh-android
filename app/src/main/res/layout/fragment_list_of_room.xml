@@ -16,15 +16,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/light_grey"
-        android:padding="@dimen/card_view_padding"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="@dimen/card_view_padding">
 
         <TextView
+            style="@style/BottomToolbarTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/list_of_a_room"
-            style="@style/BottomToolbarTextStyle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -50,8 +50,8 @@
             style="@style/materialButtonTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/add_chambers_button"
             android:background="@android:color/transparent"
+            android:contentDescription="@string/add_chambers_button"
             android:minWidth="48dp"
             android:minHeight="48dp"
             app:icon="@drawable/ic_add"

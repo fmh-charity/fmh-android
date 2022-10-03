@@ -17,12 +17,11 @@ class AddRoomFragment : Fragment(R.layout.fragment_add_room) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAddRoomBinding.bind(view)
 
-        binding.addPatientImageView.setOnClickListener{
+        binding.addPatientImageView.setOnClickListener {
             if (binding.roomListAddPatientTextView.visibility == View.GONE) {
                 binding.roomListAddPatientTextView.visibility = View.VISIBLE
-            }else
+            } else
                 binding.roomListAddPatientTextView.visibility = View.GONE
         }
-
     }
 }

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_wish"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="12dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="8dp"
+    app:strokeColor="#A10114"
+    app:strokeWidth="2dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="@dimen/card_view_padding"
+        android:paddingTop="@dimen/card_view_padding"
+        android:paddingEnd="@dimen/card_view_padding"
+        android:paddingBottom="12dp">
+
+        <TextView
+            android:id="@+id/theme_label_text_view"
+            style="@style/card_label_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Theme"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/divider1_image_view"/>
+
+        <TextView
+            android:id="@+id/theme_text_view"
+            style="@style/card_text_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAlignment="viewEnd"
+            app:layout_constraintBottom_toTopOf="@+id/divider1_image_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/theme_label_text_view"
+            tools:text="починить кровать" />
+
+        <ImageView
+            android:id="@+id/divider1_image_view"
+            style="@style/card_divider_style"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginStart="-16dp"
+            android:layout_marginEnd="-16dp"
+            android:background="#A10114"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/theme_label_text_view"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/patient_label_text_view"
+            style="@style/card_label_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/patient"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider1_image_view"
+            app:layout_constraintBottom_toTopOf="@+id/divider2_image_view"
+
+            />
+
+        <TextView
+            android:id="@+id/patient_text_view"
+            style="@style/card_text_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAlignment="viewEnd"
+            app:layout_constraintTop_toBottomOf="@id/divider1_image_view"
+            app:layout_constraintBottom_toTopOf="@+id/divider2_image_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/patient_label_text_view"
+            tools:text="А.Н.Акопова" />
+
+        <ImageView
+            android:id="@+id/divider2_image_view"
+            style="@style/card_divider_style"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="-16dp"
+            android:layout_marginEnd="-16dp"
+            android:background="#A10114"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/patient_text_view"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/executor_name_label_text_view"
+            style="@style/card_label_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/executor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider2_image_view"
+            app:layout_constraintBottom_toTopOf="@+id/divider3_image_view"
+
+            />
+
+        <TextView
+            android:id="@+id/executor_name_text_view"
+            style="@style/card_text_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAlignment="viewEnd"
+            app:layout_constraintTop_toBottomOf="@id/divider2_image_view"
+            app:layout_constraintBottom_toTopOf="@+id/divider3_image_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/patient_label_text_view"
+            tools:text="М.Л.Павлов" />
+
+        <ImageView
+            android:id="@+id/divider3_image_view"
+            style="@style/card_divider_style"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="-16dp"
+            android:layout_marginEnd="-16dp"
+            android:background="#A10114"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/executor_name_text_view"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/plane_date_label_text_view"
+            style="@style/card_label_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/plan_date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider3_image_view" />
+
+        <TextView
+            android:id="@+id/plane_date_text_view"
+            style="@style/card_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toStartOf="@id/plan_time_text_view"
+            app:layout_constraintTop_toBottomOf="@id/divider3_image_view"
+            tools:text="10.12.2021" />
+
+        <TextView
+            android:id="@+id/plan_time_text_view"
+            style="@style/card_time_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider3_image_view"
+            tools:text="09:00" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

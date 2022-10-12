@@ -16,7 +16,7 @@
         android:ellipsize="end"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/Patient" />
+        tools:text="@string/Name_patient" />
 
     <ImageView
         android:id="@+id/remove_patient_image_view"

@@ -135,4 +135,6 @@
     <string name="Blocks">Блоки</string>
     <string name="Posts">Посты</string>
     <string name="Patient">Пациент</string>
+    <string name="rooms_from">Палаты от</string>
+    <string name="to">до</string>
 </resources>

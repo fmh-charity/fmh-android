@@ -36,7 +36,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:hint="@string/room_number"
-                    android:inputType="number"
                     app:endIconDrawable="@drawable/ic_warning_circle"
                     app:endIconMode="none"
                     app:endIconTint="@color/mtrl_textinput_empty_field_stroke_color"
@@ -47,7 +46,7 @@
                         android:id="@+id/room_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textMultiLine"/>
+                        android:inputType="number"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -57,7 +56,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:hint="@string/post"
-                    android:inputType="number"
                     app:endIconDrawable="@drawable/ic_warning_circle"
                     app:endIconMode="none"
                     app:endIconTint="@color/mtrl_textinput_empty_field_stroke_color"
@@ -68,7 +66,7 @@
                         android:id="@+id/post_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textMultiLine" />
+                        android:inputType="number" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -78,7 +76,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:hint="@string/block"
-                    android:inputType="number"
                     app:endIconDrawable="@drawable/ic_warning_circle"
                     app:endIconMode="none"
                     app:endIconTint="@color/mtrl_textinput_empty_field_stroke_color"
@@ -89,31 +86,28 @@
                         android:id="@+id/block_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textMultiLine" />
+                        android:inputType="number"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-
-                </com.google.android.material.textfield.TextInputLayout><com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/available_seats_text_input_layout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:hint="@string/available_seats"
-                android:inputType="number"
-                app:endIconDrawable="@drawable/ic_warning_circle"
-                app:endIconMode="none"
-                app:endIconTint="@color/mtrl_textinput_empty_field_stroke_color"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/block_seats_text_input_layout">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/available_seats_edit_text"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/available_seats_text_input_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textMultiLine" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginTop="20dp"
+                    android:hint="@string/available_seats"
+                    app:endIconDrawable="@drawable/ic_warning_circle"
+                    app:endIconMode="none"
+                    app:endIconTint="@color/mtrl_textinput_empty_field_stroke_color"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/block_seats_text_input_layout">
 
-
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/available_seats_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
                     android:id="@+id/save_button"

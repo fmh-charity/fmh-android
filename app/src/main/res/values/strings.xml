@@ -135,4 +135,6 @@
     <string name="Blocks">Block</string>
     <string name="Posts">Posts</string>
     <string name="Patient">Patient</string>
+    <string name="rooms_from">Rooms from</string>
+    <string name="to">to</string>
 </resources>

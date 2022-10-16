@@ -50,12 +50,12 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/post_text_input_layout"
+                    android:id="@+id/nurse_stations_text_input_layout"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:hint="@string/post"
+                    android:hint="@string/nurse_stations"
                     app:endIconDrawable="@drawable/ic_warning_circle"
                     app:endIconMode="none"
                     app:endIconTint="@color/mtrl_textinput_empty_field_stroke_color"
@@ -63,7 +63,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/room_text_input_layout">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/post_edit_text"
+                        android:id="@+id/nurse_stations_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number" />
@@ -80,7 +80,7 @@
                     app:endIconMode="none"
                     app:endIconTint="@color/mtrl_textinput_empty_field_stroke_color"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/post_text_input_layout">
+                    app:layout_constraintTop_toBottomOf="@+id/nurse_stations_text_input_layout">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/block_edit_text"

@@ -296,11 +296,11 @@
     </fragment>
     <fragment
         android:id="@+id/addPostFragment"
-        android:name="ru.iteco.fmhandroid.ui.AddPostFragment"
+        android:name="ru.iteco.fmhandroid.ui.AddNurseStationsFragment"
         android:label="AddPostFragment" />
     <fragment
         android:id="@+id/listOfPostFragment"
-        android:name="ru.iteco.fmhandroid.ui.ListOfPostFragment"
+        android:name="ru.iteco.fmhandroid.ui.ListOfNurseStationsFragment"
         android:label="ListOfPostFragment" >
         <action
             android:id="@+id/action_listOfPostFragment_to_addPostFragment"

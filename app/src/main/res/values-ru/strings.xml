@@ -114,7 +114,7 @@
     <string name="company_info">© Айтеко, 2022</string>
     <string name="our_mission_title_text">Главное - жить любя</string>
     <string name="room_number">№ палаты</string>
-    <string name="post">Пост</string>
+    <string name="nurse_stations">Пост</string>
     <string name="block">Блок</string>
     <string name="available_seats">Свободных мест</string>
     <string name="сomment">Комментарий</string>
@@ -125,9 +125,9 @@
     <string name="Name_patient">Иванов П.И.</string>
     <string name="room">Палата</string>
     <string name="add_patient">Добавить пациента</string>
-    <string name="post_number">№ поста</string>
+    <string name="nurse_stations_number">№ поста</string>
     <string name="Comments2">Пост обслуживает только лежачих больных</string>
-    <string name="list_of_post">Список постов</string>
+    <string name="list_of_nurse_stations_">Список постов</string>
     <string name="block_number">№ блока</string>
     <string name="Comments3">Блок на плане окрашен желтым цветом</string>
     <string name="list_of_block">Список блоков</string>
@@ -135,6 +135,7 @@
     <string name="Blocks">Блоки</string>
     <string name="Posts">Посты</string>
     <string name="Patient">Пациент</string>
-    <string name="rooms_from">Палаты от</string>
+    <string name="rooms..">Палаты:</string>
     <string name="to">до</string>
+    <string name="from">от</string>
 </resources>

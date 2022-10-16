@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -31,12 +30,12 @@
                 android:paddingHorizontal="16dp">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/post_text_input_layout"
+                    android:id="@+id/nurse_stations_text_input_layout"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:hint="@string/post_number"
+                    android:hint="@string/nurse_stations_number"
                     app:endIconDrawable="@drawable/ic_warning_circle"
                     app:endIconMode="none"
                     app:endIconTint="@color/mtrl_textinput_empty_field_stroke_color"
@@ -44,90 +43,98 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/post_edit_text"
+                        android:id="@+id/nurse_stations_edit_text"
                         android:layout_width="match_parent"
-                        android:inputType="number"
                         android:layout_height="wrap_content"
-                         />
+                        android:inputType="number" />
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/room_text_view"
+                    style="@style/RoomCardForListCommentTextStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:text="@string/rooms.."
+                    app:layout_constraintBottom_toTopOf="@+id/nurse_stations_save_button"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/nurse_stations_text_input_layout" />
 
                 <TextView
                     android:id="@+id/room_from_text_view"
                     style="@style/RoomCardForListCommentTextStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
                     android:ellipsize="end"
-                    android:text="@string/rooms_from"
-                    app:layout_constraintBottom_toTopOf="@+id/save_button"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/post_text_input_layout" />
+                    android:text="@string/from"
+                    app:layout_constraintBottom_toTopOf="@+id/nurse_stations_save_button"
+                    app:layout_constraintEnd_toStartOf="@+id/rooms_from_input_layout"
+                    app:layout_constraintTop_toBottomOf="@+id/nurse_stations_text_input_layout" />
 
                 <TextView
                     android:id="@+id/room_to_text_view"
                     style="@style/RoomCardForListCommentTextStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
                     android:ellipsize="end"
                     android:text="@string/to"
-                    app:layout_constraintBottom_toTopOf="@+id/save_button"
-                    app:layout_constraintStart_toEndOf="@+id/einput_layout"
-                    app:layout_constraintTop_toBottomOf="@+id/post_text_input_layout" />
+                    app:layout_constraintBottom_toTopOf="@+id/nurse_stations_save_button"
+                    app:layout_constraintEnd_toStartOf="@+id/rooms_to_input_layout"
+                    app:layout_constraintTop_toBottomOf="@+id/nurse_stations_text_input_layout" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/einput_layout"
+                    android:id="@+id/rooms_from_input_layout"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
                     android:layout_marginTop="20dp"
-                    android:hint="@string/post_number"
+                    android:layout_marginEnd="16dp"
                     app:endIconDrawable="@drawable/ic_warning_circle"
                     app:endIconMode="none"
                     app:endIconTint="@color/mtrl_textinput_empty_field_stroke_color"
-                    app:layout_constraintStart_toEndOf="@+id/room_from_text_view"
-                    app:layout_constraintTop_toBottomOf="@id/post_text_input_layout">
+                    app:layout_constraintEnd_toStartOf="@+id/room_to_text_view"
+                    app:layout_constraintTop_toBottomOf="@+id/nurse_stations_text_input_layout">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/eedit_text"
+                        android:id="@+id/rooms_from_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/input_layout"
+                    android:id="@+id/rooms_to_input_layout"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
                     android:layout_marginTop="20dp"
-                    android:hint="@string/post_number"
                     app:endIconDrawable="@drawable/ic_warning_circle"
                     app:endIconMode="none"
                     app:endIconTint="@color/mtrl_textinput_empty_field_stroke_color"
-                    app:layout_constraintStart_toEndOf="@+id/room_to_text_view"
-                    app:layout_constraintTop_toBottomOf="@id/post_text_input_layout">
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/nurse_stations_text_input_layout">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edit_text"
+                        android:id="@+id/rooms_to_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
-                    android:id="@+id/save_button"
+                    android:id="@+id/nurse_stations_save_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:contentDescription="@string/save"
                     android:text="@string/save"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/input_layout" />
+                    app:layout_constraintTop_toBottomOf="@+id/rooms_to_input_layout" />
 
                 <Button
-                    android:id="@+id/cancel_button"
+                    android:id="@+id/nurse_stations_cancel_button"
                     style="?attr/materialButtonOutlinedStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -137,7 +144,7 @@
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/save_button" />
+                    app:layout_constraintTop_toBottomOf="@+id/nurse_stations_save_button" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
     </ScrollView>

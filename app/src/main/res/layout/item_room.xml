@@ -25,7 +25,7 @@
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
             android:background="@color/claim_header_background"
-            app:layout_constraintBottom_toTopOf="@id/post_text_view"
+            app:layout_constraintBottom_toTopOf="@id/nurse_stations_text_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -57,12 +57,12 @@
             tools:text="5" />
 
         <TextView
-            android:id="@+id/post_text_view"
+            android:id="@+id/nurse_stations_text_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:ellipsize="end"
-            android:text="@string/post"
+            android:text="@string/nurse_stations"
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/room_text_view" />
@@ -82,7 +82,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/post_text_view" />
+            app:layout_constraintTop_toBottomOf="@id/nurse_stations_text_view" />
 
         <TextView
             android:id="@+id/block_text_view"
@@ -94,7 +94,7 @@
             android:text="@string/block"
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/post_text_view" />
+            app:layout_constraintTop_toBottomOf="@id/nurse_stations_text_view" />
 
         <View
             android:id="@+id/divider2_view"
@@ -154,13 +154,13 @@
             tools:text="0" />
 
         <TextView
-            android:id="@+id/post_number_text_view"
+            android:id="@+id/nurse_stations_number_text_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/card_view_padding"
             android:ellipsize="end"
             style="@style/PatientAndExecutorTextSize"
-            app:layout_constraintBottom_toBottomOf="@id/post_text_view"
+            app:layout_constraintBottom_toBottomOf="@id/nurse_stations_text_view"
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="1" />
 

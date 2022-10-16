@@ -24,13 +24,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/post"
+            android:text="@string/nurse_stations"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/delete_post_material_button"
+            android:id="@+id/delete_nurse_stations_material_button"
             style="@style/materialButtonTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,11 +42,11 @@
             app:icon="@drawable/icon_delete"
             app:iconGravity="end"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/edit_post_image_view"
+            app:layout_constraintEnd_toStartOf="@+id/edit_nurse_stations_image_view"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/edit_post_image_view"
+            android:id="@+id/edit_nurse_stations_image_view"
             style="@style/materialButtonTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -107,12 +107,12 @@
                         tools:ignore="ContentDescription" />
 
                     <TextView
-                        android:id="@+id/post_text_view"
+                        android:id="@+id/nurse_stations_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:ellipsize="end"
-                        android:text="@string/post_number"
+                        android:text="@string/nurse_stations_number"
                         android:textSize="13sp"
                         app:layout_constraintBottom_toBottomOf="@+id/post_list_item_title_background_image_view"
                         app:layout_constraintStart_toStartOf="parent"
@@ -125,7 +125,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/card_view_padding"
                         android:ellipsize="end"
-                        app:layout_constraintBottom_toBottomOf="@+id/post_text_view"
+                        app:layout_constraintBottom_toBottomOf="@+id/nurse_stations_text_view"
                         app:layout_constraintEnd_toEndOf="parent"
                         tools:text="1" />
 
@@ -138,7 +138,7 @@
                         android:text="@string/room"
                         android:textSize="13sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/post_text_view" />
+                        app:layout_constraintTop_toBottomOf="@id/nurse_stations_text_view" />
 
                     <TextView
                         android:id="@+id/room_number_text_view"
@@ -181,7 +181,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/divider1_view" />
 
                     <TextView
-                        android:id="@+id/post_list_item_comment_text_view"
+                        android:id="@+id/nurse_stations_list_item_comment_text_view"
                         style="@style/RoomCardForListCommentTextStyle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"

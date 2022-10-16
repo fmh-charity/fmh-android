@@ -114,7 +114,7 @@
     <string name="company_info">© I-Teco, 2022</string>
     <string name="our_mission_title_text">Love is all</string>
     <string name="room_number">№ room</string>
-    <string name="post">Post</string>
+    <string name="nurse_stations">Post</string>
     <string name="block">Block</string>
     <string name="available_seats">Available seats</string>
     <string name="сomment">Comment</string>
@@ -125,9 +125,9 @@
     <string name="Name_patient">Ivanov P.I</string>
     <string name="room">Room</string>
     <string name="add_patient">Add patient</string>
-    <string name="post_number">№ post</string>
+    <string name="nurse_stations_number">№ post</string>
     <string name="Comments2">the post serves only bedridden patients</string>
-    <string name="list_of_post">List of posts</string>
+    <string name="list_of_nurse_stations_">List of posts</string>
     <string name="block_number">№ block</string>
     <string name="Comments3">the block on the plan is colored yellow</string>
     <string name="list_of_block">List of block</string>
@@ -135,6 +135,7 @@
     <string name="Blocks">Block</string>
     <string name="Posts">Posts</string>
     <string name="Patient">Patient</string>
-    <string name="rooms_from">Rooms from</string>
+    <string name="rooms..">Rooms:</string>
     <string name="to">to</string>
+    <string name="from">from</string>
 </resources>

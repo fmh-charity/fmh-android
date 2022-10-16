@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="room_number">№ палаты</string>
-    <string name="post">Пост</string>
+    <string name="nurse_stations">Пост</string>
     <string name="block">Блок</string>
     <string name="available_seats">Свободных мест</string>
     <string name="сomment">Комментарий</string>

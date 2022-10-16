@@ -4,15 +4,15 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import ru.iteco.fmhandroid.R
-import ru.iteco.fmhandroid.databinding.FragmentAddPostBinding
+import ru.iteco.fmhandroid.databinding.FragmentAddNurseStationsBinding
 
-class AddPostFragment : Fragment(R.layout.fragment_add_post) {
-    private lateinit var binding: FragmentAddPostBinding
+class AddNurseStationsFragment : Fragment(R.layout.fragment_add_nurse_stations) {
+    private lateinit var binding: FragmentAddNurseStationsBinding
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentAddPostBinding.bind(view)
+        binding = FragmentAddNurseStationsBinding.bind(view)
 
     }
 

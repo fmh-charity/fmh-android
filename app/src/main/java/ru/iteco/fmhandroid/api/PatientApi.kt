@@ -5,15 +5,16 @@ import retrofit2.http.*
 import ru.iteco.fmhandroid.dto.Patient
 
 interface PatientApi {
+
     @GET("patient")
     suspend fun getAllPatient(): Response<List<Patient>>
 
-    @PUT("news")
+    @PUT("patient")
     suspend fun editPatientItem(@Body patientItem: Patient): Response<Patient>
 
-    @POST("news")
+    @POST("patient")
     suspend fun savePatientItem(@Body patientItem: Patient): Response<Patient>
 
-    @DELETE("news/{id}")
+    @DELETE("patient/{id}")
     suspend fun removePatientItemById(@Path("id") id: Int): Response<Unit>
 }

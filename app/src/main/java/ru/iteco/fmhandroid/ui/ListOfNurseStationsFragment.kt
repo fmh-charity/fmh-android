@@ -15,7 +15,7 @@ class ListOfNurseStationsFragment: Fragment(R.layout.fragment_list_of_nurse_stat
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentListOfNurseStationsBinding.bind(view)
 
-        binding.addPostImageView.setOnClickListener {
+        binding.addNurseStationsImageView.setOnClickListener {
             findNavController().navigate(R.id.action_listOfPostFragment_to_addPostFragment)
         }
     }

@@ -12,6 +12,8 @@ data class NurseStationEntity(
     val id: Int,
     @ColumnInfo(name = "name")
     val name: String,
+    @ColumnInfo(name = "blockId")
+    val blockId: Int,
     @ColumnInfo(name = "comment")
     val comment: String
 )
@@ -20,5 +22,6 @@ fun List<NurseStation>.toEntity(): List<NurseStationEntity> = map(NurseStation::
 fun NurseStation.toEntity() = NurseStationEntity(
     id = id,
     name = name,
+    blockId = blockId,
     comment = comment
 )

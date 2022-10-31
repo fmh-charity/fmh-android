@@ -10,10 +10,10 @@ import javax.inject.Inject
 @HiltViewModel
 class NurseStationViewModel @Inject constructor(
     private val nurseStationRepository: NurseStationRepository
-) : ViewModel()  //TODO Нужно еще добавить адаптер
+) : ViewModel()  //TODO (Нужно еще добавить адаптер)
 {
 
-    suspend fun getAllNurseStation() {
+    fun getAllNurseStation() {
         nurseStationRepository.getAllNurseStation()
     }
 

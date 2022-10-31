@@ -22,5 +22,5 @@ interface NurseStationApi {
     ): Response<NurseStation>
 
     @DELETE("nurse_stations/{id}")
-    suspend fun deleteNurseStation(@Path("id") id: Int)
+    suspend fun deleteNurseStation(@Path("id") id: Int): Response<Unit>
 }

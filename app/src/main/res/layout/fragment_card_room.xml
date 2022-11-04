@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/container_custom_app_bar_include_on_fragment_create_edit_news"
+        layout="@layout/top_custom_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/light_grey"
+        android:orientation="horizontal"
+        android:padding="@dimen/card_view_padding">
+
+        <TextView
+            style="@style/BottomToolbarTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/room"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/delete_room_material_button"
+            style="@style/materialButtonTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:background="@color/transparent"
+            android:checkable="true"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            app:icon="@drawable/icon_delete"
+            app:iconGravity="end"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/edit_room_image_view"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/edit_room_image_view"
+            style="@style/materialButtonTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/add_chambers_button"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            app:icon="@drawable/icon_edit"
+            app:iconGravity="end"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/layout_background_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/app_background_image"
+            android:scaleType="centerCrop"
+            android:src="@drawable/app_background_4000x4000"
+            android:visibility="visible" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/item_room"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false">
+
+                    <ImageView
+                        android:id="@+id/room_list_item_title_background_image_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@color/light_grey"
+                        app:layout_constraintBottom_toTopOf="@id/nurse_stations_text_view"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="1.0"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/room_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:ellipsize="end"
+                        android:text="@string/room_number"
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/room_list_item_title_background_image_view"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/room_number_text_view"
+                        style="@style/PatientAndExecutorTextSize"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/card_view_padding"
+                        android:ellipsize="end"
+                        app:layout_constraintBottom_toBottomOf="@+id/room_text_view"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:text="1" />
+
+                    <TextView
+                        android:id="@+id/nurse_stations_text_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:ellipsize="end"
+                        android:text="@string/nurse_stations"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/room_text_view" />
+
+                    <View
+                        android:id="@+id/divider1_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/separator"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/nurse_stations_text_view" />
+
+                    <TextView
+                        android:id="@+id/block_text_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:ellipsize="end"
+                        android:text="@string/block"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/nurse_stations_text_view" />
+
+                    <View
+                        android:id="@+id/divider2_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/separator"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/block_text_view" />
+
+                    <View
+                        android:id="@+id/divider3_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/separator"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/vacancies_text_view" />
+
+                    <TextView
+                        android:id="@+id/vacancies_text_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:ellipsize="end"
+                        android:text="@string/available_seats"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/block_text_view" />
+
+                    <TextView
+                        android:id="@+id/number_of_vacancies_text_view"
+                        style="@style/PatientAndExecutorTextSize"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/card_view_padding"
+                        android:ellipsize="end"
+                        app:layout_constraintBottom_toBottomOf="@+id/vacancies_text_view"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:text="0" />
+
+                    <TextView
+                        android:id="@+id/nurse_stations_number_text_view"
+                        style="@style/PatientAndExecutorTextSize"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/card_view_padding"
+                        android:ellipsize="end"
+                        app:layout_constraintBottom_toBottomOf="@id/nurse_stations_text_view"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:text="1" />
+
+                    <TextView
+                        android:id="@+id/block_number_text_view"
+                        style="@style/PatientAndExecutorTextSize"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/card_view_padding"
+                        android:ellipsize="end"
+                        app:layout_constraintBottom_toBottomOf="@id/block_text_view"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:text="2" />
+
+                    <TextView
+                        android:id="@+id/patients_text_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:ellipsize="end"
+                        android:text="@string/patients_room"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/vacancies_text_view" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/room_list_item_patient_text_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:clipToPadding="true"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/patients_text_view"
+                        tools:itemCount="2"
+                        tools:listitem="@layout/item_patient" />
+
+
+                    <ImageView
+                        android:id="@+id/add_patient_image_view"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginEnd="12dp"
+                        android:contentDescription="@string/add_patient"
+                        app:layout_constraintBottom_toBottomOf="@+id/patients_text_view"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:srcCompat="@drawable/ic_add" />
+
+                    <View
+                        android:id="@+id/divider4_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/separator"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/room_list_item_patient_text_view" />
+
+                    <TextView
+                        android:id="@+id/comment_text_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:ellipsize="end"
+                        android:text="@string/сomment"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/divider4_view" />
+
+                    <TextView
+                        android:id="@+id/room_list_item_comment_text_view"
+                        style="@style/RoomCardForListCommentTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:ellipsize="end"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/comment_text_view"
+                        app:layout_constraintTop_toBottomOf="@+id/comment_text_view"
+                        tools:text="@string/Comments" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </ScrollView>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/save_room_material_button"
+        style="@style/materialButtonTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:checkable="true"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:visibility="visible"
+        app:icon="@drawable/ic_save"
+        app:layout_constraintEnd_toEndOf="@id/item_room"
+        app:layout_constraintTop_toBottomOf="@id/item_room"
+        tools:visibility="visible" />
+</LinearLayout>

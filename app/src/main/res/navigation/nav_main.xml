@@ -210,6 +210,15 @@
         <action
             android:id="@+id/action_mainFragment_to_our_mission_fragment"
             app:destination="@id/our_mission_fragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_listOfRoomFragment"
+            app:destination="@id/listOfRoomFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_listOfBlockFragment"
+            app:destination="@id/listOfBlockFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_listOfPostFragment"
+            app:destination="@id/listOfPostFragment" />
     </fragment>
     <fragment
         android:id="@+id/authFragment"
@@ -260,6 +269,42 @@
         <action
             android:id="@+id/action_our_mission_fragment_to_authFragment"
             app:destination="@id/authFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listOfRoomFragment"
+        android:name="ru.iteco.fmhandroid.ui.ListOfRoomFragment"
+        android:label="ListOfRoomFragment" >
+        <action
+            android:id="@+id/action_listOfRoomFragment_to_addRoomFragment2"
+            app:destination="@id/addRoomFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/addRoomFragment2"
+        android:name="ru.iteco.fmhandroid.ui.AddRoomFragment"
+        android:label="AddRoomFragment" />
+    <fragment
+        android:id="@+id/addBlockFragment"
+        android:name="ru.iteco.fmhandroid.ui.AddBlockFragment"
+        android:label="AddBlockFragment" />
+    <fragment
+        android:id="@+id/listOfBlockFragment"
+        android:name="ru.iteco.fmhandroid.ui.ListOfBlockFragment"
+        android:label="ListOfBlockFragment" >
+        <action
+            android:id="@+id/action_listOfBlockFragment_to_addBlockFragment"
+            app:destination="@id/addBlockFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPostFragment"
+        android:name="ru.iteco.fmhandroid.ui.AddNurseStationsFragment"
+        android:label="AddPostFragment" />
+    <fragment
+        android:id="@+id/listOfPostFragment"
+        android:name="ru.iteco.fmhandroid.ui.ListOfNurseStationsFragment"
+        android:label="ListOfPostFragment" >
+        <action
+            android:id="@+id/action_listOfPostFragment_to_addPostFragment"
+            app:destination="@id/addPostFragment" />
     </fragment>
 
 </navigation>

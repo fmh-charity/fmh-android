@@ -6,6 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import ru.iteco.fmhandroid.api.qualifier.Authorized
+import ru.iteco.fmhandroid.dto.NurseStation
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
@@ -30,5 +31,12 @@ object ApiModule {
     fun provideNewsApi(@Authorized retrofit: Retrofit): NewsApi {
         return retrofit
             .create(NewsApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideNurseStationApi(@Authorized retrofit: Retrofit): NurseStationApi {
+        return retrofit
+            .create(NurseStationApi::class.java)
     }
 }

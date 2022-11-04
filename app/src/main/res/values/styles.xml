@@ -184,4 +184,9 @@
         <item name="android:textColor">@color/splash_screen_title_color_4</item>
     </style>
 
+    <style name="RoomCardForListCommentTextStyle">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
 </resources>

@@ -16,4 +16,13 @@ interface NewsApi {
 
     @DELETE("news/{id}")
     suspend fun removeNewsItemById(@Path("id") id: Int): Response<Unit>
+
+    @GET("news/latest")
+    suspend fun getLatest(@Query("count") count: Int): Response<List<News>>
+
+    @GET("news/{id}/before")
+    suspend fun getBefore(
+        @Path("id") id: Long,
+        @Query("count") count: Int
+    ): Response<List<News>>
 }

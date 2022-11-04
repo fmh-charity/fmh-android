@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/container_custom_app_bar_include_on_fragment_create_edit_claim"
+        layout="@layout/top_custom_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:padding="12dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingHorizontal="16dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/block_text_input_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:hint="@string/block_number"
+                    app:endIconDrawable="@drawable/ic_warning_circle"
+                    app:endIconMode="none"
+                    app:endIconTint="@color/mtrl_textinput_empty_field_stroke_color"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/block_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/room_text_view"
+                    style="@style/RoomCardForListCommentTextStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:text="@string/rooms.."
+                    app:layout_constraintBottom_toTopOf="@+id/block_save_button"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/block_text_input_layout" />
+
+                <TextView
+                    android:id="@+id/room_from_text_view"
+                    style="@style/RoomCardForListCommentTextStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:ellipsize="end"
+                    android:text="@string/from"
+                    app:layout_constraintBottom_toTopOf="@+id/block_save_button"
+                    app:layout_constraintEnd_toStartOf="@+id/rooms_from_input_layout"
+                    app:layout_constraintTop_toBottomOf="@+id/block_text_input_layout" />
+
+                <TextView
+                    android:id="@+id/room_to_text_view"
+                    style="@style/RoomCardForListCommentTextStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:ellipsize="end"
+                    android:text="@string/to"
+                    app:layout_constraintBottom_toTopOf="@+id/block_save_button"
+                    app:layout_constraintEnd_toStartOf="@+id/rooms_to_input_layout"
+                    app:layout_constraintTop_toBottomOf="@+id/block_text_input_layout" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/rooms_from_input_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="16dp"
+                    app:endIconDrawable="@drawable/ic_warning_circle"
+                    app:endIconMode="none"
+                    app:endIconTint="@color/mtrl_textinput_empty_field_stroke_color"
+                    app:layout_constraintEnd_toStartOf="@+id/room_to_text_view"
+                    app:layout_constraintTop_toBottomOf="@+id/block_text_input_layout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/rooms_from_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/rooms_to_input_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    app:endIconDrawable="@drawable/ic_warning_circle"
+                    app:endIconMode="none"
+                    app:endIconTint="@color/mtrl_textinput_empty_field_stroke_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/block_text_input_layout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/rooms_to_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/block_save_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:contentDescription="@string/save"
+                    android:text="@string/save"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rooms_to_input_layout" />
+
+                <Button
+                    android:id="@+id/block_cancel_button"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:contentDescription="@string/cancel"
+                    android:text="@string/cancel"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/block_save_button" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </ScrollView>
+</LinearLayout>

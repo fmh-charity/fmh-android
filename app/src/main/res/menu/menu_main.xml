@@ -4,6 +4,15 @@
         android:id="@+id/menu_item_main"
         android:title="@string/main" />
     <item
+        android:id="@+id/menu_item_rooms"
+        android:title="@string/Rooms" />
+    <item
+        android:id="@+id/menu_item_blocks"
+        android:title="@string/Blocks" />
+    <item
+        android:id="@+id/menu_item_posts"
+        android:title="@string/Posts" />
+    <item
         android:id="@+id/menu_item_claims"
         android:title="@string/claims" />
     <item

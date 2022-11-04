@@ -20,4 +20,13 @@ object DaoModule {
 
     @Provides
     fun provideClaimCommentDao(db: AppDb): ClaimCommentDao = db.getClaimCommentDao()
+
+    @Provides
+    fun provideRoomDao(db: AppDb): RoomDao = db.getRoomDao()
+
+    @Provides
+    fun provideBlockDao(db: AppDb): BlockDao = db.getBlockDao()
+
+    @Provides
+    fun provideNurseStationDao(db: AppDb): NurseStationDao = db.getNurseStationDao()
 }

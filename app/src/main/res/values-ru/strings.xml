@@ -126,4 +126,7 @@
     <string name="add_patient">Добавить пациента</string>
     <string name="list_patients">Список пациентов</string>
     <string name="filter_patient_list_menu_button">Фильтр</string>
+    <string name="discharged">Выписан</string>
+    <string name="in_hospice">В хосписе</string>
+
 </resources>

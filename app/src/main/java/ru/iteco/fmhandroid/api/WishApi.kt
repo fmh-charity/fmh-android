@@ -11,15 +11,18 @@ interface WishApi {
     suspend fun getAllWish(): Response<List<Wish>>
 
     @POST("wishes")
-    suspend fun saveWishItem(@Body wishItem: Wish): Response<Wish>
+    suspend fun createWishItem(@Body wishItem: Wish): Response<Wish>
+
+    @PUT("wishes")
+    suspend fun updateWishItem(@Body wishItem: Wish): Response<Wish>
+
+    @GET("wishes/{id}")
+    suspend fun getWishById(@Path("id") id: Long): Response<Wish>
 
     @GET("wishes/{id}/comments")
     suspend fun getAllWishComments(@Path("id") id: Int): Response<List<WishComment>>
 
-    @GET("wishes/open-in-progress")
-    suspend fun getWishsInOpenAndInProgressStatus(): Response<List<Wish>>
-
-    @POST("wishes/{id}/comments")
+     @POST("wishes/{id}/comments")
     suspend fun saveWishComment(
         @Path("id") id: Int,
         @Body wishComment: WishComment
@@ -32,5 +35,14 @@ interface WishApi {
         @Query("executorId") executorId: Int?,
         @Body wishComment: WishComment
     ): Response<Wish>
+
+    @PUT("wishes/comments")
+    suspend fun updateWishComment(@Body wishComment: WishComment): Response<WishComment>
+
+    @GET("wishes/comments/{id}")
+    suspend fun getWishCommentById(@Path("id") id: Long): Response<WishComment>
+
+    @GET("wishes/open-in-progress")
+    suspend fun getWishInOpenAndInProgressStatus(): Response<List<Wish>>
 
    }

@@ -6,15 +6,15 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Patient(
     val id: Int? = null,
-    val first_name: String,
-    val last_name: String,
-    val midle_name: String,
-    val birth_day: Long,
+    val firstName: String,
+    val lastName: String,
+    val middleName: String,
+    val birthDate: Long,
     val status: Status,
-    val fact_date_in: Long,
-    val fact_date_out: Long,
-    val room_id: Long,
-    val wish: String,
+    val factDateIn: Long,
+    val factDateOut: Long,
+    val roomId: Long,
+    val wish: String
 
 ) : Parcelable {
 

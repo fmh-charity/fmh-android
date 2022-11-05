@@ -22,7 +22,7 @@
         android:paddingBottom="12dp">
 
         <TextView
-            android:id="@+id/theme_label_text_view"
+            android:id="@+id/title_label_text_view"
             style="@style/card_label_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
             app:layout_constraintBottom_toTopOf="@+id/divider1_image_view"/>
 
         <TextView
-            android:id="@+id/theme_text_view"
+            android:id="@+id/title_text_view"
             style="@style/card_text_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
             android:textAlignment="viewEnd"
             app:layout_constraintBottom_toTopOf="@+id/divider1_image_view"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/theme_label_text_view"
+            app:layout_constraintStart_toEndOf="@+id/title_label_text_view"
             tools:text="починить кровать" />
 
         <ImageView
@@ -51,7 +51,7 @@
             android:layout_marginEnd="-16dp"
             android:background="#A10114"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/theme_label_text_view"
+            app:layout_constraintTop_toBottomOf="@+id/title_label_text_view"
             tools:ignore="ContentDescription" />
 
         <TextView
@@ -129,7 +129,7 @@
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:id="@+id/plane_date_label_text_view"
+            android:id="@+id/plan_execute_date_label_text_view"
             style="@style/card_label_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -138,17 +138,17 @@
             app:layout_constraintTop_toBottomOf="@id/divider3_image_view" />
 
         <TextView
-            android:id="@+id/plane_date_text_view"
+            android:id="@+id/plan_execute_date_text_view"
             style="@style/card_text_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toStartOf="@id/plan_time_text_view"
+            app:layout_constraintEnd_toStartOf="@id/plan_execute_time_text_view"
             app:layout_constraintTop_toBottomOf="@id/divider3_image_view"
             tools:text="10.12.2021" />
 
         <TextView
-            android:id="@+id/plan_time_text_view"
+            android:id="@+id/plan_execute_time_text_view"
             style="@style/card_time_text_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

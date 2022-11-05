@@ -6,9 +6,8 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class WishComment(
     val id: Int? = null,
-    val wish_id: Int,
+    val wishId: Int,
     val description: String,
-    val creator_id: Int,
-    val create_date: Long
+    val creatorId: Int
 ) : Parcelable {
 }

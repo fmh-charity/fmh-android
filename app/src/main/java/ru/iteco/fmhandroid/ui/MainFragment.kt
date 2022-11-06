@@ -104,6 +104,10 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                     findNavController().navigate(R.id.action_mainFragment_to_patientListFragment)
                     true
                 }
+                R.id.menu_item_wish -> {
+                    findNavController().navigate(R.id.action_mainFragment_to_wishListFragment)
+                    true
+                }
                 else -> false
             }
         }

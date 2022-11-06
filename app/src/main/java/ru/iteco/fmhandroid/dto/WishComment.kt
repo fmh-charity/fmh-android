@@ -8,6 +8,7 @@ data class WishComment(
     val id: Int? = null,
     val wishId: Int,
     val description: String,
-    val creatorId: Int
+    val creatorId: Int,
+    val createDate: Long,
 ) : Parcelable {
 }

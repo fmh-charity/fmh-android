@@ -128,5 +128,7 @@
     <string name="patient">Patient</string>
     <string name="discharged">Discharged</string>
     <string name="in_hospice">In hospice</string>
+    <string name="executes">Executes</string>
+    <string name="canceled">Canceled</string>
 
 </resources>

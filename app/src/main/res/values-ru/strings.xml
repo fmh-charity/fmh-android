@@ -128,5 +128,7 @@
     <string name="filter_patient_list_menu_button">Фильтр</string>
     <string name="discharged">Выписан</string>
     <string name="in_hospice">В хосписе</string>
+    <string name="executes">Выполнен</string>
+    <string name="canceled">Отменен</string>
 
 </resources>

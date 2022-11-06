@@ -3,18 +3,15 @@ package ru.iteco.fmhandroid.repository.wishRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import org.w3c.dom.Comment
-import ru.iteco.fmhandroid.dto.ClaimComment
-import ru.iteco.fmhandroid.dto.Patient
-import ru.iteco.fmhandroid.dto.Wish
-import ru.iteco.fmhandroid.dto.WishComment
-import ru.iteco.fmhandroid.entity.WishEntity
+import ru.iteco.fmhandroid.dto.*
 
 interface WishRepository {
 
-    fun getAllWish()
+    val wishList: List<Wish>
+    suspend fun getAllWish(): List<Wish>
     suspend fun createNewWish(wish: Wish): Wish
     suspend fun refreshWish()
-    fun getWishById(id: Int): Flow<WishEntity>
+    fun getWishById(id: Int): Flow<FullWish>
     suspend fun getAllCommentForWish(id: Int): List<WishComment>
     suspend fun saveWishComment(wishId: Int, comment: WishComment): WishComment
     suspend fun processingWishForStatusModel()

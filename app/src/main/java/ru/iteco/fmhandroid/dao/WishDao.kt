@@ -2,6 +2,7 @@ package ru.iteco.fmhandroid.dao
 
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
+import ru.iteco.fmhandroid.dto.FullWish
 import ru.iteco.fmhandroid.dto.Wish
 import ru.iteco.fmhandroid.entity.WishEntity
 
@@ -9,7 +10,7 @@ import ru.iteco.fmhandroid.entity.WishEntity
 interface WishDao {
     @Transaction
     @Query("SELECT * FROM WishEntity")
-    suspend fun getAllWishList(): List<WishEntity>
+    suspend fun getAllWish(): List<FullWish>
 
     @Transaction
     @Query(
@@ -19,7 +20,7 @@ interface WishDao {
        ORDER BY planExecuteDate ASC, createDate DESC
     """
     )
-    fun getWishsByStatus(
+    fun getWishByStatus(
         listStatuses: List<Wish.Status>
     ): Flow<List<Wish>>
 
@@ -31,7 +32,7 @@ interface WishDao {
 
     @Transaction
     @Query("SELECT * FROM WishEntity WHERE id = :id")
-    fun getWishById(id: Int): Flow<WishEntity>
+    fun getWishById(id: Int): Flow<FullWish>
 
     @Query("DELETE FROM WishEntity WHERE id IN (:idList)")
     suspend fun removeWishItemsByIdList(idList: List<Int?>)

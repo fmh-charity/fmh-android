@@ -4,10 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import ru.iteco.fmhandroid.dao.*
-import ru.iteco.fmhandroid.entity.ClaimCommentEntity
-import ru.iteco.fmhandroid.entity.ClaimEntity
-import ru.iteco.fmhandroid.entity.NewsCategoryEntity
-import ru.iteco.fmhandroid.entity.NewsEntity
+import ru.iteco.fmhandroid.entity.*
 
 @Database(
     entities = [
@@ -15,17 +12,23 @@ import ru.iteco.fmhandroid.entity.NewsEntity
         ClaimCommentEntity::class,
         NewsEntity::class,
         NewsCategoryEntity::class,
+        WishEntity::class,
+        WishCommentEntity::class,
     ],
     version = 1,
     exportSchema = false
 )
 
 @TypeConverters(
-    ClaimClaimStatusConverter::class
+    ClaimClaimStatusConverter::class,
+    WishWishStatusConverter::class
+
 )
 abstract class AppDb : RoomDatabase() {
     abstract fun getClaimDao(): ClaimDao
     abstract fun getClaimCommentDao(): ClaimCommentDao
     abstract fun getNewsDao(): NewsDao
     abstract fun getNewsCategoryDao(): NewsCategoryDao
+    abstract fun getWishDao(): WishDao
+    abstract fun getWishCommentDao(): WishCommentDao
 }

@@ -31,4 +31,17 @@ object ApiModule {
         return retrofit
             .create(NewsApi::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun providePatientApi(@Authorized retrofit: Retrofit): PatientApi {
+        return retrofit
+            .create(PatientApi::class.java)
+    }
+    @Provides
+    @Singleton
+    fun provideWishApi(@Authorized retrofit: Retrofit): WishApi {
+        return retrofit
+            .create(WishApi::class.java)
+    }
 }

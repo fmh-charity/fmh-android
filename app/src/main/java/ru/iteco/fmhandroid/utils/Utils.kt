@@ -7,6 +7,7 @@ import android.os.Build
 import android.widget.EditText
 import retrofit2.Response
 import ru.iteco.fmhandroid.dto.ClaimComment
+import ru.iteco.fmhandroid.dto.Patient
 import ru.iteco.fmhandroid.dto.User
 import ru.iteco.fmhandroid.exceptions.*
 import java.io.IOException
@@ -32,6 +33,20 @@ object Utils {
             firstName = "",
             lastName = "",
             middleName = "",
+        )
+
+
+        val emptyPatient = Patient(
+            id = null,
+            firstName = "",
+            lastName = "",
+            middleName = "",
+            birthDate = 0L,
+            status = Patient.Status.NEW,
+            factDateIn = 0L,
+            factDateOut = 0L,
+            roomId = 0L,
+            wish = ""
         )
     }
 
@@ -70,6 +85,7 @@ object Utils {
         val localDateTime = LocalDateTime.of(localDate, localTime)
         return fromLocalDateTimeToTimeStamp(localDateTime)
     }
+
 
     fun fromLocalDateTimeToTimeStamp(date: LocalDateTime): Long {
         return date.toEpochSecond(
@@ -133,6 +149,16 @@ object Utils {
         return "${parsedName[0]} ${parsedName[1].first().uppercase()}.${
             parsedName[2].first().uppercase()
         }."
+    }
+
+    fun generateShortUserNameForPatient(
+        lastName: String,
+        firstName: String,
+        middleName: String
+    ): String {
+        val trimLastName = lastName.trim().split("\\s".toRegex())
+        val trimFirstName = firstName.trim().split("\\s".toRegex())
+        return (trimLastName + trimFirstName + middleName).toString()
     }
 
     fun isOnline(context: Context): Boolean {

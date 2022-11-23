@@ -11,10 +11,10 @@
         android:title="@string/news" />
     <item
         android:id="@+id/menu_item_patient"
-        android:title="@string/patient" />
+        android:title="@string/patients" />
     <item
         android:id="@+id/menu_item_wish"
-        android:title="@string/wish" />
+        android:title="@string/wishes" />
     <item
         android:id="@+id/menu_item_about"
         android:title="@string/about" />

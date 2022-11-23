@@ -7,11 +7,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.iteco.fmhandroid.databinding.ItemPatientBinding
 import ru.iteco.fmhandroid.dto.Patient
+import ru.iteco.fmhandroid.ui.viewdata.NewsViewData
 import ru.iteco.fmhandroid.utils.Utils
 
 
 interface OnPatientItemClickListener {
     //TODO перечислить
+    fun onCard(patient: Patient)
 }
 
 class PatientListAdapter(private val onPatientItemClickListener: OnPatientItemClickListener) :

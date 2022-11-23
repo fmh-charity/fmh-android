@@ -4,13 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
-
-    <include
-        android:id="@+id/container_custom_app_bar_include_on_fragment_patient"
-        layout="@layout/top_custom_app_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -25,7 +20,8 @@
             android:text="@string/list_patients"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/info_material_button"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/info_material_button"
@@ -33,12 +29,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
-            app:iconGravity="end"
             android:background="@android:color/transparent"
+            android:contentDescription="ttttt"
             android:minWidth="48dp"
             android:minHeight="48dp"
-            android:contentDescription="ttttt"
             app:icon="@drawable/ic_info"
+            app:iconGravity="end"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/filters_material_button"
             app:layout_constraintTop_toTopOf="parent" />
@@ -49,12 +45,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
-            app:iconGravity="end"
             android:background="@android:color/transparent"
+            android:contentDescription="@string/filter_patient_list_menu_button"
             android:minWidth="48dp"
             android:minHeight="48dp"
-            android:contentDescription="@string/filter_patient_list_menu_button"
             app:icon="@drawable/ic_filters_icon"
+            app:iconGravity="end"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/create_new_patient_material_button"
             app:layout_constraintTop_toTopOf="parent" />
@@ -65,53 +61,45 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
-            app:iconGravity="end"
             android:background="@android:color/transparent"
+            android:contentDescription="@string/add_patient"
             android:minWidth="48dp"
             android:minHeight="48dp"
-            android:contentDescription="@string/add_patient"
             app:icon="@drawable/ic_add"
+            app:iconGravity="end"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/expand_material_button"
             app:layout_constraintTop_toTopOf="parent" />
+
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/expand_material_button"
             style="@style/materialButtonTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:iconGravity="end"
             android:background="@android:color/transparent"
             android:checkable="true"
             android:minWidth="48dp"
             android:minHeight="48dp"
             android:visibility="gone"
             app:icon="@drawable/expand_less_24"
+            app:iconGravity="end"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="DuplicateIncludedIds" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/all_patients_text_view"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/bottom_toolbar_background">
-
-        <SearchView
-            android:id="@+id/idSV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
-            android:iconifiedByDefault="false"
-            android:padding="4dp"
-            android:background="@color/white"
-            android:queryHint="Search"  />
-    </RelativeLayout>
+        android:layout_gravity="end"
+        android:padding="20dp"
+        android:text="@string/all_patients"
+        android:textAllCaps="true"
+        android:textColor="@color/execution_priority_low"
+        android:visibility="gone" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -129,6 +117,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/card_view_padding"
             android:layout_marginVertical="@dimen/card_view_padding">
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -150,5 +139,4 @@
         </com.google.android.material.card.MaterialCardView>
 
     </RelativeLayout>
-
 </LinearLayout>

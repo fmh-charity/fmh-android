@@ -1,6 +1,7 @@
 package ru.iteco.fmhandroid.dto
 
 import android.os.Parcelable
+import android.text.Editable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -18,7 +19,7 @@ data class Patient(
 
 ) : Parcelable {
 
-    enum class Status {
+    enum class Status  {
         NEW,
         IN_HOSPICE,
         DISCHARGED

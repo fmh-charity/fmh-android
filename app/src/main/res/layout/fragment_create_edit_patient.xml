@@ -116,7 +116,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/first_name_title_text_input_layout">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/midle_name_text_input_edit_text"
+                        android:id="@+id/middle_name_text_input_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text" />
@@ -140,28 +140,31 @@
                         android:id="@+id/create_date_birth_text_input_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/status_text_input_layout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:id="@+id/status_drop_menu_text_input_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:hint="@string/status"
-                    app:endIconDrawable="@drawable/ic_warning_circle"
-                    app:endIconMode="none"
-                    app:endIconTint="@color/mtrl_textinput_empty_field_stroke_color"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/create_birth_date_text_input_layout">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/status_text_input_edit_text"
+                    <AutoCompleteTextView
+                        android:id="@+id/status_drop_menu_auto_complete_text_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="text" />
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        android:inputType="text"
+                        tools:ignore="LabelFor" />
                 </com.google.android.material.textfield.TextInputLayout>
+
+
 
                 <Button
                     android:id="@+id/save_button"
@@ -171,7 +174,7 @@
                     android:contentDescription="@string/save"
                     android:text="@string/save"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/status_text_input_layout" />
+                    app:layout_constraintTop_toBottomOf="@+id/status_drop_menu_text_input_layout"/>
 
                 <Button
                     android:id="@+id/cancel_button"

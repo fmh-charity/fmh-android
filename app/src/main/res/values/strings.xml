@@ -124,11 +124,21 @@
     <string name="date_admission">Date admission</string>
     <string name="patients_room">Patients room</string>
     <string name="wish">Wish</string>
+    <string name="wishes">Wishes</string>
     <string name="date_discharged">Date discharged</string>
     <string name="patient">Patient</string>
+    <string name="patients">Patients</string>
     <string name="discharged">Discharged</string>
     <string name="in_hospice">In hospice</string>
     <string name="executes">Executes</string>
     <string name="canceled">Canceled</string>
-
+    <string name="title">title</string>
+    <string name="plan_execute_date">Planned date</string>
+    <string name="all_patients">All patients</string>
+    <string name="create">Create</string>
+    <string name="all_wishes">All wishes</string>
+    <string name="empty_wish_list_text">Whishes list</string>
+    <string name="add_wish">Add wish</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

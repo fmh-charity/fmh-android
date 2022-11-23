@@ -130,5 +130,14 @@
     <string name="in_hospice">В хосписе</string>
     <string name="executes">Выполнен</string>
     <string name="canceled">Отменен</string>
+    <string name="title">Заголовок</string>
+    <string name="plan_execute_date">Плановая дата</string>
+    <string name="all_patients">Все пациенты</string>
+    <string name="patients">Пациенты</string>
+    <string name="wishes">Просьбы</string>
+    <string name="create">Создание</string>
+    <string name="all_wishes">Все просьбы</string>
+    <string name="empty_wish_list_text">Список просьб</string>
+    <string name="add_wish">Добавить просьбу</string>
 
 </resources>

@@ -10,7 +10,7 @@ import ru.iteco.fmhandroid.entity.WishEntity
 interface WishDao {
     @Transaction
     @Query("SELECT * FROM WishEntity")
-    suspend fun getAllWish(): List<FullWish>
+    suspend fun getAllWishes(): List<FullWish>
 
     @Transaction
     @Query(
@@ -22,9 +22,9 @@ interface WishDao {
     )
     fun getWishByStatus(
         listStatuses: List<Wish.Status>
-    ): Flow<List<Wish>>
+    ): Flow<List<FullWish>>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+   @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertWish(wish: WishEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

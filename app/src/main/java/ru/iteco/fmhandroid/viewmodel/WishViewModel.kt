@@ -2,6 +2,7 @@ package ru.iteco.fmhandroid.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -9,19 +10,26 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
 import ru.iteco.fmhandroid.adapter.OnWishItemClickListener
+import ru.iteco.fmhandroid.dto.FullClaim
 import ru.iteco.fmhandroid.dto.FullWish
 import ru.iteco.fmhandroid.dto.Wish
 import ru.iteco.fmhandroid.repository.wishRepository.WishRepository
 import javax.inject.Inject
 
+@HiltViewModel
 class WishViewModel @Inject constructor(
     private val wishRepository: WishRepository
 ) : ViewModel(), OnWishItemClickListener {
 
+    /** -обновление в MainFragment**/
     val wishListUpdatedEvent = MutableSharedFlow<Unit>()
-    val wishLoadException = MutableSharedFlow<Unit>()
+    /** -ошибка загрузки просьб в MainFragment и в WishListFragment**/
+    val wishesLoadException = MutableSharedFlow<Unit>()
+    /** -загрузка комментариев для просьб для функции onCard с комментариями**/
     private val wishCommentsLoadedEvent = MutableSharedFlow<Unit>()
+    /** -для функции onCard с комментариями и WishListFragment**/
     val wishCommentsLoadExceptionEvent = MutableSharedFlow<Unit>()
+    /** -для функции onCard с комментариями и WishListFragment**/
     val openWishEvent = MutableSharedFlow<FullWish>()
 
     val statusesFlow = MutableStateFlow(
@@ -34,34 +42,36 @@ class WishViewModel @Inject constructor(
     )
 
     @ExperimentalCoroutinesApi
-    val data: Flow<List<Wish>> = statusesFlow.flatMapLatest { statuses ->
+    val data: Flow<List<FullWish>> = statusesFlow.flatMapLatest { statuses ->
         wishRepository.getWishByStatus(
             viewModelScope,
             statuses
         )
     }
 
-    fun onFilterClaimsMenuItemClicked(statuses: List<Wish.Status>) {
-        viewModelScope.launch {
-            statusesFlow.emit(statuses)
-        }
-    }
 
     fun onRefresh() {
         viewModelScope.launch {
             internalOnRefresh()
         }
     }
-
     private suspend fun internalOnRefresh() {
         try {
             wishRepository.refreshWish()
             wishListUpdatedEvent.emit(Unit)
         } catch (e: Exception) {
             e.printStackTrace()
-            wishLoadException.emit(Unit)
+            wishesLoadException.emit(Unit)
         }
     }
+
+//    fun  createNewWish(wish: Wish){
+//        viewModelScope.launch {
+//            createNewWish(wish)
+//        }
+//    }
+
+
 
     override fun onCard(fullWish: FullWish) {
         viewModelScope.launch {

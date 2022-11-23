@@ -16,7 +16,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:gravity="center_horizontal"
-            android:text="Создание"
+            android:text="@string/create"
             android:textColor="@color/white"
             android:textSize="18dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,6 +34,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -45,57 +46,17 @@
             android:scaleType="centerCrop"
             android:src="@drawable/app_background_4000x4000" />
 
-        <com.google.android.material.card.MaterialCardView
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/wish_swipe_refresh"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="4dp">
+            android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <include
+                android:id="@+id/container_wish_include"
+                layout="@layout/container_create_edit_wish"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clipToPadding="false"
-                android:paddingHorizontal="16dp">
+                android:layout_height="wrap_content" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/comment_text_input_layout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:hint="@string/comment"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textMultiLine" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <Button
-                    android:id="@+id/save_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:contentDescription="@string/save"
-                    android:text="@string/save"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/comment_text_input_layout" />
-
-                <Button
-                    android:id="@+id/cancel_button"
-                    style="?attr/materialButtonOutlinedStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:contentDescription="@string/cancel"
-                    android:text="@string/cancel"
-                    android:textColor="@color/black"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/save_button" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
     </RelativeLayout>
 </LinearLayout>

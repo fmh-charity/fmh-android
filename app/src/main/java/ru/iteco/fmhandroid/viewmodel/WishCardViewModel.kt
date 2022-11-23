@@ -2,6 +2,7 @@ package ru.iteco.fmhandroid.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
@@ -12,7 +13,8 @@ import ru.iteco.fmhandroid.repository.wishRepository.WishRepository
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
-class WishCardViewModel  @Inject constructor(
+@HiltViewModel
+class WishCardViewModel @Inject constructor(
     private val wishRepository: WishRepository,
     private val userRepository: UserRepository
 ) : ViewModel(), OnWishCommentItemClickListener {
@@ -29,31 +31,31 @@ class WishCardViewModel  @Inject constructor(
     val userList: List<User>
         get() = userRepository.userList
 
+    /** -----------------------------------------------------------------------------------------**/
+    /** -для OpenWishFragment **/
     val openWishCommentEvent = MutableSharedFlow<WishComment>()
+    /** -для изменения статуса в fun changeWishStatus  **/
     private val wishStatusChangedEvent = MutableSharedFlow<Unit>()
+    /** -ошибка изменения статуса в fun changeWishStatus и для OpenWishFragment **/
     val wishStatusChangeExceptionEvent = MutableSharedFlow<Unit>()
+    /** -ошибка изменения статуса в fun changeWishStatus и для OpenWishFragment **/
     val wishUpdateExceptionEvent = MutableSharedFlow<Unit>()
+    /** -обновление просьбы для fun updateWish и СreateEditWishFragment**/
     val wishUpdatedEvent = MutableSharedFlow<Unit>()
+    /** создание просьбы  для fun save и CreateEditWishFragment**/
     val wishCreatedEvent = MutableSharedFlow<Unit>()
+    /** ошибка создания просьбы для fun save и CreateEditWishFragment **/
     val createWishExceptionEvent = MutableSharedFlow<Unit>()
+    /**  создание коммента к просьбе для fun createWishComment и CreateEditWishCommentFragment  **/
     val wishCommentCreatedEvent = MutableSharedFlow<Unit>()
+    /**  обновление коммента к просьбе если потребуется тут и CreateEditWishCommentFragment  **/
     val wishCommentUpdatedEvent = MutableSharedFlow<Unit>()
+    /** ошибка создания коммента для fun createWishComment и CreateEditWishCommentFragment **/
     val wishCommentCreateExceptionEvent = MutableSharedFlow<Unit>()
+    /** ошибка обновления комента для функции тут и CreateEditWishCommentFragment**/
     val updateWishCommentExceptionEvent = MutableSharedFlow<Unit>()
 
-    fun createWishComment(wishComment: WishComment) {
-        viewModelScope.launch {
-            try {
-                wishRepository.saveWishComment(wishComment.wishId, wishComment)
-                wishCommentCreatedEvent.emit(Unit)
-            } catch (e: Exception) {
-                e.printStackTrace()
-                wishCommentCreateExceptionEvent.emit(Unit)
-            }
-        }
-    }
-
-
+    /** ------------создание просьбы---------------------------------------------------------- **/
     fun save(wish: Wish) {
         viewModelScope.launch {
             try {
@@ -66,7 +68,33 @@ class WishCardViewModel  @Inject constructor(
         }
     }
 
+    /** ------------обновление просьбы---------------------------------------------------------- **/
+    fun updateWish(updatedWish: Wish) {
+        viewModelScope.launch {
+            try {
+                wishRepository.createNewWish(updatedWish)
+                wishUpdatedEvent.emit(Unit)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                //todo
+            }
+        }
+    }
 
+    /** ------------создание комментария к просьбе---------------------------------------------- **/
+    fun createWishComment(wishComment: WishComment) {
+        viewModelScope.launch {
+            try {
+                wishRepository.createCommentForWish(wishComment.wishId, wishComment)
+                wishCommentCreatedEvent.emit(Unit)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                wishCommentCreateExceptionEvent.emit(Unit)
+            }
+        }
+    }
+
+    /** ------------изменение статуса к просьбе------------------------------------------------- **/
     fun changeWishStatus(
         wishId: Int,
         newWishStatus: Wish.Status,
@@ -89,7 +117,7 @@ class WishCardViewModel  @Inject constructor(
         }
     }
 
-    fun init(claimId: Int) {
+    fun init(wishId: Int) {
         this.wishId = wishId
     }
 
@@ -98,4 +126,4 @@ class WishCardViewModel  @Inject constructor(
             openWishCommentEvent.emit(wishComment)
         }
     }
-    }
+}

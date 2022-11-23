@@ -4,13 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
-
-    <include
-        android:id="@+id/container_custom_app_bar_include_on_fragment_wish"
-        layout="@layout/top_custom_app_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -22,7 +17,7 @@
             style="@style/BottomToolbarTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/wish"
+            android:text="@string/wishes"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -33,12 +28,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
-            app:iconGravity="end"
             android:background="@android:color/transparent"
+            android:contentDescription="ttttt"
             android:minWidth="48dp"
             android:minHeight="48dp"
-            android:contentDescription="ttttt"
             app:icon="@drawable/ic_info"
+            app:iconGravity="end"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/filters_material_button"
             app:layout_constraintTop_toTopOf="parent" />
@@ -49,12 +44,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
-            app:iconGravity="end"
             android:background="@android:color/transparent"
+            android:contentDescription="@string/filter_patient_list_menu_button"
             android:minWidth="48dp"
             android:minHeight="48dp"
-            android:contentDescription="@string/filter_patient_list_menu_button"
             app:icon="@drawable/ic_filters_icon"
+            app:iconGravity="end"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/create_new_wish_material_button"
             app:layout_constraintTop_toTopOf="parent" />
@@ -65,12 +60,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
-            app:iconGravity="end"
             android:background="@android:color/transparent"
+            android:contentDescription="@string/add_wish"
             android:minWidth="48dp"
             android:minHeight="48dp"
-            android:contentDescription="@string/add_patient"
             app:icon="@drawable/ic_add"
+            app:iconGravity="end"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/expand_material_button"
             app:layout_constraintTop_toTopOf="parent" />
@@ -80,12 +75,12 @@
             style="@style/materialButtonTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:iconGravity="end"
             android:background="@android:color/transparent"
             android:checkable="true"
             android:minWidth="48dp"
             android:minHeight="48dp"
             app:icon="@drawable/expand_less_24"
+            app:iconGravity="end"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -93,13 +88,16 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/all_wishes_text_view"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/bottom_toolbar_background">
-
-
-    </RelativeLayout>
+        android:layout_gravity="end"
+        android:padding="20dp"
+        android:text="@string/all_wishes"
+        android:textAllCaps="true"
+        android:textColor="@color/execution_priority_low"
+        android:visibility="gone" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -118,6 +116,7 @@
             android:layout_marginHorizontal="@dimen/card_view_padding"
             android:layout_marginVertical="@dimen/card_view_padding">
 
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -132,11 +131,10 @@
                     android:clipToPadding="true"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:itemCount="3"
-                    tools:listitem="@layout/item_wish" />
+                    tools:listitem="@layout/item_patient" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
     </RelativeLayout>
-
 </LinearLayout>

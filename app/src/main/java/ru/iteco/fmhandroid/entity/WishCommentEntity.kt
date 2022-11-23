@@ -16,7 +16,9 @@ data class WishCommentEntity(
     @ColumnInfo(name = "description")
     val description: String,
     @ColumnInfo(name = "creatorId")
-    val creatorId: Int
+    val creatorId: Int,
+    @ColumnInfo(name = "createDate")
+    val createDate: Long
 )
 
 fun List<WishComment>.toEntity(): List<WishCommentEntity> = map(WishComment::toEntity)
@@ -24,5 +26,6 @@ fun WishComment.toEntity() = WishCommentEntity(
     id = id,
     wishId = wishId,
     description = description,
-    creatorId = creatorId
-   )
+    creatorId = creatorId,
+    createDate = createDate
+)

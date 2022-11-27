@@ -16,8 +16,13 @@ object DaoModule {
     fun provideNewsDao(db: AppDb): NewsDao = db.getNewsDao()
 
     @Provides
+    fun provideNewsKeyDao(db: AppDb): NewsKeyDao = db.newsKeyDao()
+
+    @Provides
     fun provideNewsCategoryDao(db: AppDb): NewsCategoryDao = db.getNewsCategoryDao()
 
     @Provides
     fun provideClaimCommentDao(db: AppDb): ClaimCommentDao = db.getClaimCommentDao()
+
+
 }

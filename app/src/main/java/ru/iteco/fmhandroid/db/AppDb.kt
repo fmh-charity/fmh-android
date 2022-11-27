@@ -28,4 +28,5 @@ abstract class AppDb : RoomDatabase() {
     abstract fun getClaimCommentDao(): ClaimCommentDao
     abstract fun getNewsDao(): NewsDao
     abstract fun getNewsCategoryDao(): NewsCategoryDao
+    abstract fun newsKeyDao(): NewsKeyDao
 }

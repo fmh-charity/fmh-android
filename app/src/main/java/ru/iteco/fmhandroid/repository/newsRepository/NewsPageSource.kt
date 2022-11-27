@@ -11,7 +11,9 @@ class NewsPageSource(
 ) : PagingSource<Int, News>() {
 
     override fun getRefreshKey(state: PagingState<Int, News>): Int? {
-        TODO("Not yet implemented")
+        val anchorPosition = state.anchorPosition ?: return null
+        val page = state.closestPageToPosition(anchorPosition) ?: return null
+        return page.prevKey?.plus(1) ?: page.nextKey?.minus(1)
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, News> {
@@ -20,13 +22,13 @@ class NewsPageSource(
             val pageSize: Int = params.loadSize.coerceAtMost(20)
             val response = service.getAllNews(true, page, pageSize)
 
-            if (response.isSuccessful) {
+            return if (response.isSuccessful) {
                 val news = response.body()!!.newsList
                 val nextPageNumber = if (news.isEmpty()) null else page + 1
                 val prevPageNumber = if (page > 1) page - 1 else null
-                return LoadResult.Page(news, prevPageNumber, nextPageNumber)
+                LoadResult.Page(news, prevPageNumber, nextPageNumber)
             } else {
-                return LoadResult.Error(ApiException(response.code(), response.message()))
+                LoadResult.Error(ApiException(response.code(), response.message()))
             }
         } catch (e: Exception) {
             return LoadResult.Error(e)

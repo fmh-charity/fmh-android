@@ -4,10 +4,22 @@ import retrofit2.Response
 import retrofit2.http.*
 import ru.iteco.fmhandroid.dto.Claim
 import ru.iteco.fmhandroid.dto.ClaimComment
+import ru.iteco.fmhandroid.dto.ClaimResponseDto
 
 interface ClaimApi {
     @GET("claims")
-    suspend fun getAllClaims(): Response<List<Claim>>
+    suspend fun getAllClaims(
+        @Query("createDate") createDate: Boolean = true,
+        @Query("elements") elements: Int = 8,
+        @Query("pages") pages: Int = 0,
+        @Query("status") status: Array<String> = arrayOf(
+            "CANCELLED",
+            "EXECUTED",
+            "IN_PROGRESS",
+            "OPEN"
+        )
+
+    ): Response<ClaimResponseDto>
 
     @GET("claims/open-in-progress")
     suspend fun getClaimsInOpenAndInProgressStatus(): Response<List<Claim>>

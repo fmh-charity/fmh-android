@@ -19,6 +19,9 @@ object DaoModule {
     fun provideNewsKeyDao(db: AppDb): NewsKeyDao = db.newsKeyDao()
 
     @Provides
+    fun provideClaimKeyDao(db: AppDb): ClaimKeyDao = db.claimKeyDao()
+
+    @Provides
     fun provideNewsCategoryDao(db: AppDb): NewsCategoryDao = db.getNewsCategoryDao()
 
     @Provides

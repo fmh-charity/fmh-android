@@ -31,13 +31,13 @@ class ClaimRepositoryImpl @Inject constructor(
         request = { claimApi.getAllClaims() },
         onSuccess = { body ->
             val apiId = body
-                .map { it.id }
+                .claimList.map { it.id }
             val databaseId = claimDao.getAllClaims()
                 .map { it.claim.id }
                 .toMutableList()
             databaseId.removeAll(apiId)
             claimDao.removeClaimsItemsByIdList(databaseId)
-            claimDao.insertClaim(body.toEntity())
+            claimDao.insertClaim(body.claimList.toEntity())
         }
     )
 

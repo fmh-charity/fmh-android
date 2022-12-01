@@ -12,13 +12,10 @@ interface ClaimApi {
         @Query("createDate") createDate: Boolean = true,
         @Query("elements") elements: Int = 8,
         @Query("pages") pages: Int = 0,
-        @Query("status") status: Array<String> = arrayOf(
-            "CANCELLED",
-            "EXECUTED",
-            "IN_PROGRESS",
-            "OPEN"
+        @Query("status") status: Array<Claim.Status> = arrayOf(
+            Claim.Status.OPEN,
+            Claim.Status.IN_PROGRESS
         )
-
     ): Response<ClaimResponseDto>
 
     @GET("claims/open-in-progress")

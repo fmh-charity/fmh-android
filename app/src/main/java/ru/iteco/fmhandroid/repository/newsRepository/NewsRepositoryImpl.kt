@@ -48,13 +48,13 @@ class NewsRepositoryImpl @Inject constructor(
         request = { newsApi.getAllNews() },
         onSuccess = { body ->
             val apiId = body
-                .map { it.id }
+                .newsList.map { it.id }
             val databaseId = newsDao.getAllNewsList()
                 .map { it.newsItem.id }
                 .toMutableList()
             databaseId.removeAll(apiId)
             newsDao.removeNewsItemsByIdList(databaseId)
-            newsDao.insert(body.toEntity())
+            newsDao.insert(body.newsList.toEntity())
         }
     )
 

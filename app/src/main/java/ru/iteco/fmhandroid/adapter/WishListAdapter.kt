@@ -50,11 +50,11 @@ class WishListAdapter(
                 planExecuteTimeTextView.text = Utils.formatTime(
                     fullWish.wish.planExecuteDate
                 )
+                wishListCard.setOnClickListener {
+                    onWishItemClickListener.onCard(fullWish)
+                }
             }
-            //TODO треугольник в итем
-//            wishListCard.setOnClickListener {
-//                onClaimItemClickListener.onCard(fullClaim)
-//            }
+
         }
     }
 }

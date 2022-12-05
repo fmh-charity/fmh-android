@@ -132,6 +132,7 @@
                     android:hint="@string/birth_date"
                     app:endIconDrawable="@drawable/ic_warning_circle"
                     app:endIconMode="none"
+                    android:inputType="text"
                     app:endIconTint="@color/mtrl_textinput_empty_field_stroke_color"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/middle_name_text_input_layout">
@@ -160,12 +161,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        android:inputType="text"
+                        android:inputType="none"
                         tools:ignore="LabelFor" />
                 </com.google.android.material.textfield.TextInputLayout>
-
-
-
+                
                 <Button
                     android:id="@+id/save_button"
                     android:layout_width="match_parent"

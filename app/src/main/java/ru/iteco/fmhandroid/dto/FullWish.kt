@@ -5,7 +5,6 @@ import androidx.room.Embedded
 import androidx.room.Relation
 import ru.iteco.fmhandroid.entity.WishCommentEntity
 
-
 @kotlinx.parcelize.Parcelize
     data class FullWish(
         @Embedded

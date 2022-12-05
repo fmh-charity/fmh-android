@@ -1,12 +1,16 @@
 package ru.iteco.fmhandroid.ui
 
 import android.app.DatePickerDialog
+import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -19,6 +23,7 @@ import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.databinding.FragmentCreateEditPatientBinding
 import ru.iteco.fmhandroid.dto.Patient
 import ru.iteco.fmhandroid.utils.AndroidUtils
+import ru.iteco.fmhandroid.utils.AndroidUtils.hideKeyboard
 import ru.iteco.fmhandroid.utils.Utils
 import ru.iteco.fmhandroid.viewmodel.PatientViewModel
 import java.time.LocalDateTime
@@ -33,9 +38,9 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
     private val args: CreateEditPatientFragmentArgs by navArgs()
     private var statusChoice: Patient.Status = Patient.Status.NEW
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
         lifecycleScope.launch {
             viewModel.savePatientsItemExceptionEvent.collect {
@@ -64,9 +69,35 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentCreateEditPatientBinding.bind(view)
 
+
         /** -------------------------------------------------------------------------------- **/
         with(binding) {
 
+            /** ------------args------------------------------------------------------------ **/
+            //TODO аргументы
+            if (args.patientItemArg == null) {
+                customAppBarTitleTextView.apply {
+                    visibility = View.VISIBLE
+                    setText(R.string.creating)
+                    textSize = 18F
+                }
+            } else {
+                customAppBarTitleTextView.apply {
+                    visibility = View.VISIBLE
+                    setText(R.string.editing)
+                    textSize = 18F
+                }
+            }
+
+            args.patientItemArg?.let { patient ->
+                lastNameTextInputLayout.editText?.setText(patient.lastName)
+                firstNameTitleTextInputLayout.editText?.setText(patient.firstName)
+                middleNameTextInputLayout.editText?.setText(patient.middleName)
+                createBirthDateTextInputLayout.editText?.setText(patient.birthDate.toString())
+                statusDropMenuTextInputLayout.editText?.setText(patient.status.toString())
+            }
+
+            /** ------------кнопки------------------------------------------------------------ **/
             saveButton.setOnClickListener {
                 if (lastNameTextInputEditText.text.isNullOrBlank() ||
                     firstNameTextInputEditText.text.isNullOrBlank() ||
@@ -93,6 +124,10 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
                     .show()
             }
         }
+        binding.statusDropMenuAutoCompleteTextView.setOnClickListener {
+            hideKeyboard(requireView())
+        }
+
 
         /** ------------выбор статуса---------------------------------------------------------- **/
         lifecycleScope.launch {
@@ -101,6 +136,7 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
                 R.layout.menu_item,
                 viewModel.statuses
             )
+
             binding.statusDropMenuAutoCompleteTextView.apply {
                 setAdapter(adapter)
                 setOnItemClickListener { _, _, position, _ ->
@@ -131,30 +167,26 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
                 this.datePicker.minDate = (System.currentTimeMillis() - 1000)
             }.show()
         }
-        /** ------------args-------------------------------------------------------------------- **/
 
-//        args.patientItemArgs?.let {
-//         //TODO не знаю как сделать аргументы
-//        }
     }
 
     private fun fillPatient() {
         with(binding) {
-            val patient = args.patientItemArg
-            if (patient != null) {
+            val fullPatient = args.patientItemArg
+            if (fullPatient != null) {
                 val editedPatient = Patient(
-                    id = patient.id,
-                    firstName = patient.firstName,
-                    lastName = patient.lastName,
-                    middleName = patient.middleName,
-                    birthDate = patient.birthDate,
-                    status = patient.status,
+                    id = fullPatient.id,
+                    firstName = fullPatient.firstName,
+                    lastName = fullPatient.lastName,
+                    middleName = fullPatient.middleName,
+                    birthDate = fullPatient.birthDate,
+                    status = fullPatient.status,
                     factDateIn = 0L,
                     factDateOut = 0L,
                     roomId = 0L,
-                    wish = ""
+
                 )
-                viewModel.edit(patient)
+                viewModel.edit(fullPatient)
             } else {
                 val createdPatient = Patient(
                     id = null,
@@ -168,7 +200,7 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
                     factDateIn = 0L,
                     factDateOut = 0L,
                     roomId = 0L,
-                    wish = ""
+
                 )
                 viewModel.save(createdPatient)
             }
@@ -182,8 +214,9 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
             Toast.LENGTH_LONG
         ).show()
     }
-
 }
+
+
 
 
 

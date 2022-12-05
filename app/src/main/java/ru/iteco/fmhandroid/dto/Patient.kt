@@ -15,7 +15,7 @@ data class Patient(
     val factDateIn: Long,
     val factDateOut: Long,
     val roomId: Long,
-    val wish: String
+   // val wish: String
 
 ) : Parcelable {
 

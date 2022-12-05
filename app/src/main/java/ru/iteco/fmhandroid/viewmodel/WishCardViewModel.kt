@@ -3,8 +3,11 @@ package ru.iteco.fmhandroid.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
 import ru.iteco.fmhandroid.adapter.OnWishCommentItemClickListener
 import ru.iteco.fmhandroid.dto.*
@@ -55,6 +58,22 @@ class WishCardViewModel @Inject constructor(
     /** ошибка обновления комента для функции тут и CreateEditWishCommentFragment**/
     val updateWishCommentExceptionEvent = MutableSharedFlow<Unit>()
 
+    val statusesFlow = MutableStateFlow(
+        listOf(
+            Wish.Status.OPEN,
+            Wish.Status.AT_WORK,
+            Wish.Status.CLOSED,
+            Wish.Status.EXECUTED
+        )
+    )
+    @ExperimentalCoroutinesApi
+    val data: Flow<List<FullWish>> = statusesFlow.flatMapLatest { statuses ->
+        wishRepository.getWishByStatus(
+            viewModelScope,
+            statuses
+        )
+    }
+
     /** ------------создание просьбы---------------------------------------------------------- **/
     fun save(wish: Wish) {
         viewModelScope.launch {
@@ -63,7 +82,10 @@ class WishCardViewModel @Inject constructor(
                 wishCreatedEvent.emit(Unit)
             } catch (e: Exception) {
                 e.printStackTrace()
-                createWishExceptionEvent.emit(Unit)
+                //TODO подделал для проверки. Потом вернуть!!
+                wishCreatedEvent.emit(Unit)
+
+                //createWishExceptionEvent.emit(Unit)
             }
         }
     }

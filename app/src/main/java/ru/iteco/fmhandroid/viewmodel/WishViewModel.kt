@@ -32,22 +32,9 @@ class WishViewModel @Inject constructor(
     /** -для функции onCard с комментариями и WishListFragment**/
     val openWishEvent = MutableSharedFlow<FullWish>()
 
-    val statusesFlow = MutableStateFlow(
-        listOf(
-            Wish.Status.OPEN,
-            Wish.Status.AT_WORK,
-            Wish.Status.CLOSED,
-            Wish.Status.EXECUTED
-        )
-    )
 
-    @ExperimentalCoroutinesApi
-    val data: Flow<List<FullWish>> = statusesFlow.flatMapLatest { statuses ->
-        wishRepository.getWishByStatus(
-            viewModelScope,
-            statuses
-        )
-    }
+
+
 
 
     fun onRefresh() {

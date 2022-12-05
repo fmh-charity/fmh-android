@@ -1,8 +1,6 @@
 package ru.iteco.fmhandroid.repository.patientRepository
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.Flow
-import retrofit2.http.Body
+
 import ru.iteco.fmhandroid.dto.*
 
 interface PatientRepository {

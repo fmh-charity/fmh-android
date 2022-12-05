@@ -24,7 +24,6 @@ import ru.iteco.fmhandroid.viewmodel.WishViewModel
 class WishListFragment : Fragment(R.layout.fragment_list_wish) {
     private lateinit var binding: FragmentListWishBinding
     private val viewModel: WishViewModel by viewModels()
-    private val authViewModel: AuthViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -140,6 +139,7 @@ class WishListFragment : Fragment(R.layout.fragment_list_wish) {
         binding.wishListSwipeRefresh.setOnRefreshListener {
             viewModel.onRefresh()
             binding.wishListSwipeRefresh.isRefreshing = false
+
         }
 
 
@@ -155,9 +155,8 @@ class WishListFragment : Fragment(R.layout.fragment_list_wish) {
         }
 
         binding.containerListWishInclude.createNewWishMaterialButton.setOnClickListener {
-            viewLifecycleOwner.lifecycleScope.launch {
-                authViewModel.loadUserList()
-            }
+            findNavController().navigate(R.id.action_wishListFragment_to_createEditWishFragment)
+
         }
         binding.containerListWishInclude.wishListRecyclerView.adapter = adapter
     }

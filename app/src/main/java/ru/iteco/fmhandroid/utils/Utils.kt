@@ -43,8 +43,7 @@ object Utils {
             status = Patient.Status.NEW,
             factDateIn = 0L,
             factDateOut = 0L,
-            roomId = 0L,
-            wish = ""
+            roomId = 0L
         )
     }
 

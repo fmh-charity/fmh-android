@@ -66,6 +66,31 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
         /** -------------------------------------------------------------------------------- **/
         with(binding) {
 
+            /** ------------args------------------------------------------------------------ **/
+            //TODO аргументы
+            if (args.patientItemArg == null) {
+                customAppBarTitleTextView.apply {
+                    visibility = View.VISIBLE
+                    setText(R.string.creating)
+                    textSize = 18F
+                }
+            } else {
+                customAppBarTitleTextView.apply {
+                    visibility = View.VISIBLE
+                    setText(R.string.editing)
+                    textSize = 18F
+                }
+            }
+
+            args.patientItemArg?.let { patient ->
+                lastNameTextInputLayout.editText?.setText(patient.lastName)
+                firstNameTitleTextInputLayout.editText?.setText(patient.firstName)
+                middleNameTextInputLayout.editText?.setText(patient.middleName)
+                createBirthDateTextInputLayout.editText?.setText(patient.birthDate.toString())
+                statusDropMenuTextInputLayout.editText?.setText(patient.status.toString())
+            }
+
+            /** ------------кнопки------------------------------------------------------------ **/
             saveButton.setOnClickListener {
                 if (lastNameTextInputEditText.text.isNullOrBlank() ||
                     firstNameTextInputEditText.text.isNullOrBlank() ||
@@ -130,11 +155,7 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
                 this.datePicker.minDate = (System.currentTimeMillis() - 1000)
             }.show()
         }
-        /** ------------args-------------------------------------------------------------------- **/
 
-//        args.patientItemArgs?.let {
-//         //TODO не знаю как сделать аргументы
-//        }
     }
 
     private fun fillPatient() {

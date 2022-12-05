@@ -1,7 +1,6 @@
 package ru.iteco.fmhandroid.dto
 
 import android.os.Parcelable
-import android.text.Editable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

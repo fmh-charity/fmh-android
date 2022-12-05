@@ -1,137 +1,138 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/item_wish"
+    android:id="@+id/claim_list_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="12dp"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="8dp"
-    app:strokeColor="#A10114"
-    app:strokeWidth="2dp">
+    android:layout_marginStart="12dp"
+    android:layout_marginEnd="12dp"
+    android:layout_marginTop="6dp"
+    android:layout_marginBottom="6dp"
+    app:strokeWidth="2dp"
+    app:cardCornerRadius="0dp"
+    app:strokeColor="@color/filtering_claim_title_text_color"
+    app:cardElevation="@dimen/card_item_elevation">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingStart="@dimen/card_view_padding"
-        android:paddingTop="@dimen/card_view_padding"
-        android:paddingEnd="@dimen/card_view_padding"
+        android:layout_height="wrap_content"
         android:paddingBottom="12dp">
 
-        <TextView
-            android:id="@+id/name_label_text_view"
-            style="@style/card_label_style"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/claim_header_background"
+            app:layout_constraintBottom_toTopOf="@id/patient_top_divider_image_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/title_material_text_view"
+            style="@style/LabelTextStyle"
+            android:layout_width="68dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/card_view_padding"
+            android:layout_marginTop="@dimen/card_view_padding"
             android:text="ФИО"
-            app:layout_constraintBottom_toTopOf="@+id/divider1_image_view"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/name_text_view"
-            style="@style/card_text_style"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/name_label_text_view"
+            style="@style/PatientAndExecutorTextSize"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text=""
+            android:layout_marginTop="@dimen/card_view_padding"
+            android:layout_marginEnd="@dimen/card_view_padding"
+            android:ellipsize="end"
+            android:maxLines="2"
             android:textAlignment="viewEnd"
-            app:layout_constraintBottom_toTopOf="@+id/divider1_image_view"
+            android:textIsSelectable="true"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/name_label_text_view"
-            tools:text="В.Ю.Сорокин" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/title_material_text_view"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="В.Ю.Сорокин"  />
 
         <ImageView
-            android:id="@+id/divider1_image_view"
-            style="@style/card_divider_style"
+            android:id="@+id/patient_top_divider_image_view"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginStart="-16dp"
-            android:layout_marginEnd="-16dp"
-            android:background="#A10114"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name_label_text_view"
-            tools:ignore="ContentDescription" />
-
-        <TextView
-            android:id="@+id/birth_date_label_text_view"
-            style="@style/card_label_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/birth_date"
-            app:layout_constraintBottom_toTopOf="@+id/divider2_image_view"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/divider1_image_view"
-
-            />
-
-        <TextView
-            android:id="@+id/birth_date_text_view"
-            style="@style/card_text_style"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textAlignment="viewEnd"
-            app:layout_constraintBottom_toTopOf="@+id/divider2_image_view"
+            android:layout_height="@dimen/line_divider_height"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="@dimen/padding_between_elements"
+            android:background="@color/transparent"
+            android:contentDescription="@string/line_divider_description"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/birth_date_label_text_view"
-            app:layout_constraintTop_toBottomOf="@id/divider1_image_view"
-            tools:text="10.04.1946" />
-
-        <ImageView
-            android:id="@+id/divider2_image_view"
-            style="@style/card_divider_style"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginStart="-16dp"
-            android:layout_marginEnd="-16dp"
-            android:background="#A10114"
+            app:layout_constraintHorizontal_bias="0.457"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/birth_date_text_view"
-            tools:ignore="ContentDescription" />
+            app:layout_constraintTop_toBottomOf="@+id/name_label_text_view" />
 
-        <TextView
-            android:id="@+id/status_label_text_view"
-            style="@style/card_label_style"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/status_label_material_text_view"
+            style="@style/LabelTextStyle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="16dp"
+            android:layout_marginStart="@dimen/card_view_padding"
+            android:layout_marginTop="@dimen/padding_between_elements"
             android:text="@string/status"
+            android:textAlignment="viewStart"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/divider2_image_view"
-            />
+            app:layout_constraintTop_toBottomOf="@id/claim_middle_divider_image_view" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/status_text_view"
-            style="@style/card_text_style"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textAlignment="viewEnd"
+            style="@style/PlanTimeTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_marginEnd="@dimen/card_view_padding"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/status_label_text_view"
-            app:layout_constraintTop_toBottomOf="@id/divider2_image_view"
+            app:layout_constraintTop_toTopOf="@+id/status_label_material_text_view"
             tools:text="Новый" />
 
-        <ImageView
-            android:id="@+id/divider4_image_view"
-            style="@style/card_divider_style"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginStart="-16dp"
-            android:layout_marginEnd="-16dp"
-            android:background="#A10114"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/status_text_view"
-            tools:ignore="ContentDescription" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/claim_middle_divider_image_view"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/line_divider_height"
             android:layout_marginTop="@dimen/padding_between_elements"
-            android:src="@drawable/ic_gray_triangle_arrow"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/half_light_grey"
+            android:contentDescription="@string/line_divider_description"
+            app:layout_constraintEnd_toEndOf="@+id/birth_date_text_view"
+            app:layout_constraintStart_toStartOf="@+id/status_label_material_text_view"
+            app:layout_constraintTop_toBottomOf="@id/birth_date_label_material_text_view" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/birth_date_label_material_text_view"
+            style="@style/LabelTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_marginStart="@dimen/card_view_padding"
+            android:layout_marginTop="@dimen/padding_between_elements"
+            android:text="@string/birth_date"
+            android:textAlignment="viewStart"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider4_image_view"
-            tools:ignore="ContentDescription" />
+            app:layout_constraintTop_toBottomOf="@id/patient_top_divider_image_view" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/birth_date_text_view"
+            style="@style/SmallBlackTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="16dp"
+            android:layout_marginEnd="@dimen/card_view_padding"
+            android:layout_marginStart="@dimen/card_view_padding"
+            android:ellipsize="marquee"
+            android:textAlignment="viewEnd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/birth_date_label_material_text_view"
+            app:layout_constraintTop_toTopOf="@id/birth_date_label_material_text_view"
+            tools:text="10.04.1946"
+        android:singleLine="true" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

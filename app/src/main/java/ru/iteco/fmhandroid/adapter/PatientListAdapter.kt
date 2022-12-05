@@ -37,6 +37,7 @@ class PatientListAdapter(private val onPatientItemClickListener: OnPatientItemCl
         private val binding: ItemPatientBinding,
         private val OnPatientItemClickListener: OnPatientItemClickListener
     ) : RecyclerView.ViewHolder(binding.root) {
+
         fun bind(patient: Patient) {
             with(binding) {
                 nameTextView.text = Utils.generateShortUserNameForPatient(

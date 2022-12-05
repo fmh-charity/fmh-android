@@ -13,19 +13,20 @@
         android:background="@color/bottom_toolbar_background"
         android:padding="@dimen/card_view_padding">
 
-
         <com.google.android.material.textview.MaterialTextView
             style="@style/BottomToolbarTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/wishes"
+
+            android:textColor="@color/execution_priority_low"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/info_material_button"
-            style="@style/materialButtonTheme"
+            app:iconTint="@color/execution_priority_low"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
@@ -41,7 +42,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/filters_material_button"
-            style="@style/materialButtonTheme"
+            app:iconTint="@color/execution_priority_low"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
@@ -57,7 +58,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/create_new_wish_material_button"
-            style="@style/materialButtonTheme"
+            app:iconTint="@color/execution_priority_low"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
@@ -73,7 +74,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/expand_material_button"
-            style="@style/materialButtonTheme"
+            app:iconTint="@color/execution_priority_low"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
@@ -114,14 +115,15 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/card_view_padding"
-            android:layout_marginVertical="@dimen/card_view_padding">
+            android:layout_marginHorizontal="2dp"
+            android:layout_marginVertical="2dp">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/card_view_padding"
+                android:background="@drawable/app_background_4000x4000"
                 android:visibility="visible">
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -132,7 +134,7 @@
                     android:clipToPadding="true"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:itemCount="3"
-                    tools:listitem="@layout/item_patient" />
+                    tools:listitem="@layout/test_item" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>

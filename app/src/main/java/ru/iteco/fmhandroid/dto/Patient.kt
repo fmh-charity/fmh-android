@@ -14,9 +14,7 @@ data class Patient(
     val status: Status,
     val factDateIn: Long,
     val factDateOut: Long,
-    val roomId: Long,
-   // val wish: String
-
+    val roomId: Long
 ) : Parcelable {
 
     enum class Status  {

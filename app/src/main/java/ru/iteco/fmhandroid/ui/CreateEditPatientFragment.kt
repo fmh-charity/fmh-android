@@ -18,7 +18,6 @@ import kotlinx.coroutines.launch
 import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.databinding.FragmentCreateEditPatientBinding
 import ru.iteco.fmhandroid.dto.Patient
-import ru.iteco.fmhandroid.utils.AndroidUtils
 import ru.iteco.fmhandroid.utils.Utils
 import ru.iteco.fmhandroid.viewmodel.PatientViewModel
 import java.time.LocalDateTime
@@ -151,8 +150,7 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
                     status = patient.status,
                     factDateIn = 0L,
                     factDateOut = 0L,
-                    roomId = 0L,
-                    wish = ""
+                    roomId = 0L
                 )
                 viewModel.edit(patient)
             } else {
@@ -167,8 +165,7 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
                     status = statusChoice,
                     factDateIn = 0L,
                     factDateOut = 0L,
-                    roomId = 0L,
-                    wish = ""
+                    roomId = 0L
                 )
                 viewModel.save(createdPatient)
             }
@@ -182,8 +179,4 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
             Toast.LENGTH_LONG
         ).show()
     }
-
 }
-
-
-

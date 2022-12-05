@@ -139,5 +139,6 @@
     <string name="all_wishes">Все просьбы</string>
     <string name="empty_wish_list_text">Список просьб</string>
     <string name="add_wish">Добавить просьбу</string>
+    <string name="info">Info</string>
 
 </resources>

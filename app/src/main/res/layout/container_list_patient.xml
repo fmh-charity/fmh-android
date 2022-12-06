@@ -93,7 +93,6 @@
 
         <SearchView
             android:id="@+id/search_patient"
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -103,20 +102,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_patients_text" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/all_claims_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:padding="20dp"
-        android:text="@string/all_claims"
-        android:textAllCaps="true"
-        android:textColor="@color/execution_priority_low"
-        android:visibility="gone" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/all_patients_text_view"
@@ -176,7 +162,7 @@
             android:background="@drawable/app_background_4000x4000">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/claim_list_recycler_view"
+                android:id="@+id/patientListRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -184,8 +170,7 @@
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="0dp"
                 tools:listitem="@layout/item_patient" />
+            
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

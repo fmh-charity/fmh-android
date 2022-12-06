@@ -2,6 +2,7 @@ package ru.iteco.fmhandroid.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
@@ -34,7 +35,7 @@ class ClaimViewModel @Inject constructor(
     )
 
     @ExperimentalCoroutinesApi
-    val data: Flow<List<FullClaim>> = statusesFlow.flatMapLatest { statuses ->
+    val data: Flow<PagingData<Claim>> = statusesFlow.flatMapLatest { statuses ->
         claimRepository.getClaimsByStatus(
             viewModelScope,
             statuses

@@ -1,5 +1,6 @@
 package ru.iteco.fmhandroid.repository.claimRepository
 
+import androidx.paging.PagingData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import ru.iteco.fmhandroid.dto.Claim
@@ -10,7 +11,7 @@ interface ClaimRepository {
     fun getClaimsByStatus(
         coroutineScope: CoroutineScope,
         listStatuses: List<Claim.Status>
-    ): Flow<List<FullClaim>>
+    ): Flow<PagingData<Claim>>
 
     suspend fun refreshClaims()
     suspend fun modificationOfExistingClaim(editedClaim: Claim): Claim

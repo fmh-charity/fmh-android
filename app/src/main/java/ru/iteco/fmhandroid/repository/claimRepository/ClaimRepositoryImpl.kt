@@ -1,7 +1,11 @@
 package ru.iteco.fmhandroid.repository.claimRepository
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import ru.iteco.fmhandroid.api.ClaimApi
 import ru.iteco.fmhandroid.dao.ClaimCommentDao
@@ -20,12 +24,18 @@ class ClaimRepositoryImpl @Inject constructor(
     private val claimCommentDao: ClaimCommentDao
 ) : ClaimRepository {
 
+
     override fun getClaimsByStatus(
         coroutineScope: CoroutineScope,
         listStatuses: List<Claim.Status>
-    ) = claimDao.getClaimsByStatus(
-        listStatuses
-    ).flowOn(Dispatchers.Default)
+    ) = Pager(
+        config = PagingConfig(pageSize = 10, enablePlaceholders = false),
+        pagingSourceFactory = {
+            ClaimPageSource(claimApi)
+        }
+    )
+        .flow
+        .flowOn(Dispatchers.Default)
 
     override suspend fun refreshClaims() = makeRequest(
         request = { claimApi.getAllClaims() },

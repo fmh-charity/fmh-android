@@ -2,6 +2,7 @@ package ru.iteco.fmhandroid.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -15,7 +16,7 @@ interface OnClaimItemClickListener {
 
 class ClaimListAdapter(
     private val onClaimItemClickListener: OnClaimItemClickListener
-) : ListAdapter<FullClaim, ClaimListAdapter.ClaimViewHolder>(
+) : PagingDataAdapter<FullClaim, ClaimListAdapter.ClaimViewHolder>(
     ClaimDiffCallback
 ) {
 
@@ -29,7 +30,7 @@ class ClaimListAdapter(
     }
 
     override fun onBindViewHolder(holder: ClaimViewHolder, position: Int) {
-        val fullClaim = getItem(position)
+        val fullClaim = getItem(position) ?: return
         holder.bind(fullClaim)
     }
 

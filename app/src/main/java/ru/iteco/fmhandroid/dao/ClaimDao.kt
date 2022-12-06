@@ -1,5 +1,6 @@
 package ru.iteco.fmhandroid.dao
 
+import androidx.paging.PagingSource
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 import ru.iteco.fmhandroid.dto.Claim
@@ -36,6 +37,9 @@ interface ClaimDao {
 
     @Query("DELETE FROM ClaimEntity WHERE id IN (:idList)")
     suspend fun removeClaimsItemsByIdList(idList: List<Int?>)
+
+    @Query("SELECT * FROM ClaimEntity ORDER BY id DESC")
+    fun pagingSource(query: String): PagingSource<Int, Claim>
 }
 
 class ClaimClaimStatusConverter {

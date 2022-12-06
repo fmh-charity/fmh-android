@@ -125,7 +125,7 @@
     <string name="last_name">Имя</string>
     <string name="add_patient">Добавить пациента</string>
     <string name="list_patients">Список пациентов</string>
-    <string name="filter_patient_list_menu_button">Фильтр</string>
+    <string name="filter_patient_list_menu_button">Фильтр пациентов</string>
     <string name="discharged">Выписан</string>
     <string name="in_hospice">В хосписе</string>
     <string name="executes">Выполнен</string>
@@ -139,6 +139,8 @@
     <string name="all_wishes">Все просьбы</string>
     <string name="empty_wish_list_text">Список просьб</string>
     <string name="add_wish">Добавить просьбу</string>
-    <string name="info">Info</string>
+    <string name="info">Информация</string>
+    <string name="patient_data">Данные о пациенте</string>
+    <string name="filter_wish">Фильтр просьб</string>
 
 </resources>

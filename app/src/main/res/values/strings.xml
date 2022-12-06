@@ -113,9 +113,9 @@
     <string name="terms_of_use_url">https://vhospice.org/#/terms-of-use</string>
     <string name="company_info">© I-Teco, 2022</string>
     <string name="our_mission_title_text">Love is all</string>
-    <string name="list_patients">list patients</string>
-    <string name="filter_patient_list_menu_button">filter patient list</string>
-    <string name="add_patient">add patient</string>
+    <string name="list_patients">List patients</string>
+    <string name="filter_patient_list_menu_button">Filter patient list</string>
+    <string name="add_patient">Add patient</string>
     <string name="last_name">Last name</string>
     <string name="first_name">First name</string>
     <string name="midlde_name">Middle name</string>
@@ -132,7 +132,7 @@
     <string name="in_hospice">In hospice</string>
     <string name="executes">Executes</string>
     <string name="canceled">Canceled</string>
-    <string name="title">title</string>
+    <string name="title">Title</string>
     <string name="plan_execute_date">Planned date</string>
     <string name="all_patients">All patients</string>
     <string name="create">Create</string>
@@ -141,4 +141,6 @@
     <string name="add_wish">Add wish</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="info">Info</string>
+    <string name="patient_data">Patient data</string>
+    <string name="filter_wish">Filter wish</string>
 </resources>

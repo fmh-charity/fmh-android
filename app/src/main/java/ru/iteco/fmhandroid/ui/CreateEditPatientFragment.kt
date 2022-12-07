@@ -37,22 +37,22 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
         super.onCreate(savedInstanceState)
 
         lifecycleScope.launch {
-            viewModel.savePatientsItemExceptionEvent.collect {
+            viewModel.patientCreateExceptionEvent.collect {
                 showErrorToast(R.string.error_saving)
             }
         }
         lifecycleScope.launch {
-            viewModel.editPatientsItemSavedEvent.collect {
+            viewModel.patientEditExceptionEvent.collect {
                 showErrorToast(R.string.error_saving)
             }
         }
         lifecycleScope.launch {
-            viewModel.patientsItemCreatedEvent.collect {
+            viewModel.patientCreatedEvent.collect {
                 findNavController().navigateUp()
             }
         }
         lifecycleScope.launch {
-            viewModel.editPatientsItemSavedEvent.collect {
+            viewModel.patientEditExceptionEvent.collect {
                 findNavController().navigateUp()
             }
         }

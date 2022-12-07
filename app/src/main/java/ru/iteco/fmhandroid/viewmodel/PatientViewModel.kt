@@ -21,20 +21,17 @@ import javax.inject.Inject
 class PatientViewModel @Inject constructor(
     private val patientRepository: PatientRepository
 ) : ViewModel(), OnPatientItemClickListener {
-    /** -- создание пациента -- **/
-    val patientsItemCreatedEvent = MutableSharedFlow<Unit>()
-    /** -- ошибка создание пациента -- **/
-    val createPatientExceptionEvent = MutableSharedFlow<Unit>()
-    /** -- редактирование пациента -- **/
-    val editPatientsEvent = MutableSharedFlow<Unit>()
-    /** -- ошибка редактирования пациента -- **/
-    val editPatientsExceptionEvent = MutableSharedFlow<Unit>()
-    /** -- ошибка сохранения пациента -- **/
-    val patientLoadException = MutableSharedFlow<Unit>()
-    /** -- ошибка сохранения пациента -- **/
-    val savePatientsItemExceptionEvent = MutableSharedFlow<Unit>()
 
-    val editPatientsItemSavedEvent = MutableSharedFlow<Unit>()
+
+    /** -- создание пациента -- **/
+    val patientCreatedEvent = MutableSharedFlow<Unit>()
+    /** -- ошибка создание пациента -- **/
+    val patientCreateExceptionEvent = MutableSharedFlow<Unit>()
+    /** -- редактирование пациента -- **/
+    val patientEditEvent = MutableSharedFlow<Unit>()
+    /** -- ошибка редактирования пациента -- **/
+    val patientEditExceptionEvent = MutableSharedFlow<Unit>()
+
 
 
 
@@ -43,10 +40,10 @@ class PatientViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 patientRepository.createNewPatient(patient)
-                patientsItemCreatedEvent.emit(Unit)
+                patientCreatedEvent.emit(Unit)
             } catch (e: Exception) {
                 e.printStackTrace()
-                createPatientExceptionEvent.emit(Unit)
+                patientCreateExceptionEvent.emit(Unit)
             }
         }
     }
@@ -56,10 +53,10 @@ class PatientViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 patientRepository.editPatient(patient)
-                editPatientsEvent.emit(Unit)
+                patientEditEvent.emit(Unit)
             } catch (e: Exception) {
                 e.printStackTrace()
-                editPatientsExceptionEvent.emit(Unit)
+                patientEditExceptionEvent.emit(Unit)
             }
         }
     }

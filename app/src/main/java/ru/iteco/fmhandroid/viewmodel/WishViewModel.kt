@@ -33,10 +33,6 @@ class WishViewModel @Inject constructor(
     val openWishEvent = MutableSharedFlow<FullWish>()
 
 
-
-
-
-
     fun onRefresh() {
         viewModelScope.launch {
             internalOnRefresh()
@@ -51,14 +47,6 @@ class WishViewModel @Inject constructor(
             wishesLoadException.emit(Unit)
         }
     }
-
-//    fun  createNewWish(wish: Wish){
-//        viewModelScope.launch {
-//            createNewWish(wish)
-//        }
-//    }
-
-
 
     override fun onCard(fullWish: FullWish) {
         viewModelScope.launch {

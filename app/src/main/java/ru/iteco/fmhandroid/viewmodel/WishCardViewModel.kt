@@ -82,10 +82,7 @@ class WishCardViewModel @Inject constructor(
                 wishCreatedEvent.emit(Unit)
             } catch (e: Exception) {
                 e.printStackTrace()
-                //TODO подделал для проверки. Потом вернуть!!
-                wishCreatedEvent.emit(Unit)
-
-                //createWishExceptionEvent.emit(Unit)
+                createWishExceptionEvent.emit(Unit)
             }
         }
     }

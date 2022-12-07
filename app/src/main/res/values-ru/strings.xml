@@ -142,5 +142,8 @@
     <string name="info">Информация</string>
     <string name="patient_data">Данные о пациенте</string>
     <string name="filter_wish">Фильтр просьб</string>
+    <string name="status_patient_new">Новый</string>
+    <string name="status_patient_in_hospice">В хосписе</string>
+    <string name="status_patient_discharged">Выписан</string>
 
 </resources>

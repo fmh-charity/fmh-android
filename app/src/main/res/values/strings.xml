@@ -139,8 +139,12 @@
     <string name="all_wishes">All wishes</string>
     <string name="empty_wish_list_text">Whishes list</string>
     <string name="add_wish">Add wish</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="info">Info</string>
     <string name="patient_data">Patient data</string>
     <string name="filter_wish">Filter wish</string>
+    <string name="status_patient_new">New</string>
+    <string name="status_patient_in_hospice">IN HOSPICE</string>
+    <string name="status_patient_discharged">DISCHARGED</string>
 </resources>

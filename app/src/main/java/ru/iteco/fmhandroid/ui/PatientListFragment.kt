@@ -3,19 +3,13 @@ package ru.iteco.fmhandroid.ui
 import android.os.Bundle
 import android.view.View
 import android.widget.PopupMenu
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.adapter.PatientListAdapter
 import ru.iteco.fmhandroid.databinding.FragmentListPatientBinding
-import ru.iteco.fmhandroid.dto.Patient
 import ru.iteco.fmhandroid.viewmodel.PatientViewModel
 
 

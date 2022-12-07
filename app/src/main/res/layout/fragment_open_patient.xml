@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <include
-        android:id="@+id/container_custom_app_bar_include_on_fragment_our_mission"
+        android:id="@+id/container_custom_app_bar_include_on_fragment_open_patient"
         layout="@layout/top_custom_app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -24,22 +24,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text=""
+            android:text="@string/patient_data"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/data_patient_initials_textView"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Пациент" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/data_patient_initials_textView"
             style="@style/card_text_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="100dp"
             android:text=""
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/edit_data_patient_button"
+            app:layout_constraintStart_toStartOf="@+id/data_patient_textView"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Фамилия И.О." />
 
@@ -312,9 +310,12 @@
                     app:layout_constraintTop_toBottomOf="@id/divider6_image_view"
                     tools:text="№6" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+
         </com.google.android.material.card.MaterialCardView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/wish_for_patient_textView"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginStart="@dimen/card_view_padding"
@@ -339,11 +340,15 @@
                 style="@style/materialButtonTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/card_view_padding"
                 app:icon="@drawable/ic_add"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </RelativeLayout>
+
 </LinearLayout>

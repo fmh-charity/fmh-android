@@ -39,7 +39,10 @@ interface ClaimDao {
     suspend fun removeClaimsItemsByIdList(idList: List<Int?>)
 
     @Query("SELECT * FROM ClaimEntity ORDER BY id DESC")
-    fun pagingSource(query: String): PagingSource<Int, Claim>
+    fun pagingSource(): PagingSource<Int, ClaimEntity>
+
+    @Query("DELETE FROM ClaimEntity")
+    suspend fun removeAll()
 }
 
 class ClaimClaimStatusConverter {

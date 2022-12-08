@@ -1,18 +1,19 @@
 package ru.iteco.fmhandroid.repository.claimRepository
 
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
+import androidx.paging.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import ru.iteco.fmhandroid.api.ClaimApi
 import ru.iteco.fmhandroid.dao.ClaimCommentDao
 import ru.iteco.fmhandroid.dao.ClaimDao
+import ru.iteco.fmhandroid.dao.ClaimKeyDao
+import ru.iteco.fmhandroid.db.AppDb
 import ru.iteco.fmhandroid.dto.Claim
 import ru.iteco.fmhandroid.dto.ClaimComment
-import ru.iteco.fmhandroid.dto.FullClaim
+import ru.iteco.fmhandroid.entity.ClaimEntity
 import ru.iteco.fmhandroid.entity.toEntity
 import ru.iteco.fmhandroid.utils.Utils.makeRequest
 import javax.inject.Inject
@@ -22,21 +23,24 @@ import javax.inject.Singleton
 class ClaimRepositoryImpl @Inject constructor(
     private val claimApi: ClaimApi,
     private val claimDao: ClaimDao,
-    private val claimCommentDao: ClaimCommentDao
+    private val claimCommentDao: ClaimCommentDao,
+    private val db: AppDb,
+    private val claimKeyDao: ClaimKeyDao
 ) : ClaimRepository {
 
 
+    @OptIn(ExperimentalPagingApi::class)
     override fun getClaimsByStatus(
         coroutineScope: CoroutineScope,
         listStatuses: List<Claim.Status>
     ): Flow<PagingData<Claim>> = Pager(
-        config = PagingConfig(pageSize = 10, enablePlaceholders = false),
-        pagingSourceFactory = {
-            ClaimPageSource(claimApi)
-        }
-    )
-        .flow
-        .flowOn(Dispatchers.Default)
+        config = PagingConfig(pageSize = 10),
+        remoteMediator = ClaimRemoteMediator(claimApi, db, claimDao, claimKeyDao),
+        pagingSourceFactory = claimDao::pagingSource
+
+    ).flow.map { pagingData ->
+        pagingData.map(ClaimEntity::toDto)
+    }
 
     override suspend fun refreshClaims() = makeRequest(
         request = { claimApi.getAllClaims() },

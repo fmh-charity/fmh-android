@@ -12,6 +12,7 @@ import ru.iteco.fmhandroid.dao.ClaimCommentDao
 import ru.iteco.fmhandroid.dao.ClaimDao
 import ru.iteco.fmhandroid.dto.Claim
 import ru.iteco.fmhandroid.dto.ClaimComment
+import ru.iteco.fmhandroid.dto.FullClaim
 import ru.iteco.fmhandroid.entity.toEntity
 import ru.iteco.fmhandroid.utils.Utils.makeRequest
 import javax.inject.Inject
@@ -28,7 +29,7 @@ class ClaimRepositoryImpl @Inject constructor(
     override fun getClaimsByStatus(
         coroutineScope: CoroutineScope,
         listStatuses: List<Claim.Status>
-    ) = Pager(
+    ): Flow<PagingData<Claim>> = Pager(
         config = PagingConfig(pageSize = 10, enablePlaceholders = false),
         pagingSourceFactory = {
             ClaimPageSource(claimApi)

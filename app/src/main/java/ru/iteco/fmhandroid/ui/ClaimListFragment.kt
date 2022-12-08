@@ -146,12 +146,12 @@ class ClaimListFragment : Fragment(R.layout.fragment_list_claim) {
         binding.containerListClaimInclude.claimListRecyclerView.adapter = adapter
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {
             viewModel.data.collectLatest { state ->
-                adapter.submitList(state)
+                adapter.submitData(state)
 
                 delay(200)
                 binding.containerListClaimInclude.claimListRecyclerView.smoothScrollToPosition(0)
 
-                if (state.isEmpty()) {
+                if (state == null) {
                     binding.containerListClaimInclude.emptyClaimListGroup.isVisible = true
                     binding.containerListClaimInclude.claimRetryMaterialButton.setOnClickListener {
                         binding.claimListSwipeRefresh.isRefreshing = true

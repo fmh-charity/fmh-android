@@ -35,7 +35,7 @@ class ClaimViewModel @Inject constructor(
     )
 
     @ExperimentalCoroutinesApi
-    val data: Flow<PagingData<Claim>> = statusesFlow.flatMapLatest { statuses ->
+    val data: Flow<PagingData<FullClaim>> = statusesFlow.flatMapLatest { statuses ->
         claimRepository.getClaimsByStatus(
             viewModelScope,
             statuses

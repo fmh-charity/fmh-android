@@ -170,8 +170,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             claimListAdapter
         lifecycleScope.launchWhenCreated {
             claimViewModel.data.collectLatest { state ->
-                claimListAdapter.submitList(state.take(n = 6))
-                claimListAdapter.submitData(state.take(n = 6))
+                claimListAdapter.submitData(state)
             }
         }
 

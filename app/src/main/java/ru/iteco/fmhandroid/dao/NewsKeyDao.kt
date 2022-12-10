@@ -22,5 +22,4 @@ interface NewsKeyDao {
 
     @Query("DELETE FROM NewsKeyEntity")
     suspend fun removeAll()
-
 }

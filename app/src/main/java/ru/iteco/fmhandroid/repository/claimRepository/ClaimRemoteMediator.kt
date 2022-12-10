@@ -44,7 +44,9 @@ class ClaimRemoteMediator(
                     val id = claimKeyDao.min() ?: return MediatorResult.Success(
                         endOfPaginationReached = false
                     )
-                    /// НУЖНО УТОЧНИТЬ НАСЧЕТ getAllClaims
+
+                   /*  НУЖНО УТОЧНИТЬ НАСЧЕТ getAllClaims  */
+
                     service.getAllClaims(true, id, state.config.pageSize)
                 }
             }

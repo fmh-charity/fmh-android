@@ -44,6 +44,9 @@ interface NewsDao {
 
     @Query("DELETE FROM NewsEntity WHERE id IN (:idList)")
     suspend fun removeNewsItemsByIdList(idList: List<Int?>)
+
+    @Query("DELETE FROM NewsEntity")
+    suspend fun removeAll()
 }
 
 @Dao

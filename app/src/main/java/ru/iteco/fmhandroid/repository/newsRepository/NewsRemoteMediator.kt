@@ -6,6 +6,7 @@ import ru.iteco.fmhandroid.api.NewsApi
 import ru.iteco.fmhandroid.dao.NewsDao
 import ru.iteco.fmhandroid.dao.NewsKeyDao
 import ru.iteco.fmhandroid.db.AppDb
+import ru.iteco.fmhandroid.dto.NewsKey
 import ru.iteco.fmhandroid.entity.*
 import ru.iteco.fmhandroid.exceptions.ApiException
 
@@ -61,11 +62,11 @@ class NewsRemoteMediator(
                         newsKeyDao.insert(
                             listOf(
                                 NewsKeyEntity(
-                                    type = NewsKeyEntity.KeyType.AFTER,
+                                    type = NewsKey.Status.AFTER,
                                     page = body.newsList.first().id,
                                 ),
                                 NewsKeyEntity(
-                                    type = NewsKeyEntity.KeyType.BEFORE,
+                                    type = NewsKey.Status.BEFORE,
                                     page = body.newsList.last().id,
                                 ),
                             )
@@ -75,7 +76,7 @@ class NewsRemoteMediator(
                     LoadType.PREPEND -> {
                         newsKeyDao.insert(
                             NewsKeyEntity(
-                                type = NewsKeyEntity.KeyType.AFTER,
+                                type = NewsKey.Status.AFTER,
                                 page = body.newsList.first().id
                             )
                         )
@@ -83,7 +84,7 @@ class NewsRemoteMediator(
                     LoadType.APPEND -> {
                         newsKeyDao.insert(
                             NewsKeyEntity(
-                                type = NewsKeyEntity.KeyType.BEFORE,
+                                type = NewsKey.Status.BEFORE,
                                 page = body.newsList.last().id
                             )
                         )

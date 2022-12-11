@@ -13,6 +13,7 @@ import ru.iteco.fmhandroid.dao.ClaimKeyDao
 import ru.iteco.fmhandroid.db.AppDb
 import ru.iteco.fmhandroid.dto.Claim
 import ru.iteco.fmhandroid.dto.ClaimComment
+import ru.iteco.fmhandroid.dto.FullClaim
 import ru.iteco.fmhandroid.entity.ClaimEntity
 import ru.iteco.fmhandroid.entity.toEntity
 import ru.iteco.fmhandroid.utils.Utils.makeRequest

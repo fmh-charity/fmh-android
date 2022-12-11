@@ -6,6 +6,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import ru.iteco.fmhandroid.databinding.ItemClaimBinding
+import ru.iteco.fmhandroid.dto.Claim
 import ru.iteco.fmhandroid.dto.FullClaim
 import ru.iteco.fmhandroid.utils.Utils
 
@@ -15,7 +16,7 @@ interface OnClaimItemClickListener {
 
 class ClaimListAdapter(
     private val onClaimItemClickListener: OnClaimItemClickListener
-) : PagingDataAdapter<FullClaim, ClaimListAdapter.ClaimViewHolder>(
+) : PagingDataAdapter<Claim, ClaimListAdapter.ClaimViewHolder>(
     ClaimDiffCallback
 ) {
 
@@ -29,8 +30,8 @@ class ClaimListAdapter(
     }
 
     override fun onBindViewHolder(holder: ClaimViewHolder, position: Int) {
-        val fullClaim = getItem(position) ?: return
-        holder.bind(fullClaim)
+        val claim = getItem(position) ?: return
+        holder.bind(claim)
     }
 
     class ClaimViewHolder(
@@ -38,20 +39,20 @@ class ClaimListAdapter(
         private val onClaimItemClickListener: OnClaimItemClickListener
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(fullClaim: FullClaim) {
+        fun bind(claim: Claim) {
             with(binding) {
-                executorNameMaterialTextView.text = fullClaim.claim.executorName
+                executorNameMaterialTextView.text = claim.executorName
                 planTimeMaterialTextView.text =
                     Utils.formatTime(
-                        fullClaim.claim.planExecuteDate
+                        claim.planExecuteDate
                     )
 
                 planDateMaterialTextView.text =
                     Utils.formatDate(
-                        fullClaim.claim.planExecuteDate
+                       claim.planExecuteDate
                     )
 
-                descriptionMaterialTextView.text = fullClaim.claim.title
+                descriptionMaterialTextView.text = claim.title
 
                 claimListCard.setOnClickListener {
                     onClaimItemClickListener.onCard(fullClaim)
@@ -60,17 +61,17 @@ class ClaimListAdapter(
         }
     }
 
-    private object ClaimDiffCallback : DiffUtil.ItemCallback<FullClaim>() {
+    private object ClaimDiffCallback : DiffUtil.ItemCallback<Claim>() {
         override fun areItemsTheSame(
-            oldItem: FullClaim,
-            newItem: FullClaim
+            oldItem: Claim,
+            newItem: Claim
         ): Boolean {
-            return oldItem.claim.id == newItem.claim.id
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: FullClaim,
-            newItem: FullClaim
+            oldItem: Claim,
+            newItem: Claim
         ): Boolean {
             return oldItem == newItem
         }

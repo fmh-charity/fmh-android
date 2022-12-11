@@ -5,10 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import ru.iteco.fmhandroid.adapter.OnClaimItemClickListener
 import ru.iteco.fmhandroid.dto.Claim
@@ -35,7 +32,7 @@ class ClaimViewModel @Inject constructor(
     )
 
     @ExperimentalCoroutinesApi
-    val data: Flow<PagingData<FullClaim>> = statusesFlow.flatMapLatest { statuses ->
+    val data: Flow<PagingData<Claim>> = statusesFlow.flatMapLatest { statuses ->
         claimRepository.getClaimsByStatus(
             viewModelScope,
             statuses
@@ -64,16 +61,19 @@ class ClaimViewModel @Inject constructor(
         }
     }
 
-    override fun onCard(fullClaim: FullClaim) {
+    override fun onCard(claim: Claim) {
         viewModelScope.launch {
             try {
-                fullClaim.claim.id?.let { claimRepository.getAllCommentsForClaim(it) }
+                claim.id?.let { claimRepository.getAllCommentsForClaim(it) }
                 claimCommentsLoadedEvent.emit(Unit)
             } catch (e: Exception) {
                 e.printStackTrace()
                 claimCommentsLoadExceptionEvent.emit(Unit)
             }
-            openClaimEvent.emit(fullClaim)
+            val fullClaim = claim.id?.let { claimRepository.getClaimById(it) }
+
+
+            openClaimEvent.emit(fullClaim.collect())
         }
     }
 }

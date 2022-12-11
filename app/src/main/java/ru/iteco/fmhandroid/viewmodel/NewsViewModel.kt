@@ -2,6 +2,7 @@ package ru.iteco.fmhandroid.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
@@ -39,7 +40,7 @@ class NewsViewModel @Inject constructor(
         get() = userRepository.currentUser
 
     @ExperimentalCoroutinesApi
-    val data: Flow<List<NewsViewData>> by lazy {
+    val data: Flow<PagingData<NewsViewData>> by lazy {
         filterFlow.flatMapLatest { filter ->
             newsRepository.getAllNews(
                 viewModelScope,

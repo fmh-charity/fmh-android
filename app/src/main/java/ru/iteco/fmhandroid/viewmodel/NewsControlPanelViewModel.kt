@@ -2,6 +2,7 @@ package ru.iteco.fmhandroid.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
@@ -41,13 +42,9 @@ class NewsControlPanelViewModel @Inject constructor(
     val removeNewsItemExceptionEvent = MutableSharedFlow<Unit>()
 
     @FlowPreview
-    val data: Flow<List<NewsWithCategory>> = filterFlow.flatMapMerge { filter ->
+    val data: Flow<PagingData<News>> = filterFlow.flatMapMerge { filter ->
         newsRepository.getAllNews(
-            viewModelScope,
-            newsCategoryId = filter.newsCategoryId,
-            dateStart = filter.dateStart,
-            dateEnd = filter.dateEnd,
-            status = filter.status
+            viewModelScope
         ).combine(sortDirection) { news, sortDirection ->
             when (sortDirection) {
                 NewsViewModel.SortDirection.ASC -> news

@@ -6,6 +6,8 @@ import ru.iteco.fmhandroid.api.ClaimApi
 import ru.iteco.fmhandroid.dao.ClaimDao
 import ru.iteco.fmhandroid.dao.ClaimKeyDao
 import ru.iteco.fmhandroid.db.AppDb
+import ru.iteco.fmhandroid.dto.ClaimKey
+import ru.iteco.fmhandroid.dto.NewsKey
 import ru.iteco.fmhandroid.entity.ClaimEntity
 import ru.iteco.fmhandroid.entity.ClaimKeyEntity
 import ru.iteco.fmhandroid.entity.toEntity
@@ -62,11 +64,11 @@ class ClaimRemoteMediator(
                         claimKeyDao.insert(
                             listOf(
                                 ClaimKeyEntity(
-                                    type = ClaimKeyEntity.KeyType.AFTER,
+                                    type = ClaimKey.Status.AFTER,
                                     page = body.claimList.first().id,
                                 ),
                                 ClaimKeyEntity(
-                                    type = ClaimKeyEntity.KeyType.BEFORE,
+                                    type = ClaimKey.Status.BEFORE,
                                     page = body.claimList.last().id,
                                 ),
                             )
@@ -76,7 +78,7 @@ class ClaimRemoteMediator(
                     LoadType.PREPEND -> {
                         claimKeyDao.insert(
                             ClaimKeyEntity(
-                                type = ClaimKeyEntity.KeyType.AFTER,
+                                type = ClaimKey.Status.AFTER,
                                 page = body.claimList.first().id
                             )
                         )
@@ -84,7 +86,7 @@ class ClaimRemoteMediator(
                     LoadType.APPEND -> {
                         claimKeyDao.insert(
                             ClaimKeyEntity(
-                                type = ClaimKeyEntity.KeyType.BEFORE,
+                                type = ClaimKey.Status.BEFORE,
                                 page = body.claimList.last().id
                             )
                         )

@@ -1,5 +1,6 @@
 package ru.iteco.fmhandroid.repository.newsRepository
 
+import androidx.paging.PagingData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import ru.iteco.fmhandroid.dto.News
@@ -12,15 +13,6 @@ interface NewsRepository {
     suspend fun removeNewsItemById(id: Int)
     fun getAllNewsCategories(): Flow<List<News.Category>>
     suspend fun saveNewsCategories(listNewsCategories: List<News.Category>)
-    fun getAllNews(
-        coroutineScope: CoroutineScope,
-        publishEnabled: Boolean? = null,
-        publishDateBefore: Long? = null,
-        newsCategoryId: Int? = null,
-        dateStart: Long? = null,
-        dateEnd: Long? = null,
-        status: Boolean? = null
-    ): Flow<List<NewsWithCategory>>
-
+    fun getAllNews(coroutineScope: CoroutineScope): Flow<PagingData<News>>
     suspend fun changeIsOpen(newsItem: News)
 }

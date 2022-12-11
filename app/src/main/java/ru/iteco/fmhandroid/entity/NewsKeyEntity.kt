@@ -9,11 +9,7 @@ import ru.iteco.fmhandroid.dto.NewsKey
 class NewsKeyEntity(
     @PrimaryKey
     @ColumnInfo(name = "type")
-    val type: KeyType,
+    val type: NewsKey.Status,
     @ColumnInfo(name = "page")
     val page: Int?
-){
-    enum class KeyType {
-        AFTER, BEFORE
-    }
-}
+)

@@ -1,8 +1,10 @@
 package ru.iteco.fmhandroid.dao
 
+import androidx.paging.PagingSource
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 import ru.iteco.fmhandroid.dto.NewsWithCategory
+import ru.iteco.fmhandroid.entity.ClaimEntity
 import ru.iteco.fmhandroid.entity.NewsCategoryEntity
 import ru.iteco.fmhandroid.entity.NewsEntity
 
@@ -47,6 +49,9 @@ interface NewsDao {
 
     @Query("DELETE FROM NewsEntity")
     suspend fun removeAll()
+
+    @Query("SELECT * FROM NewsEntity ORDER BY id DESC")
+    fun pagingSource(): PagingSource<Int, NewsEntity>
 }
 
 @Dao

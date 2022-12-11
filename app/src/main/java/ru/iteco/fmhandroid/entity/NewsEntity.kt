@@ -3,6 +3,7 @@ package ru.iteco.fmhandroid.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import ru.iteco.fmhandroid.dto.Claim
 import ru.iteco.fmhandroid.dto.News
 
 @Entity(tableName = "NewsEntity")
@@ -28,8 +29,22 @@ data class NewsEntity(
     val publishEnabled: Boolean = false,
     @ColumnInfo(name = "isOpen")
     val isOpen: Boolean = false,
-)
+) {
+    fun toDto() = News(
+        id,
+        newsCategoryId,
+        title,
+        description,
+        creatorId,
+        creatorName,
+        createDate,
+        publishDate,
+        publishEnabled,
+        isOpen,
+    )
+}
 
+fun List<NewsEntity>.toDto(): List<News> = map(NewsEntity::toDto)
 fun List<News>.toEntity(): List<NewsEntity> = map(News::toEntity)
 fun News.toEntity() = NewsEntity(
     id = id,

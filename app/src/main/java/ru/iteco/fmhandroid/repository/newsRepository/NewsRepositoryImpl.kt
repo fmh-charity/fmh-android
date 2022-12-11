@@ -1,5 +1,7 @@
 package ru.iteco.fmhandroid.repository.newsRepository
 
+import android.graphics.pdf.PdfRenderer.Page
+import androidx.paging.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -8,11 +10,11 @@ import kotlinx.coroutines.flow.map
 import ru.iteco.fmhandroid.api.NewsApi
 import ru.iteco.fmhandroid.dao.NewsCategoryDao
 import ru.iteco.fmhandroid.dao.NewsDao
+import ru.iteco.fmhandroid.dao.NewsKeyDao
+import ru.iteco.fmhandroid.db.AppDb
 import ru.iteco.fmhandroid.dto.News
 import ru.iteco.fmhandroid.dto.NewsWithCategory
-import ru.iteco.fmhandroid.entity.toEntity
-import ru.iteco.fmhandroid.entity.toNewsCategoryDto
-import ru.iteco.fmhandroid.entity.toNewsCategoryEntity
+import ru.iteco.fmhandroid.entity.*
 import ru.iteco.fmhandroid.utils.Utils
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -21,24 +23,21 @@ import javax.inject.Singleton
 class NewsRepositoryImpl @Inject constructor(
     private val newsDao: NewsDao,
     private val newsCategoryDao: NewsCategoryDao,
-    private val newsApi: NewsApi
+    private val newsApi: NewsApi,
+    private val db: AppDb,
+    private val newsKeyDao: NewsKeyDao
 ) : NewsRepository {
+
+    @OptIn(ExperimentalPagingApi::class)
     override fun getAllNews(
-        coroutineScope: CoroutineScope,
-        publishEnabled: Boolean?,
-        publishDateBefore: Long?,
-        newsCategoryId: Int?,
-        dateStart: Long?,
-        dateEnd: Long?,
-        status: Boolean?
-    ): Flow<List<NewsWithCategory>> = newsDao.getAllNews(
-        publishEnabled = publishEnabled,
-        publishDateBefore = publishDateBefore,
-        newsCategoryId = newsCategoryId,
-        dateStart = dateStart,
-        dateEnd = dateEnd,
-        status = status
-    ).flowOn(Dispatchers.Default)
+        coroutineScope: CoroutineScope
+    ): Flow<PagingData<News>> = Pager(
+        config = PagingConfig(pageSize = 10),
+        remoteMediator = NewsRemoteMediator(newsApi, db, newsDao, newsKeyDao),
+        pagingSourceFactory = newsDao::pagingSource
+    ).flow.map { pagingData ->
+        pagingData.map(NewsEntity::toDto)
+    }
 
     override suspend fun changeIsOpen(newsItem: News) {
         newsDao.insert(newsItem.toEntity())

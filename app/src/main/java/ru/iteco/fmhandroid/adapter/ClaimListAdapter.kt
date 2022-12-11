@@ -11,7 +11,7 @@ import ru.iteco.fmhandroid.dto.FullClaim
 import ru.iteco.fmhandroid.utils.Utils
 
 interface OnClaimItemClickListener {
-    fun onCard(fullClaim: FullClaim) {}
+    fun onCard(claim: Claim) {}
 }
 
 class ClaimListAdapter(
@@ -55,7 +55,7 @@ class ClaimListAdapter(
                 descriptionMaterialTextView.text = claim.title
 
                 claimListCard.setOnClickListener {
-                    onClaimItemClickListener.onCard(fullClaim)
+                    onClaimItemClickListener.onCard(claim)
                 }
             }
         }

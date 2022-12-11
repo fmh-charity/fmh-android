@@ -71,9 +71,9 @@ class ClaimViewModel @Inject constructor(
                 claimCommentsLoadExceptionEvent.emit(Unit)
             }
             val fullClaim = claim.id?.let { claimRepository.getClaimById(it) }
-
-
-            openClaimEvent.emit(fullClaim.collect())
+            fullClaim?.collectLatest{
+                openClaimEvent.emit(it)
+            }
         }
     }
 }

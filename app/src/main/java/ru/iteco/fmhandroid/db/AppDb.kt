@@ -21,7 +21,7 @@ import ru.iteco.fmhandroid.entity.*
 
 @TypeConverters(
     ClaimClaimStatusConverter::class,
-    WishWishStatusConverter::class
+    //WishWishStatusConverter::class
 
 )
 abstract class AppDb : RoomDatabase() {

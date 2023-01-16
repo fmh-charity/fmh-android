@@ -29,7 +29,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private val claimViewModel: ClaimViewModel by viewModels()
     private val newsViewModel: NewsViewModel by viewModels()
     private val authViewModel: AuthViewModel by viewModels()
-    private val wishViewModel: WishViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,11 +46,11 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             }
         }
 
-        lifecycleScope.launchWhenStarted {
-            wishViewModel.wishListUpdatedEvent.collectLatest {
-                wishViewModel.onRefresh()
-            }
-        }
+//        lifecycleScope.launchWhenStarted {
+//            wishViewModel.wishListUpdatedEvent.collectLatest {
+//                wishViewModel.onRefresh()
+//            }
+//        }
 
         lifecycleScope.launchWhenStarted {
             claimViewModel.claimListUpdatedEvent.collectLatest {

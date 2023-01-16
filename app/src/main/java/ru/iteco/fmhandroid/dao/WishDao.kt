@@ -24,7 +24,7 @@ interface WishDao {
         listStatuses: List<Wish.Status>
     ): Flow<List<FullWish>>
 
-   @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertWish(wish: WishEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -38,10 +38,10 @@ interface WishDao {
     suspend fun removeWishItemsByIdList(idList: List<Int?>)
 }
 
-class WishWishStatusConverter {
-    @TypeConverter
-    fun toWishStatus(status: String): Wish.Status = Wish.Status.valueOf(status)
-
-    @TypeConverter
-    fun fromWishStatus(status: Wish.Status) = status.name
-}
+//class WishWishStatusConverter {
+//    @TypeConverter
+//    fun toWishStatus(status: String): Wish.Status = Wish.Status.valueOf(status)
+//
+//    @TypeConverter
+//    fun fromWishStatus(status: Wish.Status) = status.name
+//}

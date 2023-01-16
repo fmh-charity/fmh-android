@@ -112,8 +112,8 @@ class OpenPatientFragment : Fragment(R.layout.fragment_open_patient) {
 
     private fun displayingStatusOfPatient(patientStatus: Patient.Status) =
         when (patientStatus) {
-            Patient.Status.NEW -> getString(R.string.status_patient_new)
-            Patient.Status.IN_HOSPICE -> getString(R.string.status_patient_in_hospice)
+            Patient.Status.ACTIVE -> getString(R.string.status_patient_new)
+            Patient.Status.EXPECTED -> getString(R.string.status_patient_in_hospice)
             Patient.Status.DISCHARGED -> getString(R.string.status_patient_discharged)
         }
 
@@ -122,9 +122,9 @@ class OpenPatientFragment : Fragment(R.layout.fragment_open_patient) {
         binding.firstNameTextView.text = fullPatient.patient.firstName
         binding.middleNameTextView.text = fullPatient.patient.middleName
         binding.birthDateTextView.text = fullPatient.patient.birthDate.toString()
-        binding.dateFromTextView.text = fullPatient.patient.factDateIn.toString()
-        binding.dateToTextView.text = fullPatient.patient.factDateOut.toString()
-        binding.statusLabelTextView.text = displayingStatusOfPatient(fullPatient.patient.status)
+        binding.dateFromTextView.text = fullPatient.patient.dateIn.toString()
+        binding.dateToTextView.text = fullPatient.patient.dateOut.toString()
+        binding.statusLabelTextView.text = fullPatient.patient.status.toString()
         binding.patientRoomTextView.text = fullPatient.patient.roomId.toString()
 
     }

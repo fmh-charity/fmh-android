@@ -19,7 +19,7 @@ data class WishEntity(
     @ColumnInfo(name = "creatorId")
     val creatorId: Int,
     @ColumnInfo(name = "executorId")
-    val executorId: Int,
+    val executorId: Int?,
     @ColumnInfo(name = "createDate")
     val createDate: Int,
     @ColumnInfo(name = "planExecuteDate")

@@ -61,8 +61,8 @@ class WishCardViewModel @Inject constructor(
     val statusesFlow = MutableStateFlow(
         listOf(
             Wish.Status.OPEN,
-            Wish.Status.AT_WORK,
-            Wish.Status.CLOSED,
+            Wish.Status.CANCELLED,
+            Wish.Status.IN_PROGRESS,
             Wish.Status.EXECUTED
         )
     )

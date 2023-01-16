@@ -2,11 +2,13 @@ package ru.iteco.fmhandroid.repository.wishRepository
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import org.w3c.dom.Comment
 import ru.iteco.fmhandroid.api.WishApi
 import ru.iteco.fmhandroid.dao.WishCommentDao
 import ru.iteco.fmhandroid.dao.WishDao
+import ru.iteco.fmhandroid.dto.FullWish
 import ru.iteco.fmhandroid.dto.Wish
 import ru.iteco.fmhandroid.dto.WishComment
 import ru.iteco.fmhandroid.entity.toEntity
@@ -36,7 +38,7 @@ class WishRepositoryImpl @Inject constructor(
     override suspend fun createNewWish(wish: Wish): Wish =  makeRequest(
     request = { wishApi.createWish(wish) },
     onSuccess = { body ->
-        wishDao.insertWish(body.toEntity())
+        //wishDao.insertWish(body.toEntity())
         body
     }
     )
@@ -115,13 +117,20 @@ class WishRepositoryImpl @Inject constructor(
         )
     }
 
-    /** ------------получение статуса для пациента---------------------------------------------- **/
     override fun getWishByStatus(
         coroutineScope: CoroutineScope,
         listStatuses: List<Wish.Status>
-    ) = wishDao.getWishByStatus(
-        listStatuses
-    ).flowOn(Dispatchers.Default)
+    ): Flow<List<FullWish>> {
+        TODO("Not yet implemented")
+    }
+
+    /** ------------получение статуса для пациента---------------------------------------------- **/
+//    override fun getWishByStatus(
+//        coroutineScope: CoroutineScope,
+//        listStatuses: List<Wish.Status>
+//    ) = wishDao.getWishByStatus(
+//        listStatuses
+//    ).flowOn(Dispatchers.Default)
 
     /** ------------изменение статуса для пациента---------------------------------------------- **/
     override suspend fun changeWishStatus(

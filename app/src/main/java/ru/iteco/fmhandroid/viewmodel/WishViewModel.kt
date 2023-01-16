@@ -3,16 +3,10 @@ package ru.iteco.fmhandroid.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
 import ru.iteco.fmhandroid.adapter.OnWishItemClickListener
-import ru.iteco.fmhandroid.dto.FullClaim
 import ru.iteco.fmhandroid.dto.FullWish
-import ru.iteco.fmhandroid.dto.Wish
 import ru.iteco.fmhandroid.repository.wishRepository.WishRepository
 import javax.inject.Inject
 
@@ -51,7 +45,7 @@ class WishViewModel @Inject constructor(
     override fun onCard(fullWish: FullWish) {
         viewModelScope.launch {
             try {
-                fullWish.wish.id?.let { wishRepository.getAllCommentForWish(it) }
+                fullWish.wish.id.let { wishRepository.getAllCommentForWish(it) }
                wishCommentsLoadedEvent.emit(Unit)
             } catch (e: Exception) {
                 e.printStackTrace()

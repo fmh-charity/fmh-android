@@ -23,15 +23,13 @@ import ru.iteco.fmhandroid.viewmodel.PatientViewModel
 import java.time.LocalDateTime
 import java.util.*
 
-
 @AndroidEntryPoint
 class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient) {
     private lateinit var vDateBirth: TextInputEditText
     private lateinit var binding: FragmentCreateEditPatientBinding
     private val viewModel: PatientViewModel by viewModels()
     private val args: CreateEditPatientFragmentArgs by navArgs()
-    private var statusChoice: Patient.Status = Patient.Status.NEW
-
+    private var statusChoice: Patient.Status = Patient.Status.DISCHARGED
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,18 +54,15 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
                 findNavController().navigateUp()
             }
         }
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentCreateEditPatientBinding.bind(view)
 
-        /** -------------------------------------------------------------------------------- **/
         with(binding) {
 
-            /** ------------args------------------------------------------------------------ **/
-            //TODO аргументы
+            /** args **/
             if (args.patientItemArg == null) {
                 customAppBarTitleTextView.apply {
                     visibility = View.VISIBLE
@@ -86,11 +81,11 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
                 lastNameTextInputLayout.editText?.setText(patient.lastName)
                 firstNameTitleTextInputLayout.editText?.setText(patient.firstName)
                 middleNameTextInputLayout.editText?.setText(patient.middleName)
-                createBirthDateTextInputLayout.editText?.setText(patient.birthDate.toString())
-                statusDropMenuTextInputLayout.editText?.setText(patient.status.toString())
+                createBirthDateTextInputLayout.editText?.setText(patient.birthDate)
+                statusDropMenuTextInputLayout.editText?.setText(patient.status)
             }
 
-            /** ------------кнопки------------------------------------------------------------ **/
+            /** кнопки **/
             saveButton.setOnClickListener {
                 if (lastNameTextInputEditText.text.isNullOrBlank() ||
                     firstNameTextInputEditText.text.isNullOrBlank() ||
@@ -118,7 +113,7 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
             }
         }
 
-        /** ------------выбор статуса---------------------------------------------------------- **/
+        /** выбор статуса **/
         lifecycleScope.launch {
             val adapter = ArrayAdapter(
                 requireContext(),
@@ -133,10 +128,9 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
             }
         }
 
-        /** ------------Календарь дата рождения------------------------------------------------ **/
+        /** Календарь **/
         val calendar = Calendar.getInstance()
         vDateBirth = binding.createDateBirthTextInputEditText
-
         val dateBirth =
             DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
                 calendar.set(Calendar.YEAR, year)
@@ -158,6 +152,7 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
 
     }
 
+    /** Функция добавления/редактирования пациента **/
     private fun fillPatient() {
         with(binding) {
             val patient = args.patientItemArg
@@ -168,30 +163,33 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
                     lastName = patient.lastName,
                     middleName = patient.middleName,
                     birthDate = patient.birthDate,
+                    dateIn = patient.dateIn,
+                    dateOut = patient.dateOut,
+                    dateInBoolean = true,
+                    dateOutBoolean = true,
                     status = patient.status,
-                    factDateIn = 0L,
-                    factDateOut = 0L,
-                    roomId = 0L
+                    roomId = 0
                 )
                 viewModel.edit(patient)
             } else {
-                val createdPatient = Patient(
+                val createNewPatient = Patient(
                     id = null,
                     firstName = firstNameTextInputEditText.text.toString().trim(),
                     lastName = lastNameTextInputEditText.text.toString().trim(),
                     middleName = middleNameTextInputEditText.text.toString().trim(),
-                    birthDate = Utils.fromLocalDateTimeToTimeStamp(
-                        LocalDateTime.now()
-                    ),
-                    status = statusChoice,
-                    factDateIn = 0L,
-                    factDateOut = 0L,
-                    roomId = 0L
+                    birthDate = vDateBirth.toString(),
+                    dateIn = "",
+                    dateOut = "",
+                    dateInBoolean = true,
+                    dateOutBoolean = true,
+                    status = statusChoice.toString(),
+                    roomId = 0
                 )
-                viewModel.save(createdPatient)
+                viewModel.createNewPatient(createNewPatient)
             }
         }
     }
+
 
     private fun showErrorToast(text: Int) {
         Toast.makeText(

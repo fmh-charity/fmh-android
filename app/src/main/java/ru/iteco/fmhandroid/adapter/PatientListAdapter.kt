@@ -9,9 +9,7 @@ import ru.iteco.fmhandroid.databinding.ItemPatientBinding
 import ru.iteco.fmhandroid.dto.Patient
 import ru.iteco.fmhandroid.utils.Utils
 
-
 interface OnPatientItemClickListener {
-
     fun onCard(patient: Patient)
 }
 
@@ -44,8 +42,8 @@ class PatientListAdapter(private val onPatientItemClickListener: OnPatientItemCl
                     patient.firstName,
                     patient.middleName
                 )
-                birthDateTextView.text = Utils.formatDate(patient.birthDate)
-                statusTextView.text = patient.status.toString()
+                birthDateTextView.text = patient.birthDate
+                statusTextView.text = patient.status
             }
         }
     }

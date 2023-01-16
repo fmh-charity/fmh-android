@@ -10,7 +10,7 @@ data class Wish(
     val title: String,
     val description: String,
     val creatorId: Int,
-    val executorId: Int,    //UserDtoIdFio
+    val executorId: Int?,    //UserDtoIdFio
     val createDate: Int,
     val planExecuteDate: Int,
     val factExecuteDate: Int,

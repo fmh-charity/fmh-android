@@ -10,7 +10,7 @@ interface PatientApi {
 
     /**Удаление пациента*/
     @DELETE("patients/{id}")
-    suspend fun deletePatient(@Body patientItem: Patient): Response<Patient>
+    suspend fun deletePatient(@Path("id") id: Int): Response<Patient>
 
     /**Возвращает общую информацию по пациенту*/
     @GET("patients/{id}")
@@ -22,15 +22,15 @@ interface PatientApi {
 
     /**Возврорщает ифнормацию по всем просьбам пациента*/
     @GET("patients/{id}/wishes")
-    suspend fun getAllWish(): Response<List<Wish>>
+    suspend fun getAllWishForPatient(@Path("id") id: Int): Response<List<Wish>>
 
     /**Возвращает информацию по всем просьбам пациента  со статусом open/in progress*/
     @GET("patients/{id}/wishes/open-in-progress")
-    suspend fun getWishInOpenAndInProgressStatus(): Response<List<Wish>>
+    suspend fun getWishInOpenAndInProgressStatus(@Path("id") id: Int): Response<List<Wish>>
 
     /**Создание пациента*/
     @POST("patients")
-    suspend fun savePatient(@Body patientItem: Patient): Response<Patient>
+    suspend fun createNewPatient(@Body patientItem: Patient): Response<Patient>
 
     /**Изменение пациента*/
     @PUT("patients/{id}")

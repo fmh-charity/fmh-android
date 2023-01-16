@@ -35,15 +35,17 @@ object Utils {
             middleName = "",
         )
         val emptyPatient = Patient(
-            id = null,
+            id = 1,
             firstName = "",
             lastName = "",
             middleName = "",
-            birthDate = 0L,
-            status = Patient.Status.NEW,
-            factDateIn = 0L,
-            factDateOut = 0L,
-            roomId = 0L
+            birthDate = "",
+            status = Patient.Status.ACTIVE.toString(),
+            dateIn = "",
+            dateOut = "",
+            dateInBoolean = false,
+            dateOutBoolean = false,
+            roomId = 1
         )
     }
 

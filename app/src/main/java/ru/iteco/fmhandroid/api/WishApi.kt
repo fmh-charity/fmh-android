@@ -18,9 +18,9 @@ interface WishApi {
     @GET("wishes/{id}")
     suspend fun getWishById(@Path("id") id: Int): Response<Wish>
 
-    /**область видимости для просьбы*/
-    @GET("wishes/visibility ")
-    //TODO Область видимости???
+//    /**область видимости для просьбы*/
+//    @GET("wishes/visibility ")
+//    //TODO Область видимости???
 
     /**создание новой  просьбы*/
     @POST("wishes")

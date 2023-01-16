@@ -43,13 +43,8 @@ class WishListAdapter(
                 titleTextView.text = fullWish.wish.title
                 patientTextView.text = fullWish.wish.patientId.toString()
                 executorNameTextView.text = fullWish.wish.executorId.toString()
-                planExecuteDateTextView.text =
-                    Utils.formatDate(
-                        fullWish.wish.planExecuteDate
-                    )
-                planExecuteTimeTextView.text = Utils.formatTime(
-                    fullWish.wish.planExecuteDate
-                )
+                planExecuteDateTextView.text =""
+                planExecuteTimeTextView.text = ""
                 wishListCard.setOnClickListener {
                     onWishItemClickListener.onCard(fullWish)
                 }

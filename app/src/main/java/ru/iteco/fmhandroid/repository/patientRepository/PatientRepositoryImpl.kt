@@ -1,58 +1,42 @@
 package ru.iteco.fmhandroid.repository.patientRepository
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableSharedFlow
-import retrofit2.Response
-import ru.iteco.fmhandroid.api.ClaimApi
 import ru.iteco.fmhandroid.api.PatientApi
 import ru.iteco.fmhandroid.dto.Patient
-import ru.iteco.fmhandroid.dto.User
 import ru.iteco.fmhandroid.dto.Wish
-import ru.iteco.fmhandroid.entity.toEntity
-import ru.iteco.fmhandroid.exceptions.ApiException
-import ru.iteco.fmhandroid.exceptions.AuthorizationException
-import ru.iteco.fmhandroid.exceptions.ServerException
-import ru.iteco.fmhandroid.exceptions.UnknownException
 import ru.iteco.fmhandroid.utils.Utils
 import javax.inject.Inject
 import javax.inject.Singleton
 
-
 @Singleton
-class PatientRepositoryImpl @Inject constructor(
-    private val patientApi: PatientApi
+class PatientRepositoryImpl @Inject constructor(private val patientApi: PatientApi
 ) : PatientRepository {
+
+
+    /**для получения списка всех пациентов*/
+    override var patientList: List<Patient> = emptyList()
+        private set
+
+    /**временная переменная для получения пациента по Id*/
+
 
     override var currentPatient: Patient = Utils.Empty.emptyPatient
         private set
 
-    override var patientList: List<Patient> = emptyList()
-        private set
+    val test = patientList
 
-    /** ------------получение всех пациентов--------------------------------------------------- **/
-    override suspend fun getAllPatients(): List<Patient> = Utils.makeRequest(
-        request = { patientApi.getAllPatients() },
-        onSuccess = { body ->
-            body.also {
-                patientList = it
-            }
-        }
-    )
-
-
-    /** ------------создание пациента---------------------------------------------------------- **/
+    /** создание пациента **/
     override suspend fun createNewPatient(patient: Patient): Patient = Utils.makeRequest(
-        request = { patientApi.savePatient(patient) },
+        request = { patientApi.createNewPatient(patient) },
         onSuccess = { body ->
             body.also {
-                patientList = listOf(it)
+                //TODO нужно ли сохранять локально?
+                //patientList = listOf(it)
             }
             body
         }
     )
 
-    /** ------------изменение пациента---------------------------------------------------------- **/
+    /** редактирование пациента **/
     override suspend fun editPatient(patient: Patient): Patient = Utils.makeRequest(
         request = { patientApi.editPatient(patient) },
         onSuccess = { body ->
@@ -61,69 +45,52 @@ class PatientRepositoryImpl @Inject constructor(
         }
     )
 
-    /** ------------получение пациента по id---------------------------------------------------- **/
-    override suspend fun getPatientById(id: Int): Patient = Utils.makeRequest(
-        request = { patientApi.getPatientById(id) },
-        onSuccess = { body ->
-            body.also {
-               it
-            }
-            body
+    /**Реестр всех пациентов*/
+    override suspend fun getAllPatients(): List<Patient> =  Utils.makeRequest(
+    request = { patientApi.getAllPatients() },
+    onSuccess = { body ->
+        body.also {
+            patientList = it.toList()
         }
-    )
-
-    /** ------------получение пациента c открытым статусом....---------------------------------- **/
-    override suspend fun getAllPatientWithOpenAndInProgressStatus() {
-        //TODO
-        try {
-            val response: Response<List<Patient>> = patientApi.getWishInOpenAndInProgressStatus()
-            if (!response.isSuccessful && response.code() == 401) {
-                throw ServerException
-            }
-            currentPatient = (response.body() ?: throw UnknownException) as Patient
-        } catch (e: Exception) {
-            throw UnknownException
-        }
+        body
     }
-
-
-        /** ------------получение пациента c открытым статусом....---------------------------------- **/
-    override suspend fun getAllAdmission(id: Int) = Utils.makeRequest(
-        request = { patientApi.getAllAdmission(id) },
-        onSuccess = { body ->
-            //TODO
-            body
-        }
     )
 
-    /** ------------получение всех просьб пациента---------------------------------------------- **/
+    /**Возвращает общую информацию по пациенту*/
+    override suspend fun getPatientById(id: Int):Patient = Utils.makeRequest(
+    request = { patientApi.getPatientById(id) },
+    onSuccess = { body ->
+        //TODO делать заглушку?
+        body
+    }
+    )
+
+    /**Возврорщает ифнормацию по всем просьбам пациента*/
     override suspend fun getAllWishForPatient(id: Int): List<Wish> = Utils.makeRequest(
-        request = { patientApi.getAllWish() },
+        request = { patientApi.getAllWishForPatient(id)},
         onSuccess = { body ->
-            //TODO
+            //TODO сохраняю в список? Как передавать и очищать? Сделать companion object в фрагменте и там очищать?
             body
         }
     )
 
-    override suspend fun refreshPatient() {
-        TODO("Not yet implemented")
+    /**Возвращает информацию по всем просьбам пациента  со статусом open/in progress*/
+    override suspend fun getWishInOpenAndInProgressStatus(id: Int): List<Wish> = Utils.makeRequest(
+        request = { patientApi.getWishInOpenAndInProgressStatus(id)},
+        onSuccess = { body ->
+            //TODO сохраняю в список? Как передавать и очищать? Сделать companion object в фрагменте и там очищать?
+            body
+        }
+    )
+
+    /**Удаление пациента*/
+    override suspend fun deletePatient(id: Int): Patient = Utils.makeRequest(
+    request = { patientApi.deletePatient(id)},
+    onSuccess = { body ->
+        //TODO только запрос с id на сервер?
+        body
     }
-
-    /** ------------получение статуса для пациента---------------------------------------------- **/
-//    override fun getPatientByStatus(
-//        coroutineScope: CoroutineScope,
-//        listStatuses: List<Patient.Status>
-//    ): Flow<List<Patient>> {
-//        TODO("Not yet implemented")
-//    }
-
-    /** ------------изменение статуса для пациента---------------------------------------------- **/
-//    override suspend fun changePatientStatus(
-//        patientId: Int,
-//        patientStatus: Patient.Status
-//    ): Patient {
-//        TODO("Not yet implemented")
-//    }
-
-
+    )
 }
+
+

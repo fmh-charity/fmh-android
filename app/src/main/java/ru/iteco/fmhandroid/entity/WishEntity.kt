@@ -9,7 +9,7 @@ import ru.iteco.fmhandroid.dto.Wish
 data class WishEntity(
     @PrimaryKey
     @ColumnInfo(name = "id")
-    val id: Int? = null,
+    val id: Int,
     @ColumnInfo(name = "patientId")
     val patientId: Int,
     @ColumnInfo(name = "title")
@@ -19,15 +19,20 @@ data class WishEntity(
     @ColumnInfo(name = "creatorId")
     val creatorId: Int,
     @ColumnInfo(name = "executorId")
-    val executorId: Int?,
+    val executorId: Int,
     @ColumnInfo(name = "createDate")
-    val createDate: Long,
+    val createDate: Int,
     @ColumnInfo(name = "planExecuteDate")
-    val planExecuteDate: Long,
+    val planExecuteDate: Int,
     @ColumnInfo(name = "factExecuteDate")
-    val factExecuteDate: Long,
+    val factExecuteDate: Int,
     @ColumnInfo(name = "status")
-    val status: Wish.Status
+    val status: String,
+    @ColumnInfo(name = "room")
+    val room:	Int,
+    @ColumnInfo(name = "wishVisibility")
+    val wishVisibility: Int
+
 )
 
 fun List<Wish>.toEntity(): List<WishEntity> = map(Wish::toEntity)
@@ -41,5 +46,7 @@ fun Wish.toEntity() = WishEntity(
     createDate = createDate,
     planExecuteDate = planExecuteDate,
     factExecuteDate = factExecuteDate,
-    status = status
+    status = status,
+    room = room,
+    wishVisibility = wishVisibility
 )

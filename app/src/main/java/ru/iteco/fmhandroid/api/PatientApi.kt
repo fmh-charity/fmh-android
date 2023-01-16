@@ -5,25 +5,34 @@ import retrofit2.http.*
 import ru.iteco.fmhandroid.dto.Patient
 import ru.iteco.fmhandroid.dto.Wish
 
+/**Информация по пациенту*/
 interface PatientApi {
-    @GET("patients")
-    suspend fun getAllPatients(): Response<List<Patient>>
 
-    @POST("patients")
-    suspend fun savePatient(@Body patientItem: Patient): Response<Patient>
+    /**Удаление пациента*/
+    @DELETE("patients/{id}")
+    suspend fun deletePatient(@Body patientItem: Patient): Response<Patient>
 
-    @PUT("patients")
-    suspend fun editPatient(@Body patientItem: Patient): Response<Patient>
-
+    /**Возвращает общую информацию по пациенту*/
     @GET("patients/{id}")
     suspend fun getPatientById(@Path("id") id: Int): Response<Patient>
 
-    @GET("patients/{id}/wishes/open-in-progress")
-    suspend fun getWishInOpenAndInProgressStatus(): Response<List<Patient>>
+    /**Реестр всех пациентов*/
+    @GET("patients")
+    suspend fun getAllPatients(): Response<List<Patient>>
 
-    @GET("patients/{id}/admission")
-    suspend fun getAllAdmission(@Path("id") id: Int): Response<Unit>
-
+    /**Возврорщает ифнормацию по всем просьбам пациента*/
     @GET("patients/{id}/wishes")
     suspend fun getAllWish(): Response<List<Wish>>
+
+    /**Возвращает информацию по всем просьбам пациента  со статусом open/in progress*/
+    @GET("patients/{id}/wishes/open-in-progress")
+    suspend fun getWishInOpenAndInProgressStatus(): Response<List<Wish>>
+
+    /**Создание пациента*/
+    @POST("patients")
+    suspend fun savePatient(@Body patientItem: Patient): Response<Patient>
+
+    /**Изменение пациента*/
+    @PUT("patients/{id}")
+    suspend fun editPatient(@Body patientItem: Patient): Response<Patient>
 }

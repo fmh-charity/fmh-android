@@ -5,22 +5,22 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Wish(
-    val id: Int? = null,
-    val patientId: Int,
+    val id: Int,
+    val patientId: Int,//	PatientDtoIdFio
     val title: String,
     val description: String,
     val creatorId: Int,
-    val executorId: Int?,
-    val createDate: Long,
-    val planExecuteDate: Long,
-    val factExecuteDate: Long,
-    val status: Status
+    val executorId: Int,    //UserDtoIdFio
+    val createDate: Int,
+    val planExecuteDate: Int,
+    val factExecuteDate: Int,
+    val status: String,
+    val room: Int, //	RoomDtoRs
+    val wishVisibility: Int
 ) : Parcelable {
 
     enum class Status {
-        OPEN,
-        AT_WORK,
-        CLOSED,
-        EXECUTED
+        IN_PROGRESS, CANCELLED, OPEN, EXECUTED
     }
 }
+

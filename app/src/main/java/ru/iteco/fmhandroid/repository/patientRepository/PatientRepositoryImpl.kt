@@ -1,23 +1,23 @@
 package ru.iteco.fmhandroid.repository.patientRepository
 
 import ru.iteco.fmhandroid.api.PatientApi
+import ru.iteco.fmhandroid.dao.PatientDao
 import ru.iteco.fmhandroid.dto.Patient
 import ru.iteco.fmhandroid.dto.Wish
+import ru.iteco.fmhandroid.entity.toEntity
 import ru.iteco.fmhandroid.utils.Utils
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class PatientRepositoryImpl @Inject constructor(private val patientApi: PatientApi
+class PatientRepositoryImpl @Inject constructor(
+    private val patientApi: PatientApi,
+    private val patientDao:PatientDao
 ) : PatientRepository {
-
 
     /**для получения списка всех пациентов*/
     override var patientList: List<Patient> = emptyList()
         private set
-
-    /**временная переменная для получения пациента по Id*/
-
 
     override var currentPatient: Patient = Utils.Empty.emptyPatient
         private set
@@ -29,8 +29,7 @@ class PatientRepositoryImpl @Inject constructor(private val patientApi: PatientA
         request = { patientApi.createNewPatient(patient) },
         onSuccess = { body ->
             body.also {
-                //TODO нужно ли сохранять локально?
-                //patientList = listOf(it)
+                patientDao.insertPatient(body.toEntity())
             }
             body
         }
@@ -39,8 +38,8 @@ class PatientRepositoryImpl @Inject constructor(private val patientApi: PatientA
     /** редактирование пациента **/
     override suspend fun editPatient(patient: Patient): Patient = Utils.makeRequest(
         request = { patientApi.editPatient(patient) },
-        onSuccess = { body ->
-           //TODO
+        onSuccess = {body ->
+            patientDao.insertPatient(body.toEntity())
             body
         }
     )
@@ -50,20 +49,14 @@ class PatientRepositoryImpl @Inject constructor(private val patientApi: PatientA
     request = { patientApi.getAllPatients() },
     onSuccess = { body ->
         body.also {
-            patientList = it.toList()
+            patientDao.getAllPatients()
         }
         body
     }
     )
 
     /**Возвращает общую информацию по пациенту*/
-    override suspend fun getPatientById(id: Int):Patient = Utils.makeRequest(
-    request = { patientApi.getPatientById(id) },
-    onSuccess = { body ->
-        //TODO делать заглушку?
-        body
-    }
-    )
+    override suspend fun getPatientById(id: Int):Patient = patientDao.getPatientById(id)
 
     /**Возврорщает ифнормацию по всем просьбам пациента*/
     override suspend fun getAllWishForPatient(id: Int): List<Wish> = Utils.makeRequest(

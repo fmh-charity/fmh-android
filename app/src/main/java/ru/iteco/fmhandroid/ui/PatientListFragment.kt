@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.PopupMenu
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -95,7 +96,7 @@ class PatientListFragment : Fragment(R.layout.fragment_list_patient) {
 
         /** кнопка создания пациента **/
         binding.containerListPatientInclude.createNewPatientMaterialButton.setOnClickListener {
-          findNavController().navigate(R.id.action_patientListFragment_to_createPatientFragment)
+            findNavController().navigate(R.id.action_patientListFragment_to_createPatientFragment)
         }
         /** кнопка для фильтра пациента **/
         binding.containerListPatientInclude.filtersMaterialButton.setOnClickListener {
@@ -104,11 +105,24 @@ class PatientListFragment : Fragment(R.layout.fragment_list_patient) {
         }
         /** передача данных В RV **/
         binding.containerListPatientInclude.patientListRecyclerView.adapter = adapter
-        }
+
+        /** поиск **/
+        binding.containerListPatientInclude.searchPatient.setOnQueryTextListener(object :
+            SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean = true
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+
+
+                return true
+            }
+        })
+        binding.containerListPatientInclude.patientListRecyclerView.adapter = adapter
+
+         }
     }
 
-//TODO где проверять и какие свойства ????
-//        if(user.admin == true && user.){}
+
 /**СЦЕНАРИЙ 2.1. Просмотр списка пациентов
  * Открыть список пациентов с просмотром ключевой информации о нем
  * Пользователи: Пользователи с ролями «Администратор» и «Медицинский работник»

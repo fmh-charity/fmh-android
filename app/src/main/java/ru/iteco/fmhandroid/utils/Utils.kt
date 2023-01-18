@@ -45,7 +45,7 @@ object Utils {
             dateOut = "",
             dateInBoolean = false,
             dateOutBoolean = false,
-            roomId = 1
+            room = 0
         )
     }
 

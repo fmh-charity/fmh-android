@@ -18,11 +18,9 @@ class OpenPatientFragment : Fragment(R.layout.fragment_open_patient) {
     private lateinit var binding: FragmentOpenPatientBinding
     private val authViewModel: AuthViewModel by viewModels()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -125,7 +123,7 @@ class OpenPatientFragment : Fragment(R.layout.fragment_open_patient) {
         binding.dateFromTextView.text = fullPatient.patient.dateIn.toString()
         binding.dateToTextView.text = fullPatient.patient.dateOut.toString()
         binding.statusLabelTextView.text = fullPatient.patient.status.toString()
-        binding.patientRoomTextView.text = fullPatient.patient.roomId.toString()
+        binding.patientRoomTextView.text = fullPatient.patient.room.toString()
 
     }
 

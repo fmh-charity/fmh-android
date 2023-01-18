@@ -26,4 +26,7 @@ object DaoModule {
 
     @Provides
     fun provideWishDao(db: AppDb): WishDao = db.getWishDao()
+
+    @Provides
+    fun providePatientDao(db: AppDb): PatientDao = db.getPatientDao()
 }

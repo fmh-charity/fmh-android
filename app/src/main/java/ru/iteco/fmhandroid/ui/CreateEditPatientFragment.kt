@@ -20,7 +20,6 @@ import ru.iteco.fmhandroid.databinding.FragmentCreateEditPatientBinding
 import ru.iteco.fmhandroid.dto.Patient
 import ru.iteco.fmhandroid.utils.Utils
 import ru.iteco.fmhandroid.viewmodel.PatientViewModel
-import java.time.LocalDateTime
 import java.util.*
 
 @AndroidEntryPoint
@@ -168,7 +167,7 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
                     dateInBoolean = true,
                     dateOutBoolean = true,
                     status = patient.status,
-                    roomId = 0
+                    room = 0
                 )
                 viewModel.edit(patient)
             } else {
@@ -177,13 +176,13 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
                     firstName = firstNameTextInputEditText.text.toString().trim(),
                     lastName = lastNameTextInputEditText.text.toString().trim(),
                     middleName = middleNameTextInputEditText.text.toString().trim(),
-                    birthDate = vDateBirth.toString(),
+                    birthDate = "2023-01-18",
                     dateIn = "",
                     dateOut = "",
                     dateInBoolean = true,
                     dateOutBoolean = true,
-                    status = statusChoice.toString(),
-                    roomId = 0
+                    status = Patient.Status.DISCHARGED.toString(),
+                    room = 0
                 )
                 viewModel.createNewPatient(createNewPatient)
             }

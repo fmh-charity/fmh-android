@@ -59,9 +59,12 @@ class PatientViewModel @Inject constructor(private val patientRepository: Patien
             Patient.Status.DISCHARGED
         )
 
-    /** **/
-   override fun onCard(patient: Patient) {
+    override fun onCard(fullPatient: FullPatient) {
         TODO("Not yet implemented")
     }
+
+    /** **/
+
+
 }
 

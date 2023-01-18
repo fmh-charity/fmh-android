@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/claim_list_card"
+    android:id="@+id/patient_list_cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="12dp"
@@ -82,7 +82,7 @@
             android:text="@string/status"
             android:textAlignment="viewStart"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/claim_middle_divider_image_view" />
+            app:layout_constraintTop_toBottomOf="@id/patient_middle_divider_image_view" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/status_text_view"
@@ -96,7 +96,7 @@
 
 
         <ImageView
-            android:id="@+id/claim_middle_divider_image_view"
+            android:id="@+id/patient_middle_divider_image_view"
             android:layout_width="0dp"
             android:layout_height="@dimen/line_divider_height"
             android:layout_marginTop="@dimen/padding_between_elements"

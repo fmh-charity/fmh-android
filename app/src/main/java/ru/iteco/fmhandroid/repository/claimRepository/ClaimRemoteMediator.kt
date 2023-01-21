@@ -12,9 +12,12 @@ import ru.iteco.fmhandroid.entity.ClaimEntity
 import ru.iteco.fmhandroid.entity.ClaimKeyEntity
 import ru.iteco.fmhandroid.entity.toEntity
 import ru.iteco.fmhandroid.exceptions.ApiException
+import javax.inject.Inject
+import javax.inject.Singleton
 
 @OptIn(ExperimentalPagingApi::class)
-class ClaimRemoteMediator(
+@Singleton
+class ClaimRemoteMediator @Inject constructor(
     private val service: ClaimApi,
     private val db: AppDb,
     private val claimDao: ClaimDao,
@@ -27,35 +30,28 @@ class ClaimRemoteMediator(
     ): MediatorResult {
         try {
             val response = when (loadType) {
-                LoadType.REFRESH -> {
-                    val id: Int? = claimKeyDao.max()
-
-                    if (id != null) {
-                        service.getAllClaims(true, id, state.config.initialLoadSize)
-                    } else {
-                        service.getAllClaims(true, state.config.initialLoadSize)
-                    }
-                }
+                LoadType.REFRESH -> service.getAllClaims(state.config.initialLoadSize)
                 LoadType.PREPEND -> {
                     val id = claimKeyDao.max() ?: return MediatorResult.Success(
-                        endOfPaginationReached = true
+                        endOfPaginationReached = false
                     )
-                    service.getAllClaims(true, id, state.config.pageSize)
+                    service.getAllClaims(id, state.config.pageSize)
                 }
                 LoadType.APPEND -> {
                     val id = claimKeyDao.min() ?: return MediatorResult.Success(
                         endOfPaginationReached = false
                     )
-
-                   /*  НУЖНО УТОЧНИТЬ НАСЧЕТ getAllClaims  */
-
-                    service.getAllClaims(true, id, state.config.pageSize)
+                    service.getAllClaims(id, state.config.pageSize)
                 }
             }
+
             if (!response.isSuccessful) {
                 throw ApiException(response.code(), response.message())
             }
-            val body = response.body() ?: throw ApiException(response.code(), response.message())
+            val body = response.body() ?: throw ApiException(
+                response.code(),
+                response.message(),
+            )
 
             db.withTransaction {
                 when (loadType) {
@@ -65,11 +61,11 @@ class ClaimRemoteMediator(
                             listOf(
                                 ClaimKeyEntity(
                                     type = ClaimKey.Status.AFTER,
-                                    page = body.claimList.first().id,
+                                    page = body.elements.first().id,
                                 ),
                                 ClaimKeyEntity(
                                     type = ClaimKey.Status.BEFORE,
-                                    page = body.claimList.last().id,
+                                    page = body.elements.last().id,
                                 ),
                             )
                         )
@@ -79,7 +75,7 @@ class ClaimRemoteMediator(
                         claimKeyDao.insert(
                             ClaimKeyEntity(
                                 type = ClaimKey.Status.AFTER,
-                                page = body.claimList.first().id
+                                page = body.elements.first().id,
                             )
                         )
                     }
@@ -87,14 +83,14 @@ class ClaimRemoteMediator(
                         claimKeyDao.insert(
                             ClaimKeyEntity(
                                 type = ClaimKey.Status.BEFORE,
-                                page = body.claimList.last().id
+                                page = body.elements.last().id,
                             )
                         )
                     }
                 }
-                claimDao.insertClaim(body.claimList.toEntity())
+                claimDao.insertClaim(body.elements.toEntity())
             }
-            return MediatorResult.Success(endOfPaginationReached = body.claimList.isEmpty())
+            return MediatorResult.Success(endOfPaginationReached = body.elements.isEmpty())
         } catch (e: Exception) {
             return MediatorResult.Error(e)
         }

@@ -1,6 +1,6 @@
 package ru.iteco.fmhandroid.dto
 
 data class ClaimResponseDto(
-    val claimList: List<Claim>,
-    val page: Int
+    val pages: Int,
+    val elements: List<Claim>,
 )

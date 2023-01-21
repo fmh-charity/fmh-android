@@ -35,7 +35,7 @@ class ClaimRepositoryImpl @Inject constructor(
         coroutineScope: CoroutineScope,
         listStatuses: List<Claim.Status>
     ): Flow<PagingData<Claim>> = Pager(
-        config = PagingConfig(pageSize = 10),
+        config = PagingConfig(pageSize = 20),
         remoteMediator = ClaimRemoteMediator(claimApi, db, claimDao, claimKeyDao),
         pagingSourceFactory = claimDao::pagingSource
 
@@ -47,13 +47,13 @@ class ClaimRepositoryImpl @Inject constructor(
         request = { claimApi.getAllClaims() },
         onSuccess = { body ->
             val apiId = body
-                .claimList.map { it.id }
+                .elements.map { it.id }
             val databaseId = claimDao.getAllClaims()
                 .map { it.claim.id }
                 .toMutableList()
             databaseId.removeAll(apiId)
             claimDao.removeClaimsItemsByIdList(databaseId)
-            claimDao.insertClaim(body.claimList.toEntity())
+            claimDao.insertClaim(body.elements.toEntity())
         }
     )
 

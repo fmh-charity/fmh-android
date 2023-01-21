@@ -40,7 +40,7 @@ class NewsViewModel @Inject constructor(
         get() = userRepository.currentUser
 
     @ExperimentalCoroutinesApi
-    val data: Flow<PagingData<NewsViewData>> by lazy {
+    val data: Flow<List<NewsViewData>> by lazy {
         filterFlow.flatMapLatest { filter ->
             newsRepository.getAllNews(
                 viewModelScope,

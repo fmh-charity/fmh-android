@@ -42,9 +42,13 @@ class NewsControlPanelViewModel @Inject constructor(
     val removeNewsItemExceptionEvent = MutableSharedFlow<Unit>()
 
     @FlowPreview
-    val data: Flow<PagingData<News>> = filterFlow.flatMapMerge { filter ->
+    val data: Flow<List<NewsWithCategory>> = filterFlow.flatMapMerge { filter ->
         newsRepository.getAllNews(
-            viewModelScope
+            viewModelScope,
+            newsCategoryId = filter.newsCategoryId,
+            dateStart = filter.dateStart,
+            dateEnd = filter.dateEnd,
+            status = filter.status
         ).combine(sortDirection) { news, sortDirection ->
             when (sortDirection) {
                 NewsViewModel.SortDirection.ASC -> news

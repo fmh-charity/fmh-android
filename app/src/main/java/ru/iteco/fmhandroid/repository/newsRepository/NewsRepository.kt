@@ -13,6 +13,16 @@ interface NewsRepository {
     suspend fun removeNewsItemById(id: Int)
     fun getAllNewsCategories(): Flow<List<News.Category>>
     suspend fun saveNewsCategories(listNewsCategories: List<News.Category>)
-    fun getAllNews(coroutineScope: CoroutineScope): Flow<PagingData<News>>
+    fun getAllNews(
+        coroutineScope: CoroutineScope,
+        publishEnabled: Boolean? = null,
+        publishDateBefore: Long? = null,
+        newsCategoryId: Int? = null,
+        dateStart: Long? = null,
+        dateEnd: Long? = null,
+        status: Boolean? = null
+    ): Flow<List<NewsWithCategory>>
+
+    val dataPaging: Flow<PagingData<News>>
     suspend fun changeIsOpen(newsItem: News)
 }

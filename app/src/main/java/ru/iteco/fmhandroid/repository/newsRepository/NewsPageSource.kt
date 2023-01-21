@@ -23,7 +23,7 @@ class NewsPageSource(
             val response = service.getAllNews(true, page, pageSize)
 
             return if (response.isSuccessful) {
-                val news = response.body()!!.newsList
+                val news = response.body()!!.elements
                 val nextPageNumber = if (news.isEmpty()) null else page + 1
                 val prevPageNumber = if (page > 1) page - 1 else null
                 LoadResult.Page(news, prevPageNumber, nextPageNumber)

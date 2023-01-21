@@ -28,10 +28,25 @@ class NewsRepositoryImpl @Inject constructor(
     private val newsKeyDao: NewsKeyDao
 ) : NewsRepository {
 
-    @OptIn(ExperimentalPagingApi::class)
     override fun getAllNews(
-        coroutineScope: CoroutineScope
-    ): Flow<PagingData<News>> = Pager(
+        coroutineScope: CoroutineScope,
+        publishEnabled: Boolean?,
+        publishDateBefore: Long?,
+        newsCategoryId: Int?,
+        dateStart: Long?,
+        dateEnd: Long?,
+        status: Boolean?
+    ): Flow<List<NewsWithCategory>> = newsDao.getAllNews(
+        publishEnabled = publishEnabled,
+        publishDateBefore = publishDateBefore,
+        newsCategoryId = newsCategoryId,
+        dateStart = dateStart,
+        dateEnd = dateEnd,
+        status = status
+    ).flowOn(Dispatchers.Default)
+
+    @OptIn(ExperimentalPagingApi::class)
+    override val dataPaging: Flow<PagingData<News>> = Pager(
         config = PagingConfig(pageSize = 10),
         remoteMediator = NewsRemoteMediator(newsApi, db, newsDao, newsKeyDao),
         pagingSourceFactory = newsDao::pagingSource
@@ -47,13 +62,13 @@ class NewsRepositoryImpl @Inject constructor(
         request = { newsApi.getAllNews() },
         onSuccess = { body ->
             val apiId = body
-                .newsList.map { it.id }
+                .elements.map { it.id }
             val databaseId = newsDao.getAllNewsList()
                 .map { it.newsItem.id }
                 .toMutableList()
             databaseId.removeAll(apiId)
             newsDao.removeNewsItemsByIdList(databaseId)
-            newsDao.insert(body.newsList.toEntity())
+            newsDao.insert(body.elements.toEntity())
         }
     )
 

@@ -63,11 +63,11 @@ class NewsRemoteMediator(
                             listOf(
                                 NewsKeyEntity(
                                     type = NewsKey.Status.AFTER,
-                                    page = body.newsList.first().id,
+                                    page = body.elements.first().id,
                                 ),
                                 NewsKeyEntity(
                                     type = NewsKey.Status.BEFORE,
-                                    page = body.newsList.last().id,
+                                    page = body.elements.last().id,
                                 ),
                             )
                         )
@@ -77,7 +77,7 @@ class NewsRemoteMediator(
                         newsKeyDao.insert(
                             NewsKeyEntity(
                                 type = NewsKey.Status.AFTER,
-                                page = body.newsList.first().id
+                                page = body.elements.first().id
                             )
                         )
                     }
@@ -85,14 +85,14 @@ class NewsRemoteMediator(
                         newsKeyDao.insert(
                             NewsKeyEntity(
                                 type = NewsKey.Status.BEFORE,
-                                page = body.newsList.last().id
+                                page = body.elements.last().id
                             )
                         )
                     }
                 }
-                newsDao.insert(body.newsList.toEntity())
+                newsDao.insert(body.elements.toEntity())
             }
-            return MediatorResult.Success(endOfPaginationReached = body.newsList.isEmpty())
+            return MediatorResult.Success(endOfPaginationReached = body.elements.isEmpty())
         } catch (e: Exception) {
             return MediatorResult.Error(e)
         }

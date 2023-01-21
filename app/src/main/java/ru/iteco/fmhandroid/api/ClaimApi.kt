@@ -9,13 +9,15 @@ import ru.iteco.fmhandroid.dto.ClaimResponseDto
 interface ClaimApi {
     @GET("claims")
     suspend fun getAllClaims(
-        @Query("createDate") createDate: Boolean = true,
-        @Query("elements") elements: Int = 8,
         @Query("pages") pages: Int = 0,
+        @Query("elements") elements: Int = 3,
         @Query("status") status: Array<Claim.Status> = arrayOf(
+            Claim.Status.IN_PROGRESS,
+            Claim.Status.CANCELLED,
             Claim.Status.OPEN,
-            Claim.Status.IN_PROGRESS
-        )
+            Claim.Status.EXECUTED,
+        ),
+        @Query("createDate") createDate: Boolean = true,
     ): Response<ClaimResponseDto>
 
     @GET("claims/open-in-progress")

@@ -60,7 +60,16 @@ class PatientViewModel @Inject constructor(private val patientRepository: Patien
         )
 
     override fun onCard(fullPatient: FullPatient) {
-        TODO("Not yet implemented")
+        viewModelScope.launch {
+            try {
+                fullPatient.patient.id?.let { patientRepository.getPatientById(it) }
+              //emit(Unit)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                //.emit(Unit)
+            }
+            //openClaimEvent.emit(fullClaim)
+        }
     }
 
     /** **/

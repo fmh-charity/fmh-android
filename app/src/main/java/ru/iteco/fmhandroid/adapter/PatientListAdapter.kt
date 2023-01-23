@@ -14,9 +14,13 @@ interface OnPatientItemClickListener {
     fun onCard(fullPatient: FullPatient)
 }
 
-class PatientListAdapter(private val onPatientItemClickListener: OnPatientItemClickListener) :
-    ListAdapter<FullPatient, PatientListAdapter.PatientViewHolder>(
-        PatientDiffCallBack) {
+class PatientListAdapter(
+
+    private val onPatientItemClickListener: OnPatientItemClickListener
+
+    ):ListAdapter<FullPatient, PatientListAdapter.PatientViewHolder>(
+        PatientDiffCallBack
+    ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PatientViewHolder {
         val binding = ItemPatientBinding.inflate(
@@ -24,7 +28,9 @@ class PatientListAdapter(private val onPatientItemClickListener: OnPatientItemCl
             parent,
             false
         )
-        return PatientViewHolder(binding, onPatientItemClickListener)
+        return PatientViewHolder(
+           binding,
+            onPatientItemClickListener)
     }
 
     override fun onBindViewHolder(holder: PatientViewHolder, position: Int) {
@@ -34,7 +40,7 @@ class PatientListAdapter(private val onPatientItemClickListener: OnPatientItemCl
 
     class PatientViewHolder(
         private val binding: ItemPatientBinding,
-        private val OnPatientItemClickListener: OnPatientItemClickListener
+        private val listener: OnPatientItemClickListener
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(fullPatient: FullPatient) {
@@ -47,8 +53,8 @@ class PatientListAdapter(private val onPatientItemClickListener: OnPatientItemCl
                 birthDateTextView.text = fullPatient.patient.birthDate
                 statusTextView.text = fullPatient.patient.status
 
-               patientListCardView.setOnClickListener {
-                   OnPatientItemClickListener.onCard(fullPatient)
+                patientListCardView.setOnClickListener {
+                    listener.onCard(fullPatient)
                 }
             }
         }
@@ -56,12 +62,16 @@ class PatientListAdapter(private val onPatientItemClickListener: OnPatientItemCl
 }
 
 private object PatientDiffCallBack : DiffUtil.ItemCallback<FullPatient>() {
-    override fun areItemsTheSame(oldItem: FullPatient, newItem: FullPatient): Boolean {
+    override fun areItemsTheSame(
+        oldItem: FullPatient,
+        newItem: FullPatient): Boolean {
         return oldItem.patient.id == newItem.patient.id
     }
 
     @SuppressLint("DiffUtilEquals")
-    override fun areContentsTheSame(oldItem: FullPatient, newItem: FullPatient): Boolean {
+    override fun areContentsTheSame(
+        oldItem: FullPatient,
+        newItem: FullPatient): Boolean {
         return oldItem == newItem
     }
 }

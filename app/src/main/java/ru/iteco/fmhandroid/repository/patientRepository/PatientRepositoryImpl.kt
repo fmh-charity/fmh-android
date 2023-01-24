@@ -22,15 +22,13 @@ class PatientRepositoryImpl @Inject constructor(
     override var currentPatient: Patient = Utils.Empty.emptyPatient
         private set
 
-    val test = patientList
+    //val test = patientList
 
     /** создание пациента **/
     override suspend fun createNewPatient(patient: Patient): Patient = Utils.makeRequest(
         request = { patientApi.createNewPatient(patient) },
         onSuccess = { body ->
-            body.also {
-                patientDao.insertPatient(body.toEntity())
-            }
+            patientDao.insertPatient(body.toEntity())
             body
         }
     )

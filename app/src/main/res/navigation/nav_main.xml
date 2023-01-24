@@ -302,7 +302,7 @@
         android:label="CreateEditPatientFragment">
         <argument
             android:name="patientItemArg"
-            app:argType="ru.iteco.fmhandroid.dto.Patient"
+            app:argType="ru.iteco.fmhandroid.dto.FullPatient"
             app:nullable="true"
             android:defaultValue="@null" />
     </fragment>

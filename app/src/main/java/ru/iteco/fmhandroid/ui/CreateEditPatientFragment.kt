@@ -32,6 +32,7 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
 
         lifecycleScope.launch {
             viewModel.patientCreateExceptionEvent.collect {
@@ -77,11 +78,11 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
             }
 
             args.patientItemArg?.let { patient ->
-                lastNameTextInputLayout.editText?.setText(patient.lastName)
-                firstNameTitleTextInputLayout.editText?.setText(patient.firstName)
-                middleNameTextInputLayout.editText?.setText(patient.middleName)
-                createBirthDateTextInputLayout.editText?.setText(patient.birthDate)
-                statusDropMenuTextInputLayout.editText?.setText(patient.status)
+                lastNameTextInputLayout.editText?.setText(patient.patient.lastName)
+                firstNameTitleTextInputLayout.editText?.setText(patient.patient.firstName)
+                middleNameTextInputLayout.editText?.setText(patient.patient.middleName)
+                createBirthDateTextInputLayout.editText?.setText(patient.patient.birthDate)
+                statusDropMenuTextInputLayout.editText?.setText(patient.patient.status)
             }
 
             /** кнопки **/
@@ -154,22 +155,22 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
     /** Функция добавления/редактирования пациента **/
     private fun fillPatient() {
         with(binding) {
-            val patient = args.patientItemArg
-            if (patient != null) {
+            val fullPatient = args.patientItemArg
+            if (fullPatient != null) {
                 val editedPatient = Patient(
-                    id = patient.id,
-                    firstName = patient.firstName,
-                    lastName = patient.lastName,
-                    middleName = patient.middleName,
-                    birthDate = patient.birthDate,
-                    dateIn = patient.dateIn,
-                    dateOut = patient.dateOut,
+                    id = fullPatient.patient.id,
+                    firstName = fullPatient.patient.firstName,
+                    lastName = fullPatient.patient.lastName,
+                    middleName = fullPatient.patient.middleName,
+                    birthDate = fullPatient.patient.birthDate,
+                    dateIn = fullPatient.patient.dateIn,
+                    dateOut = fullPatient.patient.dateOut,
                     dateInBoolean = true,
                     dateOutBoolean = true,
-                    status = patient.status,
+                    status = fullPatient.patient.status,
                     room = 0
                 )
-                viewModel.edit(patient)
+                viewModel.edit(editedPatient)
             } else {
                 val createNewPatient = Patient(
                     id = null,
@@ -177,8 +178,8 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
                     lastName = lastNameTextInputEditText.text.toString().trim(),
                     middleName = middleNameTextInputEditText.text.toString().trim(),
                     birthDate = "2023-01-18",
-                    dateIn = "",
-                    dateOut = "",
+                    dateIn = "2023-01-18",
+                    dateOut = "2023-01-18",
                     dateInBoolean = true,
                     dateOutBoolean = true,
                     status = Patient.Status.DISCHARGED.toString(),

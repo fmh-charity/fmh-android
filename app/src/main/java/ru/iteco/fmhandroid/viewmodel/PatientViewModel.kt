@@ -28,8 +28,9 @@ class PatientViewModel @Inject constructor(private val patientRepository: Patien
     fun createNewPatient(patient: Patient) {
         viewModelScope.launch {
             try {
-                patientCreatedEvent.emit(Unit)
+
                 patientRepository.createNewPatient(patient)
+                patientCreatedEvent.emit(Unit)
 
             } catch (e: Exception) {
                 e.printStackTrace()

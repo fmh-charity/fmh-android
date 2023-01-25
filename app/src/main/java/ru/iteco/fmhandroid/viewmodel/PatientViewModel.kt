@@ -6,29 +6,34 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 import ru.iteco.fmhandroid.adapter.OnPatientItemClickListener
-import ru.iteco.fmhandroid.dto.FullPatient
 import ru.iteco.fmhandroid.dto.Patient
 import ru.iteco.fmhandroid.repository.patientRepository.PatientRepository
 import javax.inject.Inject
 
 @HiltViewModel
-class PatientViewModel @Inject constructor(private val patientRepository: PatientRepository
+class PatientViewModel @Inject constructor(
+    private val patientRepository: PatientRepository
 ) : ViewModel(), OnPatientItemClickListener {
 
     /** -- создание пациента -- **/
     val patientCreatedEvent = MutableSharedFlow<Unit>()
+
     /** -- ошибка создание пациента -- **/
     val patientCreateExceptionEvent = MutableSharedFlow<Unit>()
+
     /** -- редактирование пациента -- **/
     val patientEditEvent = MutableSharedFlow<Unit>()
+
     /** -- ошибка редактирования пациента -- **/
     val patientEditExceptionEvent = MutableSharedFlow<Unit>()
+
+    val data: List<Patient>
+        get() = patientRepository.patientList
 
     /** создание пациента **/
     fun createNewPatient(patient: Patient) {
         viewModelScope.launch {
             try {
-
                 patientRepository.createNewPatient(patient)
                 patientCreatedEvent.emit(Unit)
 
@@ -60,21 +65,16 @@ class PatientViewModel @Inject constructor(private val patientRepository: Patien
             Patient.Status.DISCHARGED
         )
 
-    override fun onCard(fullPatient: FullPatient) {
+    override fun onCard(patient: Patient) {
         viewModelScope.launch {
             try {
-                fullPatient.patient.id?.let { patientRepository.getPatientById(it) }
-              //emit(Unit)
+                //TODO эмитить
+                patient.id?.let { patientRepository.getPatientById(it) }
             } catch (e: Exception) {
                 e.printStackTrace()
-                //.emit(Unit)
+
             }
-            //openClaimEvent.emit(fullClaim)
         }
     }
-
-    /** **/
-
-
 }
 

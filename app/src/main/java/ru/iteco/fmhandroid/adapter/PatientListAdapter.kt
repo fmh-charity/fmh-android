@@ -7,18 +7,18 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.iteco.fmhandroid.databinding.ItemPatientBinding
-import ru.iteco.fmhandroid.dto.FullPatient
+import ru.iteco.fmhandroid.dto.Patient
 import ru.iteco.fmhandroid.utils.Utils
 
 interface OnPatientItemClickListener {
-    fun onCard(fullPatient: FullPatient)
+    fun onCard(patient: Patient)
 }
 
 class PatientListAdapter(
 
     private val onPatientItemClickListener: OnPatientItemClickListener
 
-    ):ListAdapter<FullPatient, PatientListAdapter.PatientViewHolder>(
+    ):ListAdapter<Patient, PatientListAdapter.PatientViewHolder>(
         PatientDiffCallBack
     ) {
 
@@ -34,8 +34,8 @@ class PatientListAdapter(
     }
 
     override fun onBindViewHolder(holder: PatientViewHolder, position: Int) {
-        val fullPatient = getItem(position)
-        holder.bind(fullPatient)
+        val patient = getItem(position)
+        holder.bind(patient)
     }
 
     class PatientViewHolder(
@@ -43,35 +43,40 @@ class PatientListAdapter(
         private val listener: OnPatientItemClickListener
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(fullPatient: FullPatient) {
+        fun bind(patient: Patient) {
             with(binding) {
                 nameLabelTextView.text = Utils.generateShortUserNameForPatient(
-                    fullPatient.patient.lastName,
-                    fullPatient.patient.firstName,
-                    fullPatient.patient.middleName
+                    patient.lastName,
+                    patient.firstName,
+                    patient.middleName
                 )
-                birthDateTextView.text = fullPatient.patient.birthDate
-                statusTextView.text = fullPatient.patient.status
-
+                birthDateTextView.text = patient.birthDate
+                statusTextView.text = patient.status
                 patientListCardView.setOnClickListener {
-                    listener.onCard(fullPatient)
+                    listener.onCard(patient)
                 }
             }
         }
     }
+//    fun updateMusicList(patientList : List<Patient>){
+//        musicList = ArrayList()
+//        musicList.addAll(searchList)
+//
+//        notifyDataSetChanged()
+//    }
 }
 
-private object PatientDiffCallBack : DiffUtil.ItemCallback<FullPatient>() {
+private object PatientDiffCallBack : DiffUtil.ItemCallback<Patient>() {
     override fun areItemsTheSame(
-        oldItem: FullPatient,
-        newItem: FullPatient): Boolean {
-        return oldItem.patient.id == newItem.patient.id
+        oldItem: Patient,
+        newItem: Patient): Boolean {
+        return oldItem.id == newItem.id
     }
 
     @SuppressLint("DiffUtilEquals")
     override fun areContentsTheSame(
-        oldItem: FullPatient,
-        newItem: FullPatient): Boolean {
+        oldItem: Patient,
+        newItem: Patient): Boolean {
         return oldItem == newItem
     }
 }

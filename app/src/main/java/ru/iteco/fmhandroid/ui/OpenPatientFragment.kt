@@ -115,16 +115,14 @@ class OpenPatientFragment : Fragment(R.layout.fragment_open_patient) {
             Patient.Status.DISCHARGED -> getString(R.string.status_patient_discharged)
         }
 
-    private fun renderingContentOfClaim(fullPatient: FullPatient) {
-        binding.lastNameTextView.text = fullPatient.patient.lastName
-        binding.firstNameTextView.text = fullPatient.patient.firstName
-        binding.middleNameTextView.text = fullPatient.patient.middleName
-        binding.birthDateTextView.text = fullPatient.patient.birthDate.toString()
-        binding.dateFromTextView.text = fullPatient.patient.dateIn.toString()
-        binding.dateToTextView.text = fullPatient.patient.dateOut.toString()
-        binding.statusLabelTextView.text = fullPatient.patient.status.toString()
-        binding.patientRoomTextView.text = fullPatient.patient.room.toString()
-
+    private fun renderingContentOfClaim(patient: Patient) {
+        binding.lastNameTextView.text = patient.lastName
+        binding.firstNameTextView.text = patient.firstName
+        binding.middleNameTextView.text = patient.middleName
+        binding.birthDateTextView.text = patient.birthDate.toString()
+        binding.dateFromTextView.text = patient.dateIn.toString()
+        binding.dateToTextView.text = patient.dateOut.toString()
+        binding.statusLabelTextView.text = patient.status.toString()
+        binding.patientRoomTextView.text = patient.room.toString()
     }
-
 }

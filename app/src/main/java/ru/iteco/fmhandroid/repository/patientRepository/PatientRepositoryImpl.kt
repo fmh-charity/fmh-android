@@ -1,18 +1,15 @@
 package ru.iteco.fmhandroid.repository.patientRepository
 
 import ru.iteco.fmhandroid.api.PatientApi
-import ru.iteco.fmhandroid.dao.PatientDao
 import ru.iteco.fmhandroid.dto.Patient
 import ru.iteco.fmhandroid.dto.Wish
-import ru.iteco.fmhandroid.entity.toEntity
 import ru.iteco.fmhandroid.utils.Utils
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class PatientRepositoryImpl @Inject constructor(
-    private val patientApi: PatientApi,
-    private val patientDao:PatientDao
+    private val patientApi: PatientApi
 ) : PatientRepository {
 
     /**для получения списка всех пациентов*/
@@ -28,16 +25,19 @@ class PatientRepositoryImpl @Inject constructor(
     override suspend fun createNewPatient(patient: Patient): Patient = Utils.makeRequest(
         request = { patientApi.createNewPatient(patient) },
         onSuccess = { body ->
-            patientDao.insertPatient(body.toEntity())
+            body.also {
+                patientList = listOf(it)
+
+            }
             body
         }
-    )
+            )
 
     /** редактирование пациента **/
     override suspend fun editPatient(patient: Patient): Patient = Utils.makeRequest(
         request = { patientApi.editPatient(patient) },
         onSuccess = {body ->
-            patientDao.insertPatient(body.toEntity())
+
             body
         }
     )
@@ -47,14 +47,16 @@ class PatientRepositoryImpl @Inject constructor(
     request = { patientApi.getAllPatients() },
     onSuccess = { body ->
         body.also {
-            patientDao.getAllPatients()
+
         }
         body
     }
     )
-
     /**Возвращает общую информацию по пациенту*/
-    override suspend fun getPatientById(id: Int):Patient = patientDao.getPatientById(id)
+    override suspend fun getPatientById(id: Int): Patient {
+        TODO("Not yet implemented")
+    }
+
 
     /**Возврорщает ифнормацию по всем просьбам пациента*/
     override suspend fun getAllWishForPatient(id: Int): List<Wish> = Utils.makeRequest(

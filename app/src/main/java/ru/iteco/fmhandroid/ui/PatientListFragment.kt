@@ -93,6 +93,7 @@ class PatientListFragment : Fragment(R.layout.fragment_list_patient) {
         }
         /** ---------------------------------------------------------------------------- **/
         val adapter = PatientListAdapter(viewModel)
+        adapter.submitList(viewModel.data)
 
         /** кнопка создания пациента **/
         binding.containerListPatientInclude.createNewPatientMaterialButton.setOnClickListener {

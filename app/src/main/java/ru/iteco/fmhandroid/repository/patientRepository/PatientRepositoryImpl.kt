@@ -4,6 +4,7 @@ import ru.iteco.fmhandroid.api.PatientApi
 import ru.iteco.fmhandroid.dto.Patient
 import ru.iteco.fmhandroid.dto.Wish
 import ru.iteco.fmhandroid.utils.Utils
+import ru.iteco.fmhandroid.utils.Utils.makeRequest
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -22,7 +23,7 @@ class PatientRepositoryImpl @Inject constructor(
     //val test = patientList
 
     /** создание пациента **/
-    override suspend fun createNewPatient(patient: Patient): Patient = Utils.makeRequest(
+    override suspend fun createNewPatient(patient: Patient): Patient = makeRequest(
         request = { patientApi.createNewPatient(patient) },
         onSuccess = { body ->
             body.also {
@@ -34,7 +35,7 @@ class PatientRepositoryImpl @Inject constructor(
             )
 
     /** редактирование пациента **/
-    override suspend fun editPatient(patient: Patient): Patient = Utils.makeRequest(
+    override suspend fun editPatient(patient: Patient): Patient = makeRequest(
         request = { patientApi.editPatient(patient) },
         onSuccess = {body ->
 
@@ -43,7 +44,7 @@ class PatientRepositoryImpl @Inject constructor(
     )
 
     /**Реестр всех пациентов*/
-    override suspend fun getAllPatients(): List<Patient> =  Utils.makeRequest(
+    override suspend fun getAllPatients(): List<Patient> =  makeRequest(
     request = { patientApi.getAllPatients() },
     onSuccess = { body ->
         body.also {
@@ -53,13 +54,20 @@ class PatientRepositoryImpl @Inject constructor(
     }
     )
     /**Возвращает общую информацию по пациенту*/
-    override suspend fun getPatientById(id: Int): Patient {
-        TODO("Not yet implemented")
-    }
+    override suspend fun getPatientById(id: Int): Patient = makeRequest(
+            request = { patientApi.getPatientById(id) },
+            onSuccess = { body ->
+                body.also {
+                    currentPatient = body
+                }
+                body
+            }
+        )
+
 
 
     /**Возврорщает ифнормацию по всем просьбам пациента*/
-    override suspend fun getAllWishForPatient(id: Int): List<Wish> = Utils.makeRequest(
+    override suspend fun getAllWishForPatient(id: Int): List<Wish> = makeRequest(
         request = { patientApi.getAllWishForPatient(id)},
         onSuccess = { body ->
             //TODO сохраняю в список? Как передавать и очищать? Сделать companion object в фрагменте и там очищать?

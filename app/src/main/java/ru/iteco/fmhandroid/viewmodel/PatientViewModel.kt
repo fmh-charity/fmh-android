@@ -27,8 +27,24 @@ class PatientViewModel @Inject constructor(
     /** -- ошибка редактирования пациента -- **/
     val patientEditExceptionEvent = MutableSharedFlow<Unit>()
 
+    val patientListUpdatedEvent = MutableSharedFlow<Unit>()
+    val patientListUpdatedExceptionEvent = MutableSharedFlow<Unit>()
+
     val data: List<Patient>
         get() = patientRepository.patientList
+
+    fun refreshPatients() {
+        viewModelScope.launch {
+            try {
+                patientRepository.getAllPatients()
+                patientListUpdatedEvent.emit(Unit)
+            }
+            catch (e: Exception) {
+                e.printStackTrace()
+                patientListUpdatedExceptionEvent.emit(Unit)
+            }
+        }
+    }
 
     /** создание пациента **/
     fun createNewPatient(patient: Patient) {

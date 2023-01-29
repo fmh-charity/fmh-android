@@ -25,6 +25,9 @@ class PatientListFragment : Fragment(R.layout.fragment_list_patient) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+
+        viewModel.refreshPatients()
+
         return super.onCreate(savedInstanceState)
    }
 
@@ -113,13 +116,10 @@ class PatientListFragment : Fragment(R.layout.fragment_list_patient) {
             override fun onQueryTextSubmit(query: String?): Boolean = true
 
             override fun onQueryTextChange(newText: String?): Boolean {
-
-
                 return true
             }
         })
         binding.containerListPatientInclude.patientListRecyclerView.adapter = adapter
-
          }
     }
 

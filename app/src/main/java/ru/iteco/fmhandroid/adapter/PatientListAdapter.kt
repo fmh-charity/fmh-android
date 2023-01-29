@@ -15,12 +15,10 @@ interface OnPatientItemClickListener {
 }
 
 class PatientListAdapter(
-
     private val onPatientItemClickListener: OnPatientItemClickListener
-
-    ):ListAdapter<Patient, PatientListAdapter.PatientViewHolder>(
-        PatientDiffCallBack
-    ) {
+) : ListAdapter<Patient, PatientListAdapter.PatientViewHolder>(
+    PatientDiffCallBack
+) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PatientViewHolder {
         val binding = ItemPatientBinding.inflate(
@@ -29,8 +27,9 @@ class PatientListAdapter(
             false
         )
         return PatientViewHolder(
-           binding,
-            onPatientItemClickListener)
+            binding,
+            onPatientItemClickListener
+        )
     }
 
     override fun onBindViewHolder(holder: PatientViewHolder, position: Int) {
@@ -58,25 +57,21 @@ class PatientListAdapter(
             }
         }
     }
-//    fun updateMusicList(patientList : List<Patient>){
-//        musicList = ArrayList()
-//        musicList.addAll(searchList)
-//
-//        notifyDataSetChanged()
-//    }
 }
 
 private object PatientDiffCallBack : DiffUtil.ItemCallback<Patient>() {
     override fun areItemsTheSame(
         oldItem: Patient,
-        newItem: Patient): Boolean {
+        newItem: Patient
+    ): Boolean {
         return oldItem.id == newItem.id
     }
 
     @SuppressLint("DiffUtilEquals")
     override fun areContentsTheSame(
         oldItem: Patient,
-        newItem: Patient): Boolean {
+        newItem: Patient
+    ): Boolean {
         return oldItem == newItem
     }
 }

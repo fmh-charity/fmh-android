@@ -168,7 +168,7 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
                     dateInBoolean = true,
                     dateOutBoolean = true,
                     status = patient.status,
-                    room = 0
+                    room = null
                 )
                 viewModel.edit(editedPatient)
             } else {
@@ -183,7 +183,7 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
                     dateInBoolean = true,
                     dateOutBoolean = true,
                     status = Patient.Status.DISCHARGED.toString(),
-                    room = 0
+                    room = null
                 )
                 viewModel.createNewPatient(createNewPatient)
             }

@@ -25,13 +25,10 @@ class PatientListFragment : Fragment(R.layout.fragment_list_patient) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-
-        viewModel.refreshPatients()
-
         return super.onCreate(savedInstanceState)
-   }
+    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?, ) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentListPatientBinding.bind(view)
@@ -90,13 +87,15 @@ class PatientListFragment : Fragment(R.layout.fragment_list_patient) {
         }
 
         /** пустографки **/
-        binding.apply {
-            containerListPatientInclude.allPatientsTextView.visibility = View.GONE
-            containerListPatientInclude.expandMaterialButton.visibility = View.GONE
-        }
+//        binding.apply {
+//            containerListPatientInclude.allPatientsTextView.visibility = View.GONE
+//            containerListPatientInclude.expandMaterialButton.visibility = View.GONE
+//        }
+
         /** ---------------------------------------------------------------------------- **/
         val adapter = PatientListAdapter(viewModel)
         adapter.submitList(viewModel.data)
+        binding.containerListPatientInclude.patientListRecyclerView.adapter = adapter
 
         /** кнопка создания пациента **/
         binding.containerListPatientInclude.createNewPatientMaterialButton.setOnClickListener {
@@ -107,8 +106,6 @@ class PatientListFragment : Fragment(R.layout.fragment_list_patient) {
             //TODO фильтр перенесут на бэк. Возможно потом нужно удалить
             findNavController().navigate(R.id.action_patientListFragment_to_filterPatientListFragment)
         }
-        /** передача данных В RV **/
-        binding.containerListPatientInclude.patientListRecyclerView.adapter = adapter
 
         /** поиск **/
         binding.containerListPatientInclude.searchPatient.setOnQueryTextListener(object :
@@ -119,9 +116,8 @@ class PatientListFragment : Fragment(R.layout.fragment_list_patient) {
                 return true
             }
         })
-        binding.containerListPatientInclude.patientListRecyclerView.adapter = adapter
-         }
     }
+}
 
 
 /**СЦЕНАРИЙ 2.1. Просмотр списка пациентов
@@ -131,9 +127,6 @@ class PatientListFragment : Fragment(R.layout.fragment_list_patient) {
  * введенная информация согласно сценария 2.2
  * Результат: Открыт список пациентов с информацией о каждом пациенте
  * */
-
-
-
 
 
 /**3.  В экранной форме списка пациентов данные детализированы на следующие атрибуты:

@@ -2,6 +2,7 @@ package ru.iteco.fmhandroid.api
 
 import retrofit2.Response
 import retrofit2.http.*
+import ru.iteco.fmhandroid.dto.Claim
 import ru.iteco.fmhandroid.dto.Patient
 import ru.iteco.fmhandroid.dto.Wish
 
@@ -18,7 +19,13 @@ interface PatientApi {
 
     /**Реестр всех пациентов*/
     @GET("patients")
-    suspend fun getAllPatients(): Response<List<Patient>>
+    suspend fun getAllPatients(
+        @Query("statuses") statuses: Array<Patient.Status> = arrayOf(
+            Patient.Status.ACTIVE,
+            Patient.Status.EXPECTED,
+            Patient.Status.DISCHARGED
+        )
+    ): Response<List<Patient>>
 
     /**Возврорщает ифнормацию по всем просьбам пациента*/
     @GET("patients/{id}/wishes")

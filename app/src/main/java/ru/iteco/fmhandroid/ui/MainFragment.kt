@@ -18,14 +18,12 @@ import ru.iteco.fmhandroid.adapter.ClaimListAdapter
 import ru.iteco.fmhandroid.adapter.NewsListAdapter
 import ru.iteco.fmhandroid.databinding.FragmentMainBinding
 import ru.iteco.fmhandroid.utils.Utils
-import ru.iteco.fmhandroid.viewmodel.AuthViewModel
-import ru.iteco.fmhandroid.viewmodel.ClaimViewModel
-import ru.iteco.fmhandroid.viewmodel.NewsViewModel
-import ru.iteco.fmhandroid.viewmodel.WishViewModel
+import ru.iteco.fmhandroid.viewmodel.*
 
 @AndroidEntryPoint
 class MainFragment : Fragment(R.layout.fragment_main) {
     private lateinit var binding: FragmentMainBinding
+    private val patientViewModel: PatientViewModel by viewModels()
     private val claimViewModel: ClaimViewModel by viewModels()
     private val newsViewModel: NewsViewModel by viewModels()
     private val authViewModel: AuthViewModel by viewModels()
@@ -55,6 +53,12 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         lifecycleScope.launchWhenStarted {
             claimViewModel.claimListUpdatedEvent.collectLatest {
                 newsViewModel.onRefresh()
+            }
+        }
+
+        lifecycleScope.launchWhenStarted {
+            newsViewModel.newsListUpdatedEvent.collectLatest {
+                patientViewModel.refreshPatients()
             }
         }
 

@@ -15,7 +15,7 @@ data class Patient(
     val dateInBoolean: Boolean,
     val dateOutBoolean: Boolean,
     val status: String,
-    val room: Int //RoomDtoRs
+    val room: Room? = null
 ) : Parcelable {
 
     enum class Status {

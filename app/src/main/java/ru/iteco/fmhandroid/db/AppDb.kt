@@ -13,15 +13,18 @@ import ru.iteco.fmhandroid.entity.*
         NewsEntity::class,
         NewsCategoryEntity::class,
         NewsKeyEntity::class,
-        ClaimKeyEntity::class
+        ClaimKeyEntity::class,
+        WishEntity::class,
+        WishCommentEntity::class,
     ],
     version = 1,
     exportSchema = false
 )
 
 @TypeConverters(
-    ClaimClaimStatusConverter::class
+    ClaimClaimStatusConverter::class,
 )
+
 abstract class AppDb : RoomDatabase() {
     abstract fun getClaimDao(): ClaimDao
     abstract fun getClaimCommentDao(): ClaimCommentDao
@@ -29,4 +32,6 @@ abstract class AppDb : RoomDatabase() {
     abstract fun getNewsCategoryDao(): NewsCategoryDao
     abstract fun newsKeyDao(): NewsKeyDao
     abstract fun claimKeyDao(): ClaimKeyDao
+    abstract fun getWishDao(): WishDao
+    abstract fun getWishCommentDao(): WishCommentDao
 }

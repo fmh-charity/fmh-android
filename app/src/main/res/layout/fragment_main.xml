@@ -52,6 +52,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         tools:ignore="DuplicateIncludedIds" />
+
+                    <include
+                        android:id="@+id/container_list_wish_include_on_fragment_main"
+                        layout="@layout/container_list_wish"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:ignore="DuplicateIncludedIds" />
+
                 </LinearLayout>
             </androidx.core.widget.NestedScrollView>
         </RelativeLayout>

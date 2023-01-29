@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bottom_toolbar_background"
+        android:padding="@dimen/padding_between_elements">
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/BottomToolbarTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/wishes"
+            android:padding="@dimen/padding_between_elements"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/info_material_button"
+            style="@style/materialButtonTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/info"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            app:icon="@drawable/ic_info"
+            app:iconGravity="end"
+            app:layout_constraintEnd_toStartOf="@id/filters_material_button"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/filters_material_button"
+            style="@style/materialButtonTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/filter_wish"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            app:icon="@drawable/ic_filters_icon"
+            app:iconGravity="end"
+            app:layout_constraintEnd_toStartOf="@id/create_new_wish_material_button"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/create_new_wish_material_button"
+            style="@style/materialButtonTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/add_wish"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            app:icon="@drawable/ic_add"
+            app:iconGravity="end"
+            app:layout_constraintEnd_toStartOf="@id/expand_material_button"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/expand_material_button"
+            style="@style/materialButtonTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:checkable="true"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:visibility="gone"
+            app:icon="@drawable/expand_less_24"
+            app:iconGravity="end"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="DuplicateIncludedIds" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/all_wishes_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/empty_wish_list_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/empty_list_image"
+            app:layout_constraintBottom_toTopOf="@+id/empty_wish_list_text_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/empty_wish_list_text_view"
+            style="@style/EmptyListTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/card_view_padding"
+            android:text="@string/empty_claim_list_text"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@+id/wish_retry_material_button"
+            app:layout_constraintEnd_toEndOf="@id/empty_wish_list_image_view"
+            app:layout_constraintStart_toStartOf="@id/empty_wish_list_image_view"
+            app:layout_constraintTop_toBottomOf="@+id/empty_wish_list_image_view"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/wish_retry_material_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/card_view_padding"
+            android:text="@string/refresh"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/empty_wish_list_image_view"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@id/empty_wish_list_image_view"
+            app:layout_constraintTop_toBottomOf="@+id/empty_wish_list_text_view" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/empty_wish_list_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="empty_wish_list_image_view, empty_wish_list_text_view, wish_retry_material_button" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/app_background_4000x4000">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/wish_list_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="3"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="0dp"
+                tools:listitem="@layout/item_wish" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

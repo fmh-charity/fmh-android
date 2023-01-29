@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/execution_priority_low"
+        android:padding="@dimen/card_view_padding">
+
+        <TextView
+            android:id="@+id/custom_app_bar_title_text_view"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center_horizontal"
+            android:text="@string/create"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/custom_app_bar_sub_title_text_view"
+            style="@style/TopAppBarSubTitle"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="Просьбы"
+            app:layout_constraintEnd_toEndOf="@id/custom_app_bar_title_text_view"
+            app:layout_constraintStart_toStartOf="@id/custom_app_bar_title_text_view"
+            app:layout_constraintTop_toBottomOf="@id/custom_app_bar_title_text_view" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/app_background_image"
+            android:scaleType="centerCrop"
+            android:src="@drawable/app_background_4000x4000" />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/wish_swipe_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <include
+                android:id="@+id/container_wish_include"
+                layout="@layout/container_create_edit_wish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </RelativeLayout>
+</LinearLayout>

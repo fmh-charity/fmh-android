@@ -21,6 +21,7 @@ import ru.iteco.fmhandroid.utils.Utils
 import ru.iteco.fmhandroid.viewmodel.AuthViewModel
 import ru.iteco.fmhandroid.viewmodel.ClaimViewModel
 import ru.iteco.fmhandroid.viewmodel.NewsViewModel
+import ru.iteco.fmhandroid.viewmodel.WishViewModel
 
 @AndroidEntryPoint
 class MainFragment : Fragment(R.layout.fragment_main) {
@@ -44,6 +45,12 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 findNavController().navigate(action)
             }
         }
+
+//        lifecycleScope.launchWhenStarted {
+//            wishViewModel.wishListUpdatedEvent.collectLatest {
+//                wishViewModel.onRefresh()
+//            }
+//        }
 
         lifecycleScope.launchWhenStarted {
             claimViewModel.claimListUpdatedEvent.collectLatest {
@@ -98,6 +105,14 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 }
                 R.id.menu_item_about -> {
                     findNavController().navigate(R.id.action_mainFragment_to_aboutFragment)
+                    true
+                }
+                R.id.menu_item_patient -> {
+                    findNavController().navigate(R.id.action_mainFragment_to_patientListFragment)
+                    true
+                }
+                R.id.menu_item_wish -> {
+                    findNavController().navigate(R.id.action_mainFragment_to_wishListFragment)
                     true
                 }
                 else -> false

@@ -113,4 +113,37 @@
     <string name="terms_of_use_url">https://vhospice.org/#/terms-of-use</string>
     <string name="company_info">© Айтеко, 2022</string>
     <string name="our_mission_title_text">Главное - жить любя</string>
+    <string name="patient">Паицент</string>
+    <string name="date_discharged">Дата выписки</string>
+    <string name="wish">Просьба</string>
+    <string name="patients_room">Комната пациента</string>
+    <string name="date_admission">Дата поступления</string>
+    <string name="status">Статус</string>
+    <string name="birth_date">Дата рождения</string>
+    <string name="midlde_name">Отчество</string>
+    <string name="first_name">Фамилия</string>
+    <string name="last_name">Имя</string>
+    <string name="add_patient">Добавить пациента</string>
+    <string name="list_patients">Список пациентов</string>
+    <string name="filter_patient_list_menu_button">Фильтр пациентов</string>
+    <string name="discharged">Выписан</string>
+    <string name="in_hospice">В хосписе</string>
+    <string name="executes">Выполнен</string>
+    <string name="canceled">Отменен</string>
+    <string name="title">Заголовок</string>
+    <string name="plan_execute_date">Плановая дата</string>
+    <string name="all_patients">Все пациенты</string>
+    <string name="patients">Пациенты</string>
+    <string name="wishes">Просьбы</string>
+    <string name="create">Создание</string>
+    <string name="all_wishes">Все просьбы</string>
+    <string name="empty_wish_list_text">Список просьб</string>
+    <string name="add_wish">Добавить просьбу</string>
+    <string name="info">Информация</string>
+    <string name="patient_data">Данные о пациенте</string>
+    <string name="filter_wish">Фильтр просьб</string>
+    <string name="status_patient_new">Новый</string>
+    <string name="status_patient_in_hospice">В хосписе</string>
+    <string name="status_patient_discharged">Выписан</string>
+
 </resources>

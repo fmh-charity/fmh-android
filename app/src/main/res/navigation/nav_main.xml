@@ -210,6 +210,12 @@
         <action
             android:id="@+id/action_mainFragment_to_our_mission_fragment"
             app:destination="@id/our_mission_fragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_patientListFragment"
+            app:destination="@id/patientListFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_wishListFragment"
+            app:destination="@id/wishListFragment" />
     </fragment>
     <fragment
         android:id="@+id/authFragment"
@@ -261,5 +267,94 @@
             android:id="@+id/action_our_mission_fragment_to_authFragment"
             app:destination="@id/authFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/patientListFragment"
+        android:name="ru.iteco.fmhandroid.ui.PatientListFragment"
+        android:label="fragment_patient_list" >
+        <action
+            android:id="@+id/action_patientListFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_patientListFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_patientListFragment_to_claimListFragment"
+            app:destination="@id/claimListFragment" />
+        <action
+            android:id="@+id/action_patientListFragment_to_newsListFragment"
+            app:destination="@id/newsListFragment" />
+        <action
+            android:id="@+id/action_patientListFragment_to_our_mission_fragment"
+            app:destination="@id/our_mission_fragment" />
+        <action
+            android:id="@+id/action_patientListFragment_to_createPatientFragment"
+            app:destination="@id/createEditPatientFragment" />
+        <action
+            android:id="@+id/action_patientListFragment_to_filterPatientListFragment"
+            app:destination="@id/filterPatientListFragment" />
+        <action
+            android:id="@+id/action_patientListFragment_to_wishListFragment"
+            app:destination="@id/wishListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createEditPatientFragment"
+        android:name="ru.iteco.fmhandroid.ui.CreateEditPatientFragment"
+        android:label="CreateEditPatientFragment">
+        <argument
+            android:name="patientItemArg"
+            app:argType="ru.iteco.fmhandroid.dto.Patient"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+    <fragment
+        android:id="@+id/filterPatientListFragment"
+        android:name="ru.iteco.fmhandroid.ui.FilterPatientsListFragment"
+        android:label="FilterPatientListFragment" />
+    <fragment
+        android:id="@+id/wishListFragment"
+        android:name="ru.iteco.fmhandroid.ui.WishListFragment"
+        android:label="WishListFragment" >
+        <action
+            android:id="@+id/action_wishListFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_wishListFragment_to_patientListFragment"
+            app:destination="@id/patientListFragment" />
+        <action
+            android:id="@+id/action_wishListFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_wishListFragment_to_newsListFragment"
+            app:destination="@id/newsListFragment" />
+        <action
+            android:id="@+id/action_wishListFragment_to_claimListFragment"
+            app:destination="@id/claimListFragment" />
+        <action
+            android:id="@+id/action_wishListFragment_to_our_mission_fragment"
+            app:destination="@id/our_mission_fragment" />
+        <action
+            android:id="@+id/action_wishListFragment_to_createEditWishFragment"
+            app:destination="@id/createEditWishFragment" />
+        <action
+            android:id="@+id/action_wishListFragment_to_filterWishListFragment"
+            app:destination="@id/filterWishListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createEditWishFragment"
+        android:name="ru.iteco.fmhandroid.ui.CreateEditWishFragment"
+        android:label="CreateEditWishFragment" >
+        <action
+            android:id="@+id/action_createEditWishFragment_to_wishListFragment"
+            app:destination="@id/wishListFragment" />
+        <argument
+            android:name="argWish"
+            app:argType="ru.iteco.fmhandroid.dto.FullWish"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+    <fragment
+        android:id="@+id/filterWishListFragment"
+        android:name="ru.iteco.fmhandroid.ui.FilterWishListFragment"
+        android:label="FilterWishListFragment" />
 
 </navigation>

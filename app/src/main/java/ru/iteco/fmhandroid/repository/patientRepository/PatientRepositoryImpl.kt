@@ -75,7 +75,7 @@ class PatientRepositoryImpl @Inject constructor(
     )
 
     /**Возвращает информацию по всем просьбам пациента  со статусом open/in progress*/
-    override suspend fun getWishInOpenAndInProgressStatus(id: Int): List<Wish> = Utils.makeRequest(
+    override suspend fun getWishInOpenAndInProgressStatus(id: Int): List<Wish> = makeRequest(
         request = { patientApi.getWishInOpenAndInProgressStatus(id) },
         onSuccess = { body ->
             //TODO сохраняю в список? Как передавать и очищать? Сделать companion object в фрагменте и там очищать?
@@ -83,11 +83,10 @@ class PatientRepositoryImpl @Inject constructor(
         }
     )
 
-    /**Удаление пациента*/
-    override suspend fun deletePatient(id: Int): Patient = Utils.makeRequest(
+    /**Удаление пациента - оставил на будущее*/
+    override suspend fun deletePatient(id: Int): Patient = makeRequest(
         request = { patientApi.deletePatient(id) },
         onSuccess = { body ->
-            //TODO только запрос с id на сервер?
             body
         }
     )

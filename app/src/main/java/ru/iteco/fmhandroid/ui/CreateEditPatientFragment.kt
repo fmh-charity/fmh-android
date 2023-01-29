@@ -28,7 +28,7 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
     private lateinit var binding: FragmentCreateEditPatientBinding
     private val viewModel: PatientViewModel by viewModels()
     private val args: CreateEditPatientFragmentArgs by navArgs()
-    private var statusChoice: Patient.Status = Patient.Status.DISCHARGED
+    private var statusChoice: Patient.Status = Patient.Status.ACTIVE
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -146,7 +146,7 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH)
             ).apply {
-                this.datePicker.minDate = (System.currentTimeMillis() - 1000)
+                this.datePicker.minDate = (0)
             }.show()
         }
 
@@ -178,11 +178,11 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
                     lastName = lastNameTextInputEditText.text.toString().trim(),
                     middleName = middleNameTextInputEditText.text.toString().trim(),
                     birthDate = "2023-01-18",
-                    dateIn = "2023-01-18",
-                    dateOut = "2023-01-18",
+                    dateIn = "",
+                    dateOut = "",
                     dateInBoolean = true,
                     dateOutBoolean = true,
-                    status = Patient.Status.DISCHARGED.toString(),
+                    status = "",
                     room = null
                 )
                 viewModel.createNewPatient(createNewPatient)

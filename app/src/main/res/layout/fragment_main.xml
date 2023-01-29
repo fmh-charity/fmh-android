@@ -54,8 +54,8 @@
                         tools:ignore="DuplicateIncludedIds" />
 
                     <include
-                        android:id="@+id/container_list_wish_include_on_fragment_main"
-                        layout="@layout/container_list_wish"
+                        android:id="@+id/container_list_patient_include_on_fragment_main"
+                        layout="@layout/container_list_patient"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         tools:ignore="DuplicateIncludedIds" />

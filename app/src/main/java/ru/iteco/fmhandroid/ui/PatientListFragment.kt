@@ -3,7 +3,6 @@ package ru.iteco.fmhandroid.ui
 import android.os.Bundle
 import android.view.View
 import android.widget.PopupMenu
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -13,23 +12,27 @@ import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.adapter.PatientListAdapter
 import ru.iteco.fmhandroid.databinding.FragmentListPatientBinding
 import ru.iteco.fmhandroid.dto.Patient
-import ru.iteco.fmhandroid.repository.userRepository.UserRepository
-import ru.iteco.fmhandroid.repository.userRepository.UserRepositoryImpl
 import ru.iteco.fmhandroid.viewmodel.PatientViewModel
 
 @AndroidEntryPoint
 class PatientListFragment : Fragment(R.layout.fragment_list_patient) {
     private lateinit var binding: FragmentListPatientBinding
     private val viewModel: PatientViewModel by viewModels()
+    private var tempList = emptyList<Patient>()
+    private lateinit var statusChoice: Patient.Status
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+
         return super.onCreate(savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //viewModel.deletePatient(139)
+
+
 
         binding = FragmentListPatientBinding.bind(view)
 
@@ -86,16 +89,10 @@ class PatientListFragment : Fragment(R.layout.fragment_list_patient) {
             authorizationMenu.show()
         }
 
-        /** пустографки **/
-//        binding.apply {
-//            containerListPatientInclude.allPatientsTextView.visibility = View.GONE
-//            containerListPatientInclude.expandMaterialButton.visibility = View.GONE
-//        }
 
-        /** ---------------------------------------------------------------------------- **/
-        val adapter = PatientListAdapter(viewModel)
-        adapter.submitList(viewModel.data)
-        binding.containerListPatientInclude.patientListRecyclerView.adapter = adapter
+
+
+
 
         /** кнопка создания пациента **/
         binding.containerListPatientInclude.createNewPatientMaterialButton.setOnClickListener {
@@ -103,8 +100,7 @@ class PatientListFragment : Fragment(R.layout.fragment_list_patient) {
         }
         /** кнопка для фильтра пациента **/
         binding.containerListPatientInclude.filtersMaterialButton.setOnClickListener {
-            //TODO фильтр перенесут на бэк. Возможно потом нужно удалить
-            findNavController().navigate(R.id.action_patientListFragment_to_filterPatientListFragment)
+             findNavController().navigate(R.id.action_patientListFragment_to_filterPatientListFragment)
         }
 
         /** поиск **/
@@ -116,21 +112,26 @@ class PatientListFragment : Fragment(R.layout.fragment_list_patient) {
                 return true
             }
         })
+
+        /**Система отражает перечень пациентов "В хосписе" (по умолчанию)*/
+
+
+        viewModel.data.forEach { element->
+            if(element.status == Patient.Status.ACTIVE.toString()){
+                tempList.plus(element)
+            }
+        }
+//        for(i in viewModel.data) {
+//         if(i.status == Patient.Status.ACTIVE.toString()){
+//             tempList.plus(i)
+//        }
+//        }
+
+        val adapter = PatientListAdapter(viewModel)
+        adapter.submitList(tempList)
+        binding.containerListPatientInclude.patientListRecyclerView.adapter = adapter
     }
 }
 
 
-/**СЦЕНАРИЙ 2.1. Просмотр списка пациентов
- * Открыть список пациентов с просмотром ключевой информации о нем
- * Пользователи: Пользователи с ролями «Администратор» и «Медицинский работник»
- * Предусловие:Пользователь авторизован в системе. В разделе «Пациенты» присутствуют
- * введенная информация согласно сценария 2.2
- * Результат: Открыт список пациентов с информацией о каждом пациенте
- * */
 
-
-/**3.  В экранной форме списка пациентов данные детализированы на следующие атрибуты:
-ФИО
-Дата рождения
-Cтатус
-4.Система отражает перечень пациентов "В хосписе" (по умолчанию)*/

@@ -92,5 +92,15 @@ class PatientViewModel @Inject constructor(
             }
         }
     }
+
+    fun deletePatient(id: Int) {
+        viewModelScope.launch {
+        try {
+            patientRepository.deletePatient(id)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+}
 }
 

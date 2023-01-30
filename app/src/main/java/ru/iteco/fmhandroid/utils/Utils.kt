@@ -35,7 +35,7 @@ object Utils {
             middleName = "",
         )
         val emptyPatient = Patient(
-            id = 1,
+            id = null,
             firstName = "",
             lastName = "",
             middleName = "",

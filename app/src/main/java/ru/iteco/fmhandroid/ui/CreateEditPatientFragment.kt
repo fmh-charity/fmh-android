@@ -152,7 +152,11 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
 
     }
 
-    /** Функция добавления/редактирования пациента **/
+    /** Функция добавления/редактирования пациента
+     * Статус пациента (admission.status)
+    Если есть фактическая дата выписки, то статус = "Выписан".
+    Если есть фактическая дата поступления и нет фактической даты выписки, то статус = "В хосписе".
+    Если нет фактических дат (ни поступления, ни выписки), то статус = "Новый".**/
     private fun fillPatient() {
         with(binding) {
             val patient = args.patientItemArg
@@ -177,12 +181,12 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
                     firstName = firstNameTextInputEditText.text.toString().trim(),
                     lastName = lastNameTextInputEditText.text.toString().trim(),
                     middleName = middleNameTextInputEditText.text.toString().trim(),
-                    birthDate = "2023-01-18",
+                    birthDate = "сделать утилиту",
                     dateIn = "",
                     dateOut = "",
                     dateInBoolean = true,
                     dateOutBoolean = true,
-                    status = "",
+                    status = Patient.Status.ACTIVE.toString(),
                     room = null
                 )
                 viewModel.createNewPatient(createNewPatient)

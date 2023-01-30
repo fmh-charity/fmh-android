@@ -4,10 +4,14 @@ import android.os.Bundle
 import android.view.View
 import android.widget.PopupMenu
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collectLatest
 import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.adapter.PatientListAdapter
 import ru.iteco.fmhandroid.databinding.FragmentListPatientBinding
@@ -18,7 +22,7 @@ import ru.iteco.fmhandroid.viewmodel.PatientViewModel
 class PatientListFragment : Fragment(R.layout.fragment_list_patient) {
     private lateinit var binding: FragmentListPatientBinding
     private val viewModel: PatientViewModel by viewModels()
-    private var tempList = emptyList<Patient>()
+    private var tempList = ArrayList<Patient>()
     private lateinit var statusChoice: Patient.Status
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -89,11 +93,6 @@ class PatientListFragment : Fragment(R.layout.fragment_list_patient) {
             authorizationMenu.show()
         }
 
-
-
-
-
-
         /** кнопка создания пациента **/
         binding.containerListPatientInclude.createNewPatientMaterialButton.setOnClickListener {
             findNavController().navigate(R.id.action_patientListFragment_to_createPatientFragment)
@@ -114,24 +113,32 @@ class PatientListFragment : Fragment(R.layout.fragment_list_patient) {
         })
 
         /**Система отражает перечень пациентов "В хосписе" (по умолчанию)*/
-
-
         viewModel.data.forEach { element->
             if(element.status == Patient.Status.ACTIVE.toString()){
-                tempList.plus(element)
-            }
+                tempList.addAll(listOf(element))
+            }else  if(element.status == Patient.Status.DISCHARGED.toString()){
+                tempList.addAll(listOf(element))
+            }else if(element.status == Patient.Status.EXPECTED.toString()){
+            tempList.addAll(listOf(element))
+        }else{
+            tempList = viewModel.data as ArrayList<Patient>
         }
-//        for(i in viewModel.data) {
-//         if(i.status == Patient.Status.ACTIVE.toString()){
-//             tempList.plus(i)
-//        }
-//        }
+        }
+//
+        val t = viewModel.data
 
         val adapter = PatientListAdapter(viewModel)
         adapter.submitList(tempList)
         binding.containerListPatientInclude.patientListRecyclerView.adapter = adapter
+
+
+
+        }
     }
-}
+
+
+
+
 
 
 

@@ -35,7 +35,7 @@ class ClaimRepositoryImpl @Inject constructor(
         coroutineScope: CoroutineScope,
         listStatuses: List<Claim.Status>
     ): Flow<PagingData<Claim>> = Pager(
-        config = PagingConfig(pageSize = 20),
+        config = PagingConfig(pageSize = 3),
         remoteMediator = ClaimRemoteMediator(claimApi, db, claimDao, claimKeyDao),
         pagingSourceFactory = claimDao::pagingSource
 

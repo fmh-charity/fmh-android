@@ -6,12 +6,14 @@ import ru.iteco.fmhandroid.api.NewsApi
 import ru.iteco.fmhandroid.dao.NewsDao
 import ru.iteco.fmhandroid.dao.NewsKeyDao
 import ru.iteco.fmhandroid.db.AppDb
+import ru.iteco.fmhandroid.dto.ClaimKey
 import ru.iteco.fmhandroid.dto.NewsKey
 import ru.iteco.fmhandroid.entity.*
 import ru.iteco.fmhandroid.exceptions.ApiException
+import javax.inject.Inject
 
 @OptIn(ExperimentalPagingApi::class)
-class NewsRemoteMediator(
+class NewsRemoteMediator @Inject constructor(
     private val service: NewsApi,
     private val db: AppDb,
     private val newsDao: NewsDao,
@@ -24,41 +26,33 @@ class NewsRemoteMediator(
     ): MediatorResult {
         try {
             val response = when (loadType) {
-                LoadType.REFRESH -> {
-                    val id: Int? = newsKeyDao.max()
-
-                    if (id != null) {
-                        service.getAllNews(true, id, state.config.initialLoadSize)
-                    } else {
-                        service.getAllNews(true, state.config.initialLoadSize)
-                    }
-                }
+                LoadType.REFRESH -> service.getAllNews(state.config.initialLoadSize)
                 LoadType.PREPEND -> {
                     val id = newsKeyDao.max() ?: return MediatorResult.Success(
-                        endOfPaginationReached = true
+                        endOfPaginationReached = false
                     )
-                    service.getAllNews(true, id, state.config.pageSize)
+                    service.getAllNews(id, state.config.pageSize)
                 }
                 LoadType.APPEND -> {
                     val id = newsKeyDao.min() ?: return MediatorResult.Success(
                         endOfPaginationReached = false
                     )
-
-                    /*  НУЖНО УТОЧНИТЬ НАСЧЕТ getAllClaims  */
-
-                    service.getAllNews(true, id, state.config.pageSize)
+                    service.getAllNews(id, state.config.pageSize)
                 }
             }
+
             if (!response.isSuccessful) {
                 throw ApiException(response.code(), response.message())
             }
-            val body = response.body() ?: throw ApiException(response.code(), response.message())
+            val body = response.body() ?: throw ApiException(
+                response.code(),
+                response.message(),
+            )
 
             db.withTransaction {
                 when (loadType) {
                     LoadType.REFRESH -> {
                         newsKeyDao.removeAll()
-
                         newsKeyDao.insert(
                             listOf(
                                 NewsKeyEntity(
@@ -77,7 +71,7 @@ class NewsRemoteMediator(
                         newsKeyDao.insert(
                             NewsKeyEntity(
                                 type = NewsKey.Status.AFTER,
-                                page = body.elements.first().id
+                                page = body.elements.first().id,
                             )
                         )
                     }
@@ -85,7 +79,7 @@ class NewsRemoteMediator(
                         newsKeyDao.insert(
                             NewsKeyEntity(
                                 type = NewsKey.Status.BEFORE,
-                                page = body.elements.last().id
+                                page = body.elements.last().id,
                             )
                         )
                     }

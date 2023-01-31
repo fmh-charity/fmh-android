@@ -47,7 +47,7 @@ class NewsRepositoryImpl @Inject constructor(
 
     @OptIn(ExperimentalPagingApi::class)
     override val dataPaging: Flow<PagingData<News>> = Pager(
-        config = PagingConfig(pageSize = 10),
+        config = PagingConfig(pageSize = 8),
         remoteMediator = NewsRemoteMediator(newsApi, db, newsDao, newsKeyDao),
         pagingSourceFactory = newsDao::pagingSource
     ).flow.map { pagingData ->

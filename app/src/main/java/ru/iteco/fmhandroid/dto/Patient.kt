@@ -14,7 +14,7 @@ data class Patient(
     val dateOut: String,
     val dateInBoolean: Boolean,
     val dateOutBoolean: Boolean,
-    val status: String,
+    var status: String,
     val room: Room? = null
 ) : Parcelable {
 

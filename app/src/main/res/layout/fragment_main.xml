@@ -51,10 +51,11 @@
                         layout="@layout/container_list_claim"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        tools:ignore="DuplicateIncludedIds" />
+                        tools:ignore="DuplicateIncludedIds"
+                        android:layout_marginBottom="30dp"/>
 
                     <include
-                        android:id="@+id/container_list_wish_include_on_fragment_main"
+                        android:id="@+id/container_list_patient_include_on_fragment_main"
                         layout="@layout/container_list_wish"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

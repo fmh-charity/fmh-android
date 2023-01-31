@@ -132,6 +132,29 @@
             app:layout_constraintTop_toTopOf="@id/birth_date_label_material_text_view"
             tools:text="10.04.1946"
         android:singleLine="true" />
+        <ImageView
+            android:id="@+id/patient_bottom_divider_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_divider_height"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="@dimen/padding_between_elements"
+            android:background="@color/half_light_grey"
+            android:contentDescription="@string/line_divider_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.457"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/status_label_material_text_view"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_between_elements"
+            android:src="@drawable/ic_gray_triangle_arrow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/patient_bottom_divider_image_view"
+            tools:ignore="ContentDescription" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,6 +16,7 @@ import kotlinx.coroutines.launch
 import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.adapter.ClaimListAdapter
 import ru.iteco.fmhandroid.adapter.NewsListAdapter
+import ru.iteco.fmhandroid.adapter.PatientListAdapter
 import ru.iteco.fmhandroid.databinding.FragmentMainBinding
 import ru.iteco.fmhandroid.utils.Utils
 import ru.iteco.fmhandroid.viewmodel.*
@@ -32,8 +33,15 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
 
+
+
+        lifecycleScope.launchWhenStarted {
+            patientViewModel.refreshPatients()
+        }
+
         lifecycleScope.launchWhenCreated {
             claimViewModel.onRefresh()
+
         }
 
         lifecycleScope.launchWhenStarted {
@@ -238,7 +246,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             }
         }
     }
-
     private fun showErrorToast(text: Int) {
         Toast.makeText(
             requireContext(),

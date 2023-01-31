@@ -28,7 +28,7 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
     private lateinit var binding: FragmentCreateEditPatientBinding
     private val viewModel: PatientViewModel by viewModels()
     private val args: CreateEditPatientFragmentArgs by navArgs()
-    private var statusChoice: Patient.Status = Patient.Status.DISCHARGED
+    private var statusChoice: Patient.Status = Patient.Status.ACTIVE
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -146,13 +146,17 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH)
             ).apply {
-                this.datePicker.minDate = (System.currentTimeMillis() - 1000)
+                this.datePicker.minDate = (0)
             }.show()
         }
 
     }
 
-    /** Функция добавления/редактирования пациента **/
+    /** Функция добавления/редактирования пациента
+     * Статус пациента (admission.status)
+    Если есть фактическая дата выписки, то статус = "Выписан".
+    Если есть фактическая дата поступления и нет фактической даты выписки, то статус = "В хосписе".
+    Если нет фактических дат (ни поступления, ни выписки), то статус = "Новый".**/
     private fun fillPatient() {
         with(binding) {
             val patient = args.patientItemArg
@@ -177,12 +181,12 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
                     firstName = firstNameTextInputEditText.text.toString().trim(),
                     lastName = lastNameTextInputEditText.text.toString().trim(),
                     middleName = middleNameTextInputEditText.text.toString().trim(),
-                    birthDate = "2023-01-18",
-                    dateIn = "2023-01-18",
-                    dateOut = "2023-01-18",
+                    birthDate = "сделать утилиту",
+                    dateIn = "",
+                    dateOut = "",
                     dateInBoolean = true,
                     dateOutBoolean = true,
-                    status = Patient.Status.DISCHARGED.toString(),
+                    status = Patient.Status.ACTIVE.toString(),
                     room = null
                 )
                 viewModel.createNewPatient(createNewPatient)

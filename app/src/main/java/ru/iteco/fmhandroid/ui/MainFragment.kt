@@ -238,39 +238,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 newsListAdapter.submitList(it.take(3))
             }
         }
-        binding.containerListPatientIncludeOnFragmentMain.apply {
-            searchPatient.visibility = View.GONE
-            filtersMaterialButton.visibility = View.GONE
-            infoMaterialButton.visibility = View.GONE
-            expandMaterialButton.visibility = View.VISIBLE
-
-            expandMaterialButton.setOnClickListener {
-                when (allPatientsTextView.visibility) {
-                    View.GONE -> {
-                        allPatientsTextView.visibility = View.VISIBLE
-                        allPatientsCardsBlockConstraintLayout.visibility = View.VISIBLE
-                        expandMaterialButton.setIconResource(R.drawable.expand_less_24)
-                    }
-                    else -> {
-                        allPatientsTextView.visibility = View.GONE
-                        allPatientsCardsBlockConstraintLayout.visibility = View.GONE
-                        expandMaterialButton.setIconResource(R.drawable.expand_more_24)
-                    }
-                }
-            }
-            allPatientsTextView.setOnClickListener {
-                if (Utils.isOnline(requireContext())) {
-                    findNavController().navigate(R.id.action_mainFragment_to_patientListFragment)
-                } else {
-                    showErrorToast(R.string.error)
-                }
-            }
-        }
-
-       // patientViewModel.refreshPatients()
-        val adapter = PatientListAdapter(patientViewModel)
-        adapter.submitList(patientViewModel.data)
-        binding.containerListPatientIncludeOnFragmentMain.patientListRecyclerView.adapter = adapter
 
         lifecycleScope.launch {
             binding.mainSwipeRefresh.setOnRefreshListener {
@@ -278,11 +245,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 binding.mainSwipeRefresh.isRefreshing = false
             }
         }
-
-
     }
-
-
     private fun showErrorToast(text: Int) {
         Toast.makeText(
             requireContext(),
@@ -290,6 +253,4 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             Toast.LENGTH_LONG
         ).show()
     }
-
-
 }

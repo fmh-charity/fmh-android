@@ -216,6 +216,9 @@
         <action
             android:id="@+id/action_mainFragment_to_wishListFragment"
             app:destination="@id/wishListFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_openPatientFragment"
+            app:destination="@id/openPatientFragment" />
     </fragment>
     <fragment
         android:id="@+id/authFragment"
@@ -295,6 +298,9 @@
         <action
             android:id="@+id/action_patientListFragment_to_wishListFragment"
             app:destination="@id/wishListFragment" />
+        <action
+            android:id="@+id/action_patientListFragment_to_searchPatient"
+            app:destination="@id/searchPatient" />
     </fragment>
     <fragment
         android:id="@+id/createEditPatientFragment"
@@ -356,5 +362,17 @@
         android:id="@+id/filterWishListFragment"
         android:name="ru.iteco.fmhandroid.ui.FilterWishListFragment"
         android:label="FilterWishListFragment" />
+    <fragment
+        android:id="@+id/openPatientFragment"
+        android:name="ru.iteco.fmhandroid.ui.OpenPatientFragment"
+        android:label="OpenPatientFragment" >
+        <argument
+            android:name="argPatient"
+            app:argType="ru.iteco.fmhandroid.dto.Patient" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchPatient"
+        android:name="ru.iteco.fmhandroid.ui.SearchPatient"
+        android:label="SearchPatient" />
 
 </navigation>

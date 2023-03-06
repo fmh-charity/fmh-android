@@ -50,7 +50,7 @@ class PatientListAdapter(
                     patient.middleName
                 )
                 birthDateTextView.text = patient.birthDate
-                statusTextView.text = patient.status
+                statusTextView.text = patient.status.toString()
                 patientListCardView.setOnClickListener {
                     listener.onCard(patient)
                 }

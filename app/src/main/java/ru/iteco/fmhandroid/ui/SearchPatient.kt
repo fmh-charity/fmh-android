@@ -81,8 +81,8 @@ class SearchPatient: Fragment(R.layout.fragment_search_patients) {
     }
 
     private fun updateLabel(calendar: Calendar) {
-        val formatData = "dd.MM.YYYY"
-        val sdf = SimpleDateFormat(formatData, Locale.UK)
+        val formatData = "yyyy-MM-dd"
+        val sdf = SimpleDateFormat(formatData, Locale.getDefault())
         tvDataPicker.setText(sdf.format(calendar.time))
         dataString = sdf.format(calendar.time)
     }

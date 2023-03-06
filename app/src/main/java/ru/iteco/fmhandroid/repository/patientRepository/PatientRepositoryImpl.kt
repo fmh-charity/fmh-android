@@ -41,13 +41,17 @@ class PatientRepositoryImpl @Inject constructor(
     )
 
     /**Реестр всех пациентов*/
-    override suspend fun getAllPatients(): List<Patient> = makeRequest(
+    override suspend fun getAllPatients()= makeRequest(
         request = { patientApi.getAllPatients() },
         onSuccess = { body ->
+
+            val test = body.map { it.id }
             body.also {
-                patientList = body
+
+                patientList = patientList.plus(it)
+
             }
-            body
+           // body
         }
     )
 

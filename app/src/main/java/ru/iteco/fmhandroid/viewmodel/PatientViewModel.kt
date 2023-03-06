@@ -17,18 +17,17 @@ class PatientViewModel @Inject constructor(
 
     /** -- создание пациента -- **/
     val patientCreatedEvent = MutableSharedFlow<Unit>()
-
     /** -- ошибка создание пациента -- **/
     val patientCreateExceptionEvent = MutableSharedFlow<Unit>()
-
     /** -- редактирование пациента -- **/
     val patientEditEvent = MutableSharedFlow<Unit>()
-
     /** -- ошибка редактирования пациента -- **/
     val patientEditExceptionEvent = MutableSharedFlow<Unit>()
-
+    /** -- обновление  пациента -- **/
     val patientListUpdatedEvent = MutableSharedFlow<Unit>()
     val patientListUpdatedExceptionEvent = MutableSharedFlow<Unit>()
+    /** -- октрытие итема -- **/
+    val openPatientEvent = MutableSharedFlow<Patient>()
 
     val data: List<Patient>
         get() = patientRepository.patientList
@@ -38,8 +37,7 @@ class PatientViewModel @Inject constructor(
             try {
                 patientRepository.getAllPatients()
                 patientListUpdatedEvent.emit(Unit)
-            }
-            catch (e: Exception) {
+            } catch (e: Exception) {
                 e.printStackTrace()
                 patientListUpdatedExceptionEvent.emit(Unit)
             }
@@ -84,11 +82,34 @@ class PatientViewModel @Inject constructor(
     override fun onCard(patient: Patient) {
         viewModelScope.launch {
             try {
-                //TODO эмитить
-                patient.id?.let { patientRepository.getPatientById(it) }
+                openPatientEvent.emit(patient)
+                patient.id?.let {
+                    patientRepository.getPatientById(it) }
             } catch (e: Exception) {
                 e.printStackTrace()
+            }
+        }
+    }
 
+
+    fun getPatientById(id: Int){
+        viewModelScope.launch {
+            try {
+                patientRepository.getPatientById(id)
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    /** на будущее*/
+    fun deletePatient(id: Int) {
+        viewModelScope.launch {
+            try {
+                patientRepository.deletePatient(id)
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
         }
     }

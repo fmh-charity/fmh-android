@@ -69,6 +69,12 @@ object Utils {
         editText.setText(simpleDateFormat.format(calendar.time))
     }
 
+    fun updateDateLabelPatient(calendar: Calendar, editText: EditText) {
+        val format = "yyyy-MM-dd"
+        val simpleDateFormat = SimpleDateFormat(format, Locale.getDefault())
+        editText.setText(simpleDateFormat.format(calendar.time))
+    }
+
     fun updateTimeLabel(calendar: Calendar, editText: EditText) {
         val format = "HH:mm"
         val simpleDateFormat = SimpleDateFormat(format, Locale.getDefault())

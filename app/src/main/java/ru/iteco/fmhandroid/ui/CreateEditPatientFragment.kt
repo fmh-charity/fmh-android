@@ -29,9 +29,7 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
     private lateinit var binding: FragmentCreateEditPatientBinding
     private val viewModel: PatientViewModel by viewModels()
     private val args: CreateEditPatientFragmentArgs by navArgs()
-    lateinit var tvDataPicker:TextInputEditText
-    private var dataString =""
-    private var statusChoice: Patient.Status = Patient.Status.ACTIVE
+    private lateinit var statusChoice: Patient.Status
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -131,48 +129,28 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
             }
         }
 
-
-
         /** Календарь **/
-        tvDataPicker = binding.createDateBirthTextInputEditText
         val calendar = Calendar.getInstance()
-        val datePicker =
+        vDateBirth = binding.createDateBirthTextInputEditText
+        val dateBirth =
             DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
                 calendar.set(Calendar.YEAR, year)
                 calendar.set(Calendar.MONTH, month)
                 calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                updateLabel(calendar)
+                Utils.updateDateLabelPatient(calendar, vDateBirth)
             }
-
-        binding.createDateBirthTextInputEditText.setOnClickListener {
+        vDateBirth.setOnClickListener {
             DatePickerDialog(
                 this.requireContext(),
-                datePicker,
+                dateBirth,
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH)
-            ).show()
+            ).apply {
+                this.datePicker.minDate = (0)
+            }.show()
         }
-//        val calendar = Calendar.getInstance()
-//        vDateBirth = binding.createDateBirthTextInputEditText
-//        val dateBirth =
-//            DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-//                calendar.set(Calendar.YEAR, year)
-//                calendar.set(Calendar.MONTH, month)
-//                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-//                Utils.updateDateLabel(calendar, vDateBirth)
-//            }
-//        vDateBirth.setOnClickListener {
-//            DatePickerDialog(
-//                this.requireContext(),
-//                dateBirth,
-//                calendar.get(Calendar.YEAR),
-//                calendar.get(Calendar.MONTH),
-//                calendar.get(Calendar.DAY_OF_MONTH)
-//            ).apply {
-//                this.datePicker.minDate = (0)
-//            }.show()
-//        }
+
     }
 
     /** Функция добавления/редактирования пациента
@@ -204,12 +182,12 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
                     firstName = firstNameTextInputEditText.text.toString().trim(),
                     lastName = lastNameTextInputEditText.text.toString().trim(),
                     middleName = middleNameTextInputEditText.text.toString().trim(),
-                    birthDate = dataString,
+                    birthDate = vDateBirth.text.toString(),
                     dateIn = "",
                     dateOut = "",
                     dateInBoolean = true,
                     dateOutBoolean = true,
-                    status = Patient.Status.ACTIVE.toString(),
+                    status = statusChoice.toString(),
                     room = null
                 )
                 viewModel.createNewPatient(createNewPatient)
@@ -222,12 +200,5 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
             text,
             Toast.LENGTH_LONG
         ).show()
-    }
-
-    private fun updateLabel(calendar: Calendar) {
-        val formatData = "dd.MM.YYYY"
-        val sdf = SimpleDateFormat(formatData, Locale.UK)
-        tvDataPicker.setText(sdf.format(calendar.time))
-        dataString = sdf.format(calendar.time)
     }
 }

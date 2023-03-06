@@ -3,8 +3,6 @@ package ru.iteco.fmhandroid.ui
 import android.os.Bundle
 import android.view.View
 import android.widget.PopupMenu
-import android.widget.Toast
-import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -13,8 +11,6 @@ import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.adapter.PatientListAdapter
 import ru.iteco.fmhandroid.databinding.FragmentListPatientBinding
 import ru.iteco.fmhandroid.dto.Patient
-import ru.iteco.fmhandroid.repository.userRepository.UserRepository
-import ru.iteco.fmhandroid.repository.userRepository.UserRepositoryImpl
 import ru.iteco.fmhandroid.viewmodel.PatientViewModel
 
 @AndroidEntryPoint
@@ -37,6 +33,10 @@ class PatientListFragment : Fragment(R.layout.fragment_list_patient) {
         filterPatient()
         appBarPatient()
         mainMenuPatient()
+
+//        val test = viewModel.getAllPatients()
+//        val testID= viewModel.getPatientById(150)
+//        val test1 = ""
 
         binding.containerListPatientInclude.createNewPatientMaterialButton.setOnClickListener {
             findNavController().navigate(R.id.action_patientListFragment_to_createPatientFragment)
@@ -66,10 +66,10 @@ class PatientListFragment : Fragment(R.layout.fragment_list_patient) {
             startList = "ACTIVE"
         }
         viewModel.data.forEach { element ->
-            if (element.status.toString() == expected
-                || element.status.toString() == discharged
-                || element.status.toString() == active
-                || element.status.toString() == startList
+            if (element.status == expected
+                || element.status== discharged
+                || element.status == active
+                || element.status== startList
             ) {
                 tempList.add(element)
             }

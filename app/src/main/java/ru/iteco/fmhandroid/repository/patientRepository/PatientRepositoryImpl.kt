@@ -20,9 +20,7 @@ class PatientRepositoryImpl @Inject constructor(
     override var currentPatient: Patient = Utils.Empty.emptyPatient
         private set
 
-    //val test = patientList
 
-    /** создание пациента **/
     override suspend fun createNewPatient(patient: Patient): Patient = makeRequest(
         request = { patientApi.createNewPatient(patient) },
         onSuccess = { body ->
@@ -33,7 +31,7 @@ class PatientRepositoryImpl @Inject constructor(
         }
     )
 
-    /** редактирование пациента **/
+
     override suspend fun editPatient(patient: Patient): Patient = makeRequest(
         request = { patientApi.editPatient(patient) },
         onSuccess = { body ->
@@ -64,7 +62,6 @@ class PatientRepositoryImpl @Inject constructor(
         }
     )
 
-
     /**Возврорщает ифнормацию по всем просьбам пациента*/
     override suspend fun getAllWishForPatient(id: Int): List<Wish> = makeRequest(
         request = { patientApi.getAllWishForPatient(id) },
@@ -75,7 +72,7 @@ class PatientRepositoryImpl @Inject constructor(
     )
 
     /**Возвращает информацию по всем просьбам пациента  со статусом open/in progress*/
-    override suspend fun getWishInOpenAndInProgressStatus(id: Int): List<Wish> = Utils.makeRequest(
+    override suspend fun getWishInOpenAndInProgressStatus(id: Int): List<Wish> = makeRequest(
         request = { patientApi.getWishInOpenAndInProgressStatus(id) },
         onSuccess = { body ->
             //TODO сохраняю в список? Как передавать и очищать? Сделать companion object в фрагменте и там очищать?
@@ -83,14 +80,15 @@ class PatientRepositoryImpl @Inject constructor(
         }
     )
 
-    /**Удаление пациента*/
-    override suspend fun deletePatient(id: Int): Patient = Utils.makeRequest(
+    /**Удаление пациента - оставил на будущее*/
+    override suspend fun deletePatient(id: Int): Patient = makeRequest(
         request = { patientApi.deletePatient(id) },
         onSuccess = { body ->
-            //TODO только запрос с id на сервер?
             body
         }
     )
+
+
 }
 
 

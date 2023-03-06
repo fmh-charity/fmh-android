@@ -21,21 +21,75 @@ import ru.iteco.fmhandroid.viewmodel.PatientViewModel
 class PatientListFragment : Fragment(R.layout.fragment_list_patient) {
     private lateinit var binding: FragmentListPatientBinding
     private val viewModel: PatientViewModel by viewModels()
+    private var tempList = mutableListOf<Patient>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+        return super.onCreate(savedInstanceState)
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel.refreshPatients()
 
-        return super.onCreate(savedInstanceState)
-   }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?, ) {
-        super.onViewCreated(view, savedInstanceState)
-
         binding = FragmentListPatientBinding.bind(view)
+        filterPatient()
+        appBarPatient()
+        mainMenuPatient()
 
+        binding.containerListPatientInclude.createNewPatientMaterialButton.setOnClickListener {
+            findNavController().navigate(R.id.action_patientListFragment_to_createPatientFragment)
+        }
+
+        binding.containerListPatientInclude.filtersMaterialButton.setOnClickListener {
+            findNavController().navigate(R.id.action_patientListFragment_to_filterPatientListFragment)
+        }
+        binding.containerListPatientInclude.searchPatient.setOnClickListener{
+            findNavController().navigate(R.id.action_patientListFragment_to_searchPatient)
+        }
+
+        val adapter = PatientListAdapter(viewModel)
+        adapter.submitList(tempList)
+        binding.containerListPatientInclude.patientListRecyclerView.adapter = adapter
+    }
+
+    private fun filterPatient(){
+        val expected = arguments?.getString("expected")
+        val discharged = arguments?.getString("discharged")
+        val active = arguments?.getString("active")
+        var startList = ""
+        if (expected.isNullOrEmpty()
+            && discharged.isNullOrEmpty()
+            && active.isNullOrEmpty()
+        ) {
+            startList = "ACTIVE"
+        }
+        viewModel.data.forEach { element ->
+            if (element.status.toString() == expected
+                || element.status.toString() == discharged
+                || element.status.toString() == active
+                || element.status.toString() == startList
+            ) {
+                tempList.add(element)
+            }
+        }
+    }
+    private fun appBarPatient(){
+        binding.containerCustomAppBarIncludeOnFragmentListPatient.ourMissionImageButton.setOnClickListener {
+            findNavController().navigate(R.id.action_patientListFragment_to_our_mission_fragment)
+        }
+        val authorizationMenu = PopupMenu(
+            context,
+            binding.containerCustomAppBarIncludeOnFragmentListPatient.authorizationImageButton
+        )
+        authorizationMenu.inflate(R.menu.authorization)
+
+        binding.containerCustomAppBarIncludeOnFragmentListPatient.authorizationImageButton.setOnClickListener {
+            authorizationMenu.show()
+        }
+    }
+    private fun mainMenuPatient(){
         val mainMenu = PopupMenu(
             context,
             binding.containerCustomAppBarIncludeOnFragmentListPatient.mainMenuImageButton
@@ -74,54 +128,8 @@ class PatientListFragment : Fragment(R.layout.fragment_list_patient) {
                 }
             }
         }
-
-        binding.containerCustomAppBarIncludeOnFragmentListPatient.ourMissionImageButton.setOnClickListener {
-            findNavController().navigate(R.id.action_patientListFragment_to_our_mission_fragment)
-        }
-
-        val authorizationMenu = PopupMenu(
-            context,
-            binding.containerCustomAppBarIncludeOnFragmentListPatient.authorizationImageButton
-        )
-        authorizationMenu.inflate(R.menu.authorization)
-
-        binding.containerCustomAppBarIncludeOnFragmentListPatient.authorizationImageButton.setOnClickListener {
-            authorizationMenu.show()
-        }
-
-        /** пустографки **/
-        binding.apply {
-            containerListPatientInclude.allPatientsTextView.visibility = View.GONE
-            containerListPatientInclude.expandMaterialButton.visibility = View.GONE
-        }
-        /** ---------------------------------------------------------------------------- **/
-        val adapter = PatientListAdapter(viewModel)
-        adapter.submitList(viewModel.data)
-
-        /** кнопка создания пациента **/
-        binding.containerListPatientInclude.createNewPatientMaterialButton.setOnClickListener {
-            findNavController().navigate(R.id.action_patientListFragment_to_createPatientFragment)
-        }
-        /** кнопка для фильтра пациента **/
-        binding.containerListPatientInclude.filtersMaterialButton.setOnClickListener {
-            //TODO фильтр перенесут на бэк. Возможно потом нужно удалить
-            findNavController().navigate(R.id.action_patientListFragment_to_filterPatientListFragment)
-        }
-        /** передача данных В RV **/
-        binding.containerListPatientInclude.patientListRecyclerView.adapter = adapter
-
-        /** поиск **/
-        binding.containerListPatientInclude.searchPatient.setOnQueryTextListener(object :
-            SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean = true
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                return true
-            }
-        })
-        binding.containerListPatientInclude.patientListRecyclerView.adapter = adapter
-         }
     }
+}
 
 
 /**СЦЕНАРИЙ 2.1. Просмотр списка пациентов

@@ -3,6 +3,7 @@ package ru.iteco.fmhandroid.dto
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
+
 @Parcelize
 data class Patient(
     val id: Int?,
@@ -14,8 +15,8 @@ data class Patient(
     val dateOut: String,
     val dateInBoolean: Boolean,
     val dateOutBoolean: Boolean,
-    val status: String,
-    val room: Int //RoomDtoRs
+    var status: String,
+    val room: Room? = null
 ) : Parcelable {
 
     enum class Status {

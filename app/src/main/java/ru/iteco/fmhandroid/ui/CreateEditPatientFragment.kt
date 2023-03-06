@@ -20,6 +20,7 @@ import ru.iteco.fmhandroid.databinding.FragmentCreateEditPatientBinding
 import ru.iteco.fmhandroid.dto.Patient
 import ru.iteco.fmhandroid.utils.Utils
 import ru.iteco.fmhandroid.viewmodel.PatientViewModel
+import java.text.SimpleDateFormat
 import java.util.*
 
 @AndroidEntryPoint
@@ -28,7 +29,9 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
     private lateinit var binding: FragmentCreateEditPatientBinding
     private val viewModel: PatientViewModel by viewModels()
     private val args: CreateEditPatientFragmentArgs by navArgs()
-    private var statusChoice: Patient.Status = Patient.Status.DISCHARGED
+    lateinit var tvDataPicker:TextInputEditText
+    private var dataString =""
+    private var statusChoice: Patient.Status = Patient.Status.ACTIVE
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,7 +85,7 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
                 firstNameTitleTextInputLayout.editText?.setText(patient.firstName)
                 middleNameTextInputLayout.editText?.setText(patient.middleName)
                 createBirthDateTextInputLayout.editText?.setText(patient.birthDate)
-                statusDropMenuTextInputLayout.editText?.setText(patient.status)
+                statusDropMenuTextInputLayout.editText?.setText(patient.status.toString())
             }
 
             /** кнопки **/
@@ -128,31 +131,55 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
             }
         }
 
+
+
         /** Календарь **/
+        tvDataPicker = binding.createDateBirthTextInputEditText
         val calendar = Calendar.getInstance()
-        vDateBirth = binding.createDateBirthTextInputEditText
-        val dateBirth =
+        val datePicker =
             DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
                 calendar.set(Calendar.YEAR, year)
                 calendar.set(Calendar.MONTH, month)
                 calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                Utils.updateDateLabel(calendar, vDateBirth)
+                updateLabel(calendar)
             }
-        vDateBirth.setOnClickListener {
+
+        binding.createDateBirthTextInputEditText.setOnClickListener {
             DatePickerDialog(
                 this.requireContext(),
-                dateBirth,
+                datePicker,
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH)
-            ).apply {
-                this.datePicker.minDate = (System.currentTimeMillis() - 1000)
-            }.show()
+            ).show()
         }
-
+//        val calendar = Calendar.getInstance()
+//        vDateBirth = binding.createDateBirthTextInputEditText
+//        val dateBirth =
+//            DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+//                calendar.set(Calendar.YEAR, year)
+//                calendar.set(Calendar.MONTH, month)
+//                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+//                Utils.updateDateLabel(calendar, vDateBirth)
+//            }
+//        vDateBirth.setOnClickListener {
+//            DatePickerDialog(
+//                this.requireContext(),
+//                dateBirth,
+//                calendar.get(Calendar.YEAR),
+//                calendar.get(Calendar.MONTH),
+//                calendar.get(Calendar.DAY_OF_MONTH)
+//            ).apply {
+//                this.datePicker.minDate = (0)
+//            }.show()
+//        }
     }
 
-    /** Функция добавления/редактирования пациента **/
+    /** Функция добавления/редактирования пациента
+     * Статус пациента (admission.status)
+    Если есть фактическая дата выписки, то статус = "Выписан".
+    Если есть фактическая дата поступления и нет фактической даты выписки, то статус = "В хосписе".
+    Если нет фактических дат (ни поступления, ни выписки), то статус = "Новый".**/
     private fun fillPatient() {
         with(binding) {
             val patient = args.patientItemArg
@@ -168,7 +195,7 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
                     dateInBoolean = true,
                     dateOutBoolean = true,
                     status = patient.status,
-                    room = 0
+                    room = null
                 )
                 viewModel.edit(editedPatient)
             } else {
@@ -177,13 +204,13 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
                     firstName = firstNameTextInputEditText.text.toString().trim(),
                     lastName = lastNameTextInputEditText.text.toString().trim(),
                     middleName = middleNameTextInputEditText.text.toString().trim(),
-                    birthDate = "2023-01-18",
-                    dateIn = "2023-01-18",
-                    dateOut = "2023-01-18",
+                    birthDate = dataString,
+                    dateIn = "",
+                    dateOut = "",
                     dateInBoolean = true,
                     dateOutBoolean = true,
-                    status = Patient.Status.DISCHARGED.toString(),
-                    room = 0
+                    status = Patient.Status.ACTIVE.toString(),
+                    room = null
                 )
                 viewModel.createNewPatient(createNewPatient)
             }
@@ -195,5 +222,12 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
             text,
             Toast.LENGTH_LONG
         ).show()
+    }
+
+    private fun updateLabel(calendar: Calendar) {
+        val formatData = "dd.MM.YYYY"
+        val sdf = SimpleDateFormat(formatData, Locale.UK)
+        tvDataPicker.setText(sdf.format(calendar.time))
+        dataString = sdf.format(calendar.time)
     }
 }

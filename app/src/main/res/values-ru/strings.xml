@@ -145,5 +145,8 @@
     <string name="status_patient_new">Новый</string>
     <string name="status_patient_in_hospice">В хосписе</string>
     <string name="status_patient_discharged">Выписан</string>
+    <string name="expected">В хосписе</string>
+    <string name="search_patients">Поиск пациента</string>
+    <string name="filter_patients">Фильтр пациентов</string>
 
 </resources>

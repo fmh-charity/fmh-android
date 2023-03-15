@@ -2,9 +2,7 @@ package ru.iteco.fmhandroid.repository.claimRepository
 
 import androidx.paging.*
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import ru.iteco.fmhandroid.api.ClaimApi
 import ru.iteco.fmhandroid.dao.ClaimCommentDao
@@ -13,7 +11,6 @@ import ru.iteco.fmhandroid.dao.ClaimKeyDao
 import ru.iteco.fmhandroid.db.AppDb
 import ru.iteco.fmhandroid.dto.Claim
 import ru.iteco.fmhandroid.dto.ClaimComment
-import ru.iteco.fmhandroid.dto.FullClaim
 import ru.iteco.fmhandroid.entity.ClaimEntity
 import ru.iteco.fmhandroid.entity.toEntity
 import ru.iteco.fmhandroid.utils.Utils.makeRequest
@@ -35,11 +32,16 @@ class ClaimRepositoryImpl @Inject constructor(
         coroutineScope: CoroutineScope,
         listStatuses: List<Claim.Status>
     ): Flow<PagingData<Claim>> = Pager(
-        config = PagingConfig(pageSize = 3),
-        remoteMediator = ClaimRemoteMediator(claimApi, db, claimDao, claimKeyDao),
-        pagingSourceFactory = claimDao::pagingSource
+        config = PagingConfig(
+            pageSize = 20,
+            prefetchDistance = 10,
+            initialLoadSize = 20,
+        ),
+        pagingSourceFactory = { db.getClaimDao().pagingSource() },
+        remoteMediator = ClaimRemoteMediator(claimApi, db),
 
-    ).flow.map { pagingData ->
+
+        ).flow.map { pagingData ->
         pagingData.map(ClaimEntity::toDto)
     }
 

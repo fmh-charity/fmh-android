@@ -10,7 +10,7 @@ interface ClaimApi {
     @GET("claims")
     suspend fun getAllClaims(
         @Query("pages") pages: Int = 0,
-        @Query("elements") elements: Int = 3,
+        @Query("elements") elements: Int = 8,
         @Query("status") status: Array<Claim.Status> = arrayOf(
             Claim.Status.IN_PROGRESS,
             Claim.Status.CANCELLED,
@@ -18,7 +18,7 @@ interface ClaimApi {
             Claim.Status.EXECUTED,
         ),
         @Query("createDate") createDate: Boolean = true,
-    ): Response<ClaimResponseDto>
+    ): ClaimResponseDto
 
     @GET("claims/open-in-progress")
     suspend fun getClaimsInOpenAndInProgressStatus(): Response<List<Claim>>

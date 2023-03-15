@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Claim(
-    val id: Int? = null,
+    var id: Int? = null,
     val title: String,
     val description: String,
     val creatorId: Int,

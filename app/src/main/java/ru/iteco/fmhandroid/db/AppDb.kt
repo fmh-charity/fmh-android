@@ -13,7 +13,7 @@ import ru.iteco.fmhandroid.entity.*
         NewsEntity::class,
         NewsCategoryEntity::class,
         NewsKeyEntity::class,
-        ClaimKeyEntity::class,
+        ClaimRemoteKeys::class,
         WishEntity::class,
         WishCommentEntity::class,
     ],

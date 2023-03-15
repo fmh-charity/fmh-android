@@ -26,19 +26,18 @@ class AuthRepositoryImpl @Inject constructor(
     override suspend fun login(login: String, password: String) =
         Utils.makeRequest(
             request = { authApi.getTokens(LoginData(login = login, password = password)) },
-            onSuccess = { body -> appAuth.authState = body },
-            onFailure = {
-                // Было бы здорово вынести этот код в отдельную функцию.
-                val gson = Gson()
-                val type = object : TypeToken<JwtResponse>() {}.type
-                val errorResponse: JwtResponse? = gson.fromJson(it.errorBody()?.charStream(), type)
-                if (errorResponse?.message.equals("ERR_INVALID_LOGIN")) {
-                    throw AuthorizationException
-                } else {
-                    throw UnknownException
-                }
+            onSuccess = { body -> appAuth.authState = body }
+        ) {
+            // Было бы здорово вынести этот код в отдельную функцию.
+            val gson = Gson()
+            val type = object : TypeToken<JwtResponse>() {}.type
+            val errorResponse: JwtResponse? = gson.fromJson(it.errorBody()?.charStream(), type)
+            if (errorResponse?.message.equals("ERR_INVALID_LOGIN")) {
+                throw AuthorizationException
+            } else {
+                throw UnknownException
             }
-        )
+        }
 
     override suspend fun updateTokens(refreshToken: String): AuthState? =
         Utils.makeRequest(
@@ -51,14 +50,13 @@ class AuthRepositoryImpl @Inject constructor(
             onSuccess = { body ->
                 appAuth.authState = body
                 body
-            },
-            onFailure = {
-                if (it.code() == 401) {
-                    appAuth.authState = null
-                    null
-                } else {
-                    throw ApiException(it.code(), it.message())
-                }
             }
-        )
+        ) {
+            if (it.code() == 401) {
+                appAuth.authState = null
+                null
+            } else {
+                throw ApiException(it.code(), it.message())
+            }
+        }
 }

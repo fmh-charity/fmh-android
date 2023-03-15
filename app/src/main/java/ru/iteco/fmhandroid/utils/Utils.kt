@@ -6,9 +6,7 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import android.widget.EditText
 import retrofit2.Response
-import ru.iteco.fmhandroid.dto.ClaimComment
-import ru.iteco.fmhandroid.dto.Patient
-import ru.iteco.fmhandroid.dto.User
+import ru.iteco.fmhandroid.dto.*
 import ru.iteco.fmhandroid.exceptions.*
 import java.io.IOException
 import java.net.ConnectException
@@ -118,7 +116,7 @@ object Utils {
     }
 
     suspend fun <T, R> makeRequest(
-        request: suspend () -> Response<T>,
+        request: () -> ClaimResponseDto,
         onSuccess: suspend (body: T) -> R,
         onFailure: (response: Response<T>) -> R = { throw ApiException(it.code(), it.message()) }
     ): R {

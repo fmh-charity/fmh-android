@@ -3,96 +3,103 @@ package ru.iteco.fmhandroid.repository.claimRepository
 import androidx.paging.*
 import androidx.room.withTransaction
 import ru.iteco.fmhandroid.api.ClaimApi
-import ru.iteco.fmhandroid.dao.ClaimDao
-import ru.iteco.fmhandroid.dao.ClaimKeyDao
 import ru.iteco.fmhandroid.db.AppDb
-import ru.iteco.fmhandroid.dto.ClaimKey
-import ru.iteco.fmhandroid.dto.NewsKey
 import ru.iteco.fmhandroid.entity.ClaimEntity
-import ru.iteco.fmhandroid.entity.ClaimKeyEntity
-import ru.iteco.fmhandroid.entity.toEntity
-import ru.iteco.fmhandroid.exceptions.ApiException
+import ru.iteco.fmhandroid.entity.ClaimRemoteKeys
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @OptIn(ExperimentalPagingApi::class)
 @Singleton
 class ClaimRemoteMediator @Inject constructor(
-    private val service: ClaimApi,
-    private val db: AppDb,
-    private val claimDao: ClaimDao,
-    private val claimKeyDao: ClaimKeyDao
+    private val claimApi: ClaimApi,
+    private val db: AppDb
 ) : RemoteMediator<Int, ClaimEntity>() {
 
+    private suspend fun getRemoteKeyLastItem(state: PagingState<Int, ClaimEntity>): ClaimRemoteKeys? {
+        return state.pages.lastOrNull {
+            it.data.isNotEmpty()
+        }?.data?.lastOrNull()?.let { claim ->
+            db.claimKeyDao().getRemoveKeyById(claim.id)
+        }
+    }
+
+    override suspend fun initialize(): InitializeAction {
+        val cacheTimeout = TimeUnit.MILLISECONDS.convert(1, TimeUnit.HOURS)
+        return if (System.currentTimeMillis() - (db.claimKeyDao().getCreationTime()
+                ?: 0) < cacheTimeout
+        ) {
+            InitializeAction.SKIP_INITIAL_REFRESH
+        } else {
+            InitializeAction.LAUNCH_INITIAL_REFRESH
+        }
+    }
+    private suspend fun getRemoteKeyFirstItem(state: PagingState<Int, ClaimEntity>): ClaimRemoteKeys? {
+        return state.pages.firstOrNull {
+            it.data.isNotEmpty()
+        }?.data?.firstOrNull()?.let { claim ->
+            db.claimKeyDao().getRemoveKeyById(claim.id)
+        }
+    }
+    private suspend fun remoteKeyClosestToCurrentPosition(state: PagingState<Int, ClaimEntity>): ClaimRemoteKeys? {
+        return state.anchorPosition?.let { position ->
+            state.closestItemToPosition(position)?.id?.let { id ->
+                db.claimKeyDao().getRemoveKeyById(id)
+            }
+        }
+    }
     override suspend fun load(
         loadType: LoadType,
         state: PagingState<Int, ClaimEntity>
     ): MediatorResult {
-        try {
-            val response = when (loadType) {
-                LoadType.REFRESH -> service.getAllClaims(state.config.initialLoadSize)
-                LoadType.PREPEND -> {
-                    val id = claimKeyDao.max() ?: return MediatorResult.Success(
-                        endOfPaginationReached = false
-                    )
-                    service.getAllClaims(id, state.config.pageSize)
-                }
-                LoadType.APPEND -> {
-                    val id = claimKeyDao.min() ?: return MediatorResult.Success(
-                        endOfPaginationReached = false
-                    )
-                    service.getAllClaims(id, state.config.pageSize)
-                }
+        val page: Int = when (loadType) {
+            LoadType.REFRESH -> {
+                val remoteKeys = remoteKeyClosestToCurrentPosition(state)
+                remoteKeys?.nextKey?.minus(1) ?: 1
             }
 
-            if (!response.isSuccessful) {
-                throw ApiException(response.code(), response.message())
+            LoadType.PREPEND -> {
+                val remoteKey = getRemoteKeyFirstItem(state)
+                val prevKey = remoteKey?.prevKey
+                prevKey ?: return MediatorResult.Success(endOfPaginationReached = remoteKey != null)
             }
-            val body = response.body() ?: throw ApiException(
-                response.code(),
-                response.message(),
-            )
+            LoadType.APPEND -> {
+                val remoteKey = getRemoteKeyLastItem(state)
+                val nextKey = remoteKey?.nextKey
+                nextKey ?: return MediatorResult.Success(endOfPaginationReached = remoteKey != null)
+            }
+        }
+        try {
+            val apiResponse = claimApi.getAllClaims(pages = page)
+            val claims = apiResponse.elements
+            val paginationReached = claims.isEmpty()
 
             db.withTransaction {
-                when (loadType) {
-                    LoadType.REFRESH -> {
-                        claimKeyDao.removeAll()
-                        claimKeyDao.insert(
-                            listOf(
-                                ClaimKeyEntity(
-                                    type = ClaimKey.Status.AFTER,
-                                    page = body.elements.first().id,
-                                ),
-                                ClaimKeyEntity(
-                                    type = ClaimKey.Status.BEFORE,
-                                    page = body.elements.last().id,
-                                ),
-                            )
-                        )
-                        claimDao.removeAll()
-                    }
-                    LoadType.PREPEND -> {
-                        claimKeyDao.insert(
-                            ClaimKeyEntity(
-                                type = ClaimKey.Status.AFTER,
-                                page = body.elements.first().id,
-                            )
-                        )
-                    }
-                    LoadType.APPEND -> {
-                        claimKeyDao.insert(
-                            ClaimKeyEntity(
-                                type = ClaimKey.Status.BEFORE,
-                                page = body.elements.last().id,
-                            )
-                        )
-                    }
+                if (loadType == LoadType.REFRESH) {
+
+                    db.claimKeyDao().remoteKeys()
+                    db.getClaimDao().removeAll()
                 }
-                claimDao.insertClaim(body.elements.toEntity())
+                val prevKey = if (page > 1) page - 1 else null
+                val nextKey = if (paginationReached) null else page + 1
+                val remoteKeys = claims.map {
+                    ClaimRemoteKeys(
+                        objectId = it.id,
+                        prevKey = prevKey,
+                        currentPage = page,
+                        nextKey = nextKey
+                    )
+                }
+                db.claimKeyDao().insertAll(remoteKeys)
+                //** Уточнить про page**//
+                //     db.getClaimDao().getAllClaims(claims.onEachIndexed { _, claim -> claim.id = page })
             }
-            return MediatorResult.Success(endOfPaginationReached = body.elements.isEmpty())
+            return MediatorResult.Success(endOfPaginationReached = paginationReached)
         } catch (e: Exception) {
             return MediatorResult.Error(e)
         }
     }
 }
+
+

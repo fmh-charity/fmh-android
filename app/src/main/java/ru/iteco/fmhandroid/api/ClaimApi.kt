@@ -18,7 +18,7 @@ interface ClaimApi {
             Claim.Status.EXECUTED,
         ),
         @Query("createDate") createDate: Boolean = true,
-    ): ClaimResponseDto
+    ): Response<ClaimResponseDto>
 
     @GET("claims/open-in-progress")
     suspend fun getClaimsInOpenAndInProgressStatus(): Response<List<Claim>>

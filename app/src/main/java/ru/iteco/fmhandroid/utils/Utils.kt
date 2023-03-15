@@ -116,7 +116,7 @@ object Utils {
     }
 
     suspend fun <T, R> makeRequest(
-        request: () -> ClaimResponseDto,
+        request: suspend () -> Response<T>,
         onSuccess: suspend (body: T) -> R,
         onFailure: (response: Response<T>) -> R = { throw ApiException(it.code(), it.message()) }
     ): R {

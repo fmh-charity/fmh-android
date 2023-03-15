@@ -72,7 +72,7 @@ class ClaimRemoteMediator @Inject constructor(
         }
         try {
             val apiResponse = claimApi.getAllClaims(pages = page)
-            val claims = apiResponse.elements
+            val claims = apiResponse.body()?.elements
             val paginationReached = claims.isEmpty()
 
             db.withTransaction {
@@ -83,7 +83,7 @@ class ClaimRemoteMediator @Inject constructor(
                 }
                 val prevKey = if (page > 1) page - 1 else null
                 val nextKey = if (paginationReached) null else page + 1
-                val remoteKeys = claims.map {
+                val remoteKeys = claims?.map {
                     ClaimRemoteKeys(
                         objectId = it.id,
                         prevKey = prevKey,
@@ -91,7 +91,9 @@ class ClaimRemoteMediator @Inject constructor(
                         nextKey = nextKey
                     )
                 }
-                db.claimKeyDao().insertAll(remoteKeys)
+                if (remoteKeys != null) {
+                    db.claimKeyDao().insertAll(remoteKeys)
+                }
                 //** Уточнить про page**//
                 //     db.getClaimDao().getAllClaims(claims.onEachIndexed { _, claim -> claim.id = page })
             }

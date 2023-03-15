@@ -301,6 +301,12 @@
         <action
             android:id="@+id/action_patientListFragment_to_searchPatient"
             app:destination="@id/searchPatient" />
+        <action
+            android:id="@+id/action_patientListFragment_to_openPatientFragment"
+            app:destination="@id/openPatientFragment" />
+        <argument
+            android:name="argsPatientForOpenPatient"
+            app:argType="ru.iteco.fmhandroid.dto.Patient" />
     </fragment>
     <fragment
         android:id="@+id/createEditPatientFragment"
@@ -369,6 +375,24 @@
         <argument
             android:name="argPatient"
             app:argType="ru.iteco.fmhandroid.dto.Patient" />
+        <action
+            android:id="@+id/action_openPatientFragment_to_patientListFragment"
+            app:destination="@id/patientListFragment" />
+        <action
+            android:id="@+id/action_openPatientFragment_to_our_mission_fragment"
+            app:destination="@id/our_mission_fragment" />
+        <action
+            android:id="@+id/action_openPatientFragment_to_claimListFragment"
+            app:destination="@id/claimListFragment" />
+        <action
+            android:id="@+id/action_openPatientFragment_to_newsListFragment"
+            app:destination="@id/newsListFragment" />
+        <action
+            android:id="@+id/action_openPatientFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_openPatientFragment_to_wishListFragment"
+            app:destination="@id/wishListFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchPatient"

@@ -36,6 +36,10 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             claimViewModel.onRefresh()
         }
 
+//        lifecycleScope.launchWhenCreated {
+//           patientViewModel.refreshPatients()
+//        }
+
         lifecycleScope.launchWhenStarted {
             claimViewModel.openClaimEvent.collectLatest {
                 val action = MainFragmentDirections
@@ -50,17 +54,17 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 //            }
 //        }
 
-        lifecycleScope.launchWhenStarted {
-            claimViewModel.claimListUpdatedEvent.collectLatest {
-                newsViewModel.onRefresh()
-            }
-        }
+//        lifecycleScope.launchWhenStarted {
+//            claimViewModel.claimListUpdatedEvent.collectLatest {
+//                newsViewModel.onRefresh()
+//            }
+//        }
 
-        lifecycleScope.launchWhenResumed {
-            claimViewModel.claimsLoadException.collect {
-                showErrorToast(R.string.error)
-            }
-        }
+//        lifecycleScope.launchWhenResumed {
+//            claimViewModel.claimsLoadException.collect {
+//                showErrorToast(R.string.error)
+//            }
+//        }
 
         lifecycleScope.launchWhenStarted {
             newsViewModel.newsListUpdatedEvent.collectLatest {

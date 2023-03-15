@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ru.iteco.fmhandroid.R
@@ -22,21 +23,19 @@ class PatientListFragment : Fragment(R.layout.fragment_list_patient) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        return super.onCreate(savedInstanceState)
+
+
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.refreshPatients()
 
         binding = FragmentListPatientBinding.bind(view)
+        tempList.clear()
         filterPatient()
         appBarPatient()
         mainMenuPatient()
-
-//        val test = viewModel.getAllPatients()
-//        val testID= viewModel.getPatientById(150)
-//        val test1 = ""
 
         binding.containerListPatientInclude.createNewPatientMaterialButton.setOnClickListener {
             findNavController().navigate(R.id.action_patientListFragment_to_createPatientFragment)
@@ -144,8 +143,3 @@ class PatientListFragment : Fragment(R.layout.fragment_list_patient) {
 
 
 
-/**3.  В экранной форме списка пациентов данные детализированы на следующие атрибуты:
-ФИО
-Дата рождения
-Cтатус
-4.Система отражает перечень пациентов "В хосписе" (по умолчанию)*/

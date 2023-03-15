@@ -17,6 +17,7 @@ interface PatientApi {
     suspend fun getPatientById(@Path("id") id: Int): Response<Patient>
 
     /**Реестр всех пациентов*/
+    @GET("patients")
     suspend fun getAllPatients(
         @Query("statuses") statuses: Array<Patient.Status> = arrayOf(
             Patient.Status.ACTIVE,

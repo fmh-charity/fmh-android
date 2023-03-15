@@ -8,19 +8,29 @@ import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import ru.iteco.fmhandroid.R
+import ru.iteco.fmhandroid.adapter.OnPatientItemClickListener
+import ru.iteco.fmhandroid.adapter.PatientListAdapter
 import ru.iteco.fmhandroid.databinding.FragmentOpenPatientBinding
 import ru.iteco.fmhandroid.dto.*
 import ru.iteco.fmhandroid.viewmodel.AuthViewModel
+import ru.iteco.fmhandroid.viewmodel.PatientViewModel
 
 class OpenPatientFragment : Fragment(R.layout.fragment_open_patient) {
     private lateinit var binding: FragmentOpenPatientBinding
+    private val args: OpenPatientFragmentArgs by navArgs()
+    private val patientViewModel: PatientViewModel by viewModels()
     private val authViewModel: AuthViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,69 +44,17 @@ class OpenPatientFragment : Fragment(R.layout.fragment_open_patient) {
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentOpenPatientBinding.bind(view)
+        appBarPatient()
+        mainMenuPatient()
 
-        /** -------AppBar ---------------------------------------------------------------------- **/
+//        val adapter = PatientListAdapter(object : OnPatientItemClickListener {
+//            override fun onCard(patient: Patient) {
+//                patientViewModel.onCard(patient)
+//            }
+//        })
 
-        val mainMenu = PopupMenu(
-            context,
-            binding.containerCustomAppBarIncludeOnFragmentOpenPatient.mainMenuImageButton
-        )
-        mainMenu.inflate(R.menu.menu_main)
-        binding.containerCustomAppBarIncludeOnFragmentOpenPatient.mainMenuImageButton.setOnClickListener {
-            mainMenu.show()
-        }
-        mainMenu.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.menu_item_main -> {
-                    findNavController().navigate(R.id.action_patientListFragment_to_mainFragment)
-                    true
-                }
-                R.id.menu_item_claims -> {
-                    findNavController().navigate(R.id.action_patientListFragment_to_claimListFragment)
-                    true
-                }
-                R.id.menu_item_news -> {
-                    findNavController().navigate(R.id.action_patientListFragment_to_newsListFragment)
-                    true
-                }
-                R.id.menu_item_about -> {
-                    findNavController().navigate(R.id.action_patientListFragment_to_aboutFragment)
-                    true
-                }
-                R.id.menu_item_wish -> {
-                    findNavController().navigate(R.id.action_patientListFragment_to_wishListFragment)
-                    true
-                }
-                else -> {
-                    false
-                }
-            }
-        }
+        renderingContentOfClaim(args.argPatient)
 
-        binding.containerCustomAppBarIncludeOnFragmentOpenPatient.ourMissionImageButton.setOnClickListener {
-            findNavController().navigate(R.id.action_openClaimFragment_to_our_mission_fragment)
-        }
-
-        val authorizationMenu = PopupMenu(
-            context,
-            binding.containerCustomAppBarIncludeOnFragmentOpenPatient.authorizationImageButton
-        )
-        authorizationMenu.inflate(R.menu.authorization)
-
-        binding.containerCustomAppBarIncludeOnFragmentOpenPatient.authorizationImageButton.setOnClickListener {
-            authorizationMenu.show()
-        }
-
-        authorizationMenu.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.authorization_logout_menu_item -> {
-                    authViewModel.logOut()
-                    findNavController().navigate(R.id.action_openClaimFragment_to_authFragment)
-                    true
-                }
-                else -> false
-            }
-        }
 
     }
 
@@ -119,10 +77,66 @@ class OpenPatientFragment : Fragment(R.layout.fragment_open_patient) {
         binding.lastNameTextView.text = patient.lastName
         binding.firstNameTextView.text = patient.firstName
         binding.middleNameTextView.text = patient.middleName
-        binding.birthDateTextView.text = patient.birthDate.toString()
-        binding.dateFromTextView.text = patient.dateIn.toString()
-        binding.dateToTextView.text = patient.dateOut.toString()
-        binding.statusLabelTextView.text = patient.status.toString()
+        binding.birthDateTextView.text = patient.birthDate
+        binding.dateFromTextView.text = patient.dateIn
+        binding.dateToTextView.text = patient.dateOut
+        binding.statusLabelTextView.text = patient.status
         binding.patientRoomTextView.text = patient.room.toString()
+    }
+
+
+    private fun appBarPatient(){
+        binding.containerCustomAppBarIncludeOnFragmentOpenPatient.ourMissionImageButton.setOnClickListener {
+            findNavController().navigate(R.id.action_openPatientFragment_to_our_mission_fragment)
+        }
+        val authorizationMenu = PopupMenu(
+            context,
+            binding.containerCustomAppBarIncludeOnFragmentOpenPatient.authorizationImageButton
+        )
+        authorizationMenu.inflate(R.menu.authorization)
+
+        binding.containerCustomAppBarIncludeOnFragmentOpenPatient.authorizationImageButton.setOnClickListener {
+            authorizationMenu.show()
+        }
+    }
+    private fun mainMenuPatient(){
+        val mainMenu = PopupMenu(
+            context,
+            binding.containerCustomAppBarIncludeOnFragmentOpenPatient.mainMenuImageButton
+        )
+        mainMenu.inflate(R.menu.menu_main)
+        val menuItemMain = mainMenu.menu.getItem(3)
+        menuItemMain.isEnabled = false
+        binding.containerCustomAppBarIncludeOnFragmentOpenPatient.mainMenuImageButton.setOnClickListener {
+            mainMenu.show()
+        }
+
+        mainMenu.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.menu_item_main -> {
+                    findNavController().navigate(R.id.action_openPatientFragment_to_our_mission_fragment)
+                    true
+                }
+                R.id.menu_item_claims -> {
+                    findNavController().navigate(R.id.action_openPatientFragment_to_claimListFragment)
+                    true
+                }
+                R.id.menu_item_news -> {
+                    findNavController().navigate(R.id.action_openPatientFragment_to_newsListFragment)
+                    true
+                }
+                R.id.menu_item_about -> {
+                    findNavController().navigate(R.id.action_openPatientFragment_to_aboutFragment)
+                    true
+                }
+                R.id.menu_item_wish -> {
+                    findNavController().navigate(R.id.action_openPatientFragment_to_wishListFragment)
+                    true
+                }
+                else -> {
+                    false
+                }
+            }
+        }
     }
 }

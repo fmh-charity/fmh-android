@@ -3,16 +3,24 @@ package ru.iteco.fmhandroid.ui
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.dto.News
 import ru.iteco.fmhandroid.viewmodel.NewsViewModel
+import ru.iteco.fmhandroid.viewmodel.PatientViewModel
 
 @AndroidEntryPoint
 class AppActivity : AppCompatActivity() {
+    private val patientViewModel: PatientViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_app)
+
+        lifecycleScope.launchWhenCreated {
+            patientViewModel.refreshPatients()
+        }
 
         val newsViewModel: NewsViewModel by viewModels()
 
@@ -30,4 +38,7 @@ class AppActivity : AppCompatActivity() {
 
         newsViewModel.initializationListNewsCategories(categories)
     }
+
+
+
 }

@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.adapter.PatientListAdapter
 import ru.iteco.fmhandroid.databinding.FragmentListPatientBinding
@@ -17,14 +18,20 @@ import ru.iteco.fmhandroid.viewmodel.PatientViewModel
 @AndroidEntryPoint
 class PatientListFragment : Fragment(R.layout.fragment_list_patient) {
     private lateinit var binding: FragmentListPatientBinding
-    private val viewModel: PatientViewModel by viewModels()
+    private val patientViewModel: PatientViewModel by viewModels()
     private var tempList = mutableListOf<Patient>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
 
-
+        lifecycleScope.launchWhenStarted {
+            patientViewModel.openPatientEvent.collectLatest {
+                val action = PatientListFragmentDirections
+                    .actionPatientListFragmentToOpenPatientFragment(it)
+                findNavController().navigate(action)
+            }
+        }
 
     }
 
@@ -48,7 +55,7 @@ class PatientListFragment : Fragment(R.layout.fragment_list_patient) {
             findNavController().navigate(R.id.action_patientListFragment_to_searchPatient)
         }
 
-        val adapter = PatientListAdapter(viewModel)
+        val adapter = PatientListAdapter(patientViewModel)
         adapter.submitList(tempList)
         binding.containerListPatientInclude.patientListRecyclerView.adapter = adapter
     }
@@ -64,7 +71,7 @@ class PatientListFragment : Fragment(R.layout.fragment_list_patient) {
         ) {
             startList = "ACTIVE"
         }
-        viewModel.data.forEach { element ->
+        patientViewModel.data.forEach { element ->
             if (element.status == expected
                 || element.status== discharged
                 || element.status == active

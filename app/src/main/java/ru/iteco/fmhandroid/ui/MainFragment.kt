@@ -48,6 +48,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             }
         }
 
+
+
 //        lifecycleScope.launchWhenStarted {
 //            wishViewModel.wishListUpdatedEvent.collectLatest {
 //                wishViewModel.onRefresh()

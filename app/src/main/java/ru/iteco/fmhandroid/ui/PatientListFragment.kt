@@ -32,7 +32,6 @@ class PatientListFragment : Fragment(R.layout.fragment_list_patient) {
                 findNavController().navigate(action)
             }
         }
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,7 +50,7 @@ class PatientListFragment : Fragment(R.layout.fragment_list_patient) {
         binding.containerListPatientInclude.filtersMaterialButton.setOnClickListener {
             findNavController().navigate(R.id.action_patientListFragment_to_filterPatientListFragment)
         }
-        binding.containerListPatientInclude.searchPatient.setOnClickListener{
+        binding.containerListPatientInclude.searchPatient.setOnClickListener {
             findNavController().navigate(R.id.action_patientListFragment_to_searchPatient)
         }
 
@@ -60,7 +59,7 @@ class PatientListFragment : Fragment(R.layout.fragment_list_patient) {
         binding.containerListPatientInclude.patientListRecyclerView.adapter = adapter
     }
 
-    private fun filterPatient(){
+    private fun filterPatient() {
         val expected = arguments?.getString("expected")
         val discharged = arguments?.getString("discharged")
         val active = arguments?.getString("active")
@@ -71,17 +70,19 @@ class PatientListFragment : Fragment(R.layout.fragment_list_patient) {
         ) {
             startList = "ACTIVE"
         }
+        val test = patientViewModel.data
         patientViewModel.data.forEach { element ->
             if (element.status == expected
-                || element.status== discharged
+                || element.status == discharged
                 || element.status == active
-                || element.status== startList
+                || element.status == startList
             ) {
                 tempList.add(element)
             }
         }
     }
-    private fun appBarPatient(){
+
+    private fun appBarPatient() {
         binding.containerCustomAppBarIncludeOnFragmentListPatient.ourMissionImageButton.setOnClickListener {
             findNavController().navigate(R.id.action_patientListFragment_to_our_mission_fragment)
         }
@@ -95,7 +96,8 @@ class PatientListFragment : Fragment(R.layout.fragment_list_patient) {
             authorizationMenu.show()
         }
     }
-    private fun mainMenuPatient(){
+
+    private fun mainMenuPatient() {
         val mainMenu = PopupMenu(
             context,
             binding.containerCustomAppBarIncludeOnFragmentListPatient.mainMenuImageButton
@@ -138,13 +140,6 @@ class PatientListFragment : Fragment(R.layout.fragment_list_patient) {
 }
 
 
-/**СЦЕНАРИЙ 2.1. Просмотр списка пациентов
- * Открыть список пациентов с просмотром ключевой информации о нем
- * Пользователи: Пользователи с ролями «Администратор» и «Медицинский работник»
- * Предусловие:Пользователь авторизован в системе. В разделе «Пациенты» присутствуют
- * введенная информация согласно сценария 2.2
- * Результат: Открыт список пациентов с информацией о каждом пациенте
- * */
 
 
 

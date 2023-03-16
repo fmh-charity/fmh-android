@@ -20,7 +20,6 @@ import ru.iteco.fmhandroid.databinding.FragmentCreateEditPatientBinding
 import ru.iteco.fmhandroid.dto.Patient
 import ru.iteco.fmhandroid.utils.Utils
 import ru.iteco.fmhandroid.viewmodel.PatientViewModel
-import java.text.SimpleDateFormat
 import java.util.*
 
 @AndroidEntryPoint
@@ -65,7 +64,6 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
 
         with(binding) {
 
-            /** args **/
             if (args.patientItemArg == null) {
                 customAppBarTitleTextView.apply {
                     visibility = View.VISIBLE
@@ -88,7 +86,6 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
                 statusDropMenuTextInputLayout.editText?.setText(patient.status.toString())
             }
 
-            /** кнопки **/
             saveButton.setOnClickListener {
                 if (lastNameTextInputEditText.text.isNullOrBlank() ||
                     firstNameTextInputEditText.text.isNullOrBlank() ||
@@ -116,8 +113,7 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
             }
         }
 
-        /** выбор статуса **/
-        lifecycleScope.launch {
+       lifecycleScope.launch {
             val adapter = ArrayAdapter(
                 requireContext(),
                 R.layout.menu_item,
@@ -131,7 +127,6 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
             }
         }
 
-        /** Календарь **/
         val calendar = Calendar.getInstance()
         vDateBirth = binding.createDateBirthTextInputEditText
         val dateBirth =
@@ -153,55 +148,48 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
             }.show()
         }
 
-//        val calendar = Calendar.getInstance()
-        vFactDateIn = binding.factDateInTextInputEditText
+        val calendarFDI = Calendar.getInstance()
+      vFactDateIn = binding.factDateInTextInputEditText
         val factDateIn =
             DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-                calendar.set(Calendar.YEAR, year)
-                calendar.set(Calendar.MONTH, month)
-                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                Utils.updateDateLabelPatient(calendar, vFactDateIn)
+                calendarFDI.set(Calendar.YEAR, year)
+                calendarFDI.set(Calendar.MONTH, month)
+                calendarFDI.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                Utils.updateDateLabelPatient(calendarFDI, vFactDateIn)
             }
         vFactDateIn.setOnClickListener {
             DatePickerDialog(
                 this.requireContext(),
                 factDateIn,
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH)
+                calendarFDI.get(Calendar.YEAR),
+                calendarFDI.get(Calendar.MONTH),
+                calendarFDI.get(Calendar.DAY_OF_MONTH)
             ).apply {
                 this.datePicker.minDate = (0)
             }.show()
         }
 
+        val calendarFDO = Calendar.getInstance()
         vFactDateOut = binding.factDateOutTextInputEditText
         val factDateOut =
             DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-                calendar.set(Calendar.YEAR, year)
-                calendar.set(Calendar.MONTH, month)
-                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                Utils.updateDateLabelPatient(calendar, vFactDateOut)
+                calendarFDO.set(Calendar.YEAR, year)
+                calendarFDO.set(Calendar.MONTH, month)
+                calendarFDO.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                Utils.updateDateLabelPatient(calendarFDO, vFactDateOut)
             }
         vFactDateOut.setOnClickListener {
             DatePickerDialog(
                 this.requireContext(),
                 factDateOut,
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH)
+                calendarFDO.get(Calendar.YEAR),
+                calendarFDO.get(Calendar.MONTH),
+                calendarFDO.get(Calendar.DAY_OF_MONTH)
             ).apply {
                 this.datePicker.minDate = (0)
             }.show()
         }
-
     }
-
-    /** Функция добавления/редактирования пациента
-     * Статус пациента (admission.status)
-    Если есть фактическая дата выписки, то статус = "Выписан".
-    Если есть фактическая дата поступления и нет фактической даты выписки, то статус = "В хосписе".
-    Если нет фактических дат (ни поступления, ни выписки), то статус = "Новый".**/
-
 
     private fun fillPatient() {
         with(binding) {
@@ -223,7 +211,7 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
                 viewModel.edit(editedPatient)
             } else {
                 val createNewPatient = Patient(
-                    id = null,
+                    id = 0,
                     firstName = firstNameTextInputEditText.text.toString().trim(),
                     lastName = lastNameTextInputEditText.text.toString().trim(),
                     middleName = middleNameTextInputEditText.text.toString().trim(),
@@ -239,7 +227,6 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
             }
         }
     }
-
 
     private fun showErrorToast(text: Int) {
         Toast.makeText(

@@ -91,7 +91,6 @@ class PatientViewModel @Inject constructor(
         }
     }
 
-
     fun getPatientById(id: Int){
         viewModelScope.launch {
             try {

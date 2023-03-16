@@ -34,10 +34,10 @@
             style="@style/card_text_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="10dp"
             android:text=""
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/edit_data_patient_button"
-            app:layout_constraintStart_toStartOf="@+id/data_patient_textView"
+            app:layout_constraintStart_toEndOf="@+id/data_patient_textView"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Фамилия И.О." />
 
@@ -196,24 +196,24 @@
                     tools:ignore="ContentDescription" />
 
                 <TextView
-                    android:id="@+id/date_from_label_text_view"
+                    android:id="@+id/fact_date_in_label_text_view"
                     style="@style/card_text_style"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/date_admission"
-                    app:layout_constraintEnd_toStartOf="@+id/date_from_text_view"
+                    app:layout_constraintEnd_toStartOf="@+id/fact_date_in_text_view"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/divider4_image_view" />
 
                 <TextView
-                    android:id="@+id/date_from_text_view"
+                    android:id="@+id/fact_date_in_text_view"
                     style="@style/card_text_style"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textAlignment="viewEnd"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/date_from_label_text_view"
+                    app:layout_constraintStart_toEndOf="@+id/fact_date_in_label_text_view"
                     app:layout_constraintTop_toBottomOf="@id/divider4_image_view"
                     tools:text="10.04.1996" />
 
@@ -223,28 +223,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/date_from_text_view"
+                    app:layout_constraintTop_toBottomOf="@+id/fact_date_in_text_view"
                     tools:ignore="ContentDescription" />
 
                 <TextView
-                    android:id="@+id/date_to_label_text_view"
+                    android:id="@+id/fact_date_out_label_text_view"
                     style="@style/card_text_style"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/date_discharged"
-                    app:layout_constraintEnd_toStartOf="@+id/date_from_text_view"
+                    app:layout_constraintEnd_toStartOf="@+id/fact_date_in_text_view"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/divider3_image_view" />
 
                 <TextView
-                    android:id="@+id/date_to_text_view"
+                    android:id="@+id/fact_date_out_text_view"
                     style="@style/card_text_style"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textAlignment="viewEnd"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/date_to_label_text_view"
+                    app:layout_constraintStart_toEndOf="@+id/fact_date_out_label_text_view"
                     app:layout_constraintTop_toBottomOf="@id/divider3_image_view"
                     tools:text="10.04.1996" />
 
@@ -254,7 +254,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/date_to_text_view"
+                    app:layout_constraintTop_toBottomOf="@+id/fact_date_out_text_view"
                     tools:ignore="ContentDescription" />
 
                 <TextView

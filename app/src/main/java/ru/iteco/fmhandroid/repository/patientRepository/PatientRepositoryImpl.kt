@@ -34,9 +34,10 @@ class PatientRepositoryImpl @Inject constructor(
 
     override suspend fun editPatient(patient: Patient): Patient = makeRequest(
         request = { patientApi.editPatient(patient) },
-        onSuccess = { body ->
-
-            body
+        onSuccess = {  body ->
+            body.also {
+            patientList = patientList.plus(it)
+        }
         }
     )
 

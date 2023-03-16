@@ -26,6 +26,8 @@ import java.util.*
 @AndroidEntryPoint
 class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient) {
     private lateinit var vDateBirth: TextInputEditText
+    private lateinit var vFactDateIn: TextInputEditText
+    private lateinit var vFactDateOut: TextInputEditText
     private lateinit var binding: FragmentCreateEditPatientBinding
     private val viewModel: PatientViewModel by viewModels()
     private val args: CreateEditPatientFragmentArgs by navArgs()
@@ -151,6 +153,47 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
             }.show()
         }
 
+//        val calendar = Calendar.getInstance()
+        vFactDateIn = binding.factDateInTextInputEditText
+        val factDateIn =
+            DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+                calendar.set(Calendar.YEAR, year)
+                calendar.set(Calendar.MONTH, month)
+                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                Utils.updateDateLabelPatient(calendar, vFactDateIn)
+            }
+        vFactDateIn.setOnClickListener {
+            DatePickerDialog(
+                this.requireContext(),
+                factDateIn,
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+            ).apply {
+                this.datePicker.minDate = (0)
+            }.show()
+        }
+
+        vFactDateOut = binding.factDateOutTextInputEditText
+        val factDateOut =
+            DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+                calendar.set(Calendar.YEAR, year)
+                calendar.set(Calendar.MONTH, month)
+                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                Utils.updateDateLabelPatient(calendar, vFactDateOut)
+            }
+        vFactDateOut.setOnClickListener {
+            DatePickerDialog(
+                this.requireContext(),
+                factDateOut,
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+            ).apply {
+                this.datePicker.minDate = (0)
+            }.show()
+        }
+
     }
 
     /** Функция добавления/редактирования пациента
@@ -158,6 +201,8 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
     Если есть фактическая дата выписки, то статус = "Выписан".
     Если есть фактическая дата поступления и нет фактической даты выписки, то статус = "В хосписе".
     Если нет фактических дат (ни поступления, ни выписки), то статус = "Новый".**/
+
+
     private fun fillPatient() {
         with(binding) {
             val patient = args.patientItemArg
@@ -183,8 +228,8 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
                     lastName = lastNameTextInputEditText.text.toString().trim(),
                     middleName = middleNameTextInputEditText.text.toString().trim(),
                     birthDate = vDateBirth.text.toString(),
-                    dateIn = "",
-                    dateOut = "",
+                    dateIn = vFactDateIn.text.toString(),
+                    dateOut = vFactDateOut.text.toString(),
                     dateInBoolean = true,
                     dateOutBoolean = true,
                     status = statusChoice.toString(),
@@ -194,6 +239,8 @@ class CreateEditPatientFragment : Fragment(R.layout.fragment_create_edit_patient
             }
         }
     }
+
+
     private fun showErrorToast(text: Int) {
         Toast.makeText(
             requireContext(),

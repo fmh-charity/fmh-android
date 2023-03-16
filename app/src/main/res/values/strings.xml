@@ -146,9 +146,9 @@
     <string name="filter_wish">Filter wish</string>
     <string name="filter_patients">Filter patients</string>
     <string name="search_patients">Search patients</string>
-    <string name="status_patient_new">New</string>
-    <string name="status_patient_in_hospice">IN HOSPICE</string>
     <string name="status_patient_discharged">Discharged</string>
     <string name="expected">Expected</string>
     <string name="active">Active</string>
+    <string name="fact_date_in">Date admission</string>
+    <string name="fact_date_out">Date discharge</string>
 </resources>

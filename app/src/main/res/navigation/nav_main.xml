@@ -393,6 +393,9 @@
         <action
             android:id="@+id/action_openPatientFragment_to_wishListFragment"
             app:destination="@id/wishListFragment" />
+        <action
+            android:id="@+id/action_openPatientFragment_to_createEditPatientFragment"
+            app:destination="@id/createEditPatientFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchPatient"

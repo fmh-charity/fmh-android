@@ -4,8 +4,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import ru.iteco.fmhandroid.dto.News
 import ru.iteco.fmhandroid.dto.NewsWithCategory
+import ru.iteco.fmhandroid.dto.User
 
 interface NewsRepository {
+    val newsList: List<News>
     suspend fun refreshNews()
     suspend fun modificationOfExistingNews(newsItem: News): News
     suspend fun createNews(newsItem: News): News

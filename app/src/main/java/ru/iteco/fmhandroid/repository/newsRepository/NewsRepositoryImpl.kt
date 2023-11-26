@@ -10,6 +10,7 @@ import ru.iteco.fmhandroid.dao.NewsCategoryDao
 import ru.iteco.fmhandroid.dao.NewsDao
 import ru.iteco.fmhandroid.dto.News
 import ru.iteco.fmhandroid.dto.NewsWithCategory
+import ru.iteco.fmhandroid.dto.User
 import ru.iteco.fmhandroid.entity.toEntity
 import ru.iteco.fmhandroid.entity.toNewsCategoryDto
 import ru.iteco.fmhandroid.entity.toNewsCategoryEntity
@@ -23,6 +24,10 @@ class NewsRepositoryImpl @Inject constructor(
     private val newsCategoryDao: NewsCategoryDao,
     private val newsApi: NewsApi
 ) : NewsRepository {
+
+    override var newsList: List<News> = emptyList()
+        private set
+    
     override fun getAllNews(
         coroutineScope: CoroutineScope,
         publishEnabled: Boolean?,

@@ -47,14 +47,14 @@ class NewsRepositoryImpl @Inject constructor(
     override suspend fun refreshNews() = Utils.makeRequest(
         request = { newsApi.getAllNews() },
         onSuccess = { body ->
-            val apiId = body
+            val apiId = body.elements
                 .map { it.id }
             val databaseId = newsDao.getAllNewsList()
                 .map { it.newsItem.id }
                 .toMutableList()
             databaseId.removeAll(apiId)
             newsDao.removeNewsItemsByIdList(databaseId)
-            newsDao.insert(body.toEntity())
+            newsDao.insert(body.elements.toEntity())
         }
     )
 

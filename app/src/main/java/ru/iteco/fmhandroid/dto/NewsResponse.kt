@@ -1,3 +1,6 @@
 package ru.iteco.fmhandroid.dto
 
-data class NewsResponse()
+data class NewsResponse(
+    val pages: Int,
+    val elements: List<News>
+)

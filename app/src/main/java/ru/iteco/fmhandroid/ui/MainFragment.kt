@@ -33,9 +33,14 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
 
-        lifecycleScope.launchWhenCreated {
-            claimViewModel.onRefresh()
+//        lifecycleScope.launchWhenCreated {
+//            claimViewModel.onRefresh()
+//        }
+
+                lifecycleScope.launchWhenCreated {
+            newsViewModel.onRefresh()
         }
+
 
         lifecycleScope.launchWhenStarted {
             claimViewModel.openClaimEvent.collectLatest {
@@ -45,11 +50,11 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             }
         }
 
-        lifecycleScope.launchWhenStarted {
-            claimViewModel.claimListUpdatedEvent.collectLatest {
-                newsViewModel.onRefresh()
-            }
-        }
+//        lifecycleScope.launchWhenStarted {
+//            claimViewModel.claimListUpdatedEvent.collectLatest {
+//                newsViewModel.onRefresh()
+//            }
+//        }
 
         lifecycleScope.launchWhenResumed {
             claimViewModel.claimsLoadException.collect {

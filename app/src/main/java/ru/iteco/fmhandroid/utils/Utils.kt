@@ -6,7 +6,6 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import android.widget.EditText
 import retrofit2.Response
-import ru.iteco.fmhandroid.dto.ClaimComment
 import ru.iteco.fmhandroid.dto.User
 import ru.iteco.fmhandroid.exceptions.*
 import java.io.IOException
@@ -18,14 +17,7 @@ import java.util.*
 
 object Utils {
     object Empty {
-        val emptyClaimComment = ClaimComment(
-            id = 0,
-            claimId = 0,
-            description = "",
-            creatorId = 0,
-            creatorName = "",
-            createDate = 0,
-        )
+
         val emptyUser = User(
             id = 0,
             admin = false,
@@ -145,9 +137,11 @@ object Utils {
                         hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> {
                             result = true
                         }
+
                         hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {
                             result = true
                         }
+
                         hasTransport(NetworkCapabilities.TRANSPORT_VPN) -> {
                             result = true
                         }
@@ -161,9 +155,11 @@ object Utils {
                         ConnectivityManager.TYPE_WIFI -> {
                             result = true
                         }
+
                         ConnectivityManager.TYPE_MOBILE -> {
                             result = true
                         }
+
                         ConnectivityManager.TYPE_VPN -> {
                             result = true
                         }

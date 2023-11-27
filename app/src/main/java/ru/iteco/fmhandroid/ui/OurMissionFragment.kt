@@ -41,18 +41,17 @@ class OurMissionFragment : Fragment(R.layout.fragment_our_mission) {
                     findNavController().navigate(R.id.action_our_mission_fragment_to_mainFragment)
                     true
                 }
-                R.id.menu_item_claims -> {
-                    findNavController().navigate(R.id.action_our_mission_fragment_to_claimListFragment)
-                    true
-                }
+
                 R.id.menu_item_news -> {
                     findNavController().navigate(R.id.action_our_mission_fragment_to_newsListFragment)
                     true
                 }
+
                 R.id.menu_item_about -> {
                     findNavController().navigate(R.id.action_our_mission_fragment_to_aboutFragment)
                     true
                 }
+
                 else -> false
             }
         }
@@ -73,6 +72,7 @@ class OurMissionFragment : Fragment(R.layout.fragment_our_mission) {
                     findNavController().navigate(R.id.action_our_mission_fragment_to_authFragment)
                     true
                 }
+
                 else -> false
             }
         }

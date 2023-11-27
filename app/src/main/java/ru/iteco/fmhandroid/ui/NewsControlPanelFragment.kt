@@ -63,18 +63,17 @@ class NewsControlPanelFragment : Fragment(R.layout.fragment_news_control_panel) 
                     findNavController().navigate(R.id.action_newsControlPanelFragment_to_mainFragment)
                     true
                 }
-                R.id.menu_item_claims -> {
-                    findNavController().navigate(R.id.action_newsControlPanelFragment_to_claimListFragment)
-                    true
-                }
+
                 R.id.menu_item_news -> {
                     findNavController().navigate(R.id.action_newsControlPanelFragment_to_newsListFragment)
                     true
                 }
+
                 R.id.menu_item_about -> {
                     findNavController().navigate(R.id.action_newsControlPanelFragment_to_aboutFragment)
                     true
                 }
+
                 else -> false
             }
         }
@@ -100,6 +99,7 @@ class NewsControlPanelFragment : Fragment(R.layout.fragment_news_control_panel) 
                     findNavController().navigate(R.id.action_newsControlPanelFragment_to_authFragment)
                     true
                 }
+
                 else -> false
             }
         }

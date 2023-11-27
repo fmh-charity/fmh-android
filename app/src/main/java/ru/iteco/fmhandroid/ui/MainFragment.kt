@@ -29,10 +29,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
 
-//        lifecycleScope.launchWhenCreated {
-//            claimViewModel.onRefresh()
-//        }
-
 
         lifecycleScope.launchWhenCreated {
             newsViewModel.onRefresh()

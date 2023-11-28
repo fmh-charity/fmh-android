@@ -6,22 +6,14 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import ru.iteco.fmhandroid.api.NewsApi
-import ru.iteco.fmhandroid.dao.NewsCategoryDao
-import ru.iteco.fmhandroid.dao.NewsDao
 import ru.iteco.fmhandroid.dto.News
 import ru.iteco.fmhandroid.dto.NewsWithCategory
-import ru.iteco.fmhandroid.dto.User
-import ru.iteco.fmhandroid.entity.toEntity
-import ru.iteco.fmhandroid.entity.toNewsCategoryDto
-import ru.iteco.fmhandroid.entity.toNewsCategoryEntity
 import ru.iteco.fmhandroid.utils.Utils
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class NewsRepositoryImpl @Inject constructor(
-    private val newsDao: NewsDao,
-    private val newsCategoryDao: NewsCategoryDao,
     private val newsApi: NewsApi
 ) : NewsRepository {
 

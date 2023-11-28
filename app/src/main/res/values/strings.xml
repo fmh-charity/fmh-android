@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">V Hospice</string>
-    <string name="claims">Claims</string>
-    <string name="claim">Claim</string>
     <string name="cancellation">The changes won\'t be saved, do you really want to log out?</string>
     <string name="error">Something went wrong. Try again later.</string>
     <string name="retry_loading">Retry</string>
@@ -45,7 +43,6 @@
     <string name="not_assigned">NOT ASSIGNED</string>
     <string name="our_mission">Our Mission</string>
     <string name="take_to_work">take to work</string>
-    <string name="cancel_claim">Cancel</string>
     <string name="to_execute">To execute</string>
     <string name="throw_off">Throw off</string>
     <string name="news_item_title">Title</string>
@@ -86,9 +83,7 @@
     <string name="app_background_image">app background image</string>
     <string name="filtering">Filtering</string>
     <string name="status_claim_canceled">Canceled</string>
-    <string name="claim_comments_load_error">Error loading comments</string>
     <string name="main_menu">Main menu</string>
-    <string name="add_claim_button">Add new claim button</string>
     <string name="filter_claim_list_menu_button">Filter claim list menu button</string>
     <string name="sort_news_list_button">Sort news list button</string>
     <string name="add_news_button">Add news button</string>

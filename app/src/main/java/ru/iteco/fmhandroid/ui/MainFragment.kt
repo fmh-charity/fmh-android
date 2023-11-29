@@ -29,18 +29,15 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
 
-
         lifecycleScope.launchWhenCreated {
             newsViewModel.onRefresh()
         }
-
 
         lifecycleScope.launchWhenResumed {
             newsViewModel.loadNewsExceptionEvent.collect {
                 showErrorToast(R.string.error)
             }
         }
-
     }
 
     @SuppressLint("Recycle")
@@ -142,6 +139,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         }
 
     }
+
     private fun showErrorToast(text: Int) {
         Toast.makeText(
             requireContext(),

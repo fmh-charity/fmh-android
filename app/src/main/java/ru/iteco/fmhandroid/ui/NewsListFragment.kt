@@ -57,10 +57,7 @@ class NewsListFragment : Fragment(R.layout.fragment_news_list) {
                     findNavController().navigate(R.id.action_newsListFragment_to_mainFragment)
                     true
                 }
-                R.id.menu_item_claims -> {
-                    findNavController().navigate(R.id.action_newsListFragment_to_claimListFragment)
-                    true
-                }
+
                 R.id.menu_item_about -> {
                     findNavController().navigate(R.id.action_newsListFragment_to_aboutFragment)
                     true

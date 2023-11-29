@@ -11,12 +11,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 @Module(includes = [NetworkModule::class])
 object ApiModule {
-    @Provides
-    @Singleton
-    fun provideClaimApi(@Authorized retrofit: Retrofit): ClaimApi {
-        return retrofit
-            .create(ClaimApi::class.java)
-    }
 
     @Provides
     @Singleton

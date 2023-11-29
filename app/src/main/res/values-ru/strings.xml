@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">В Хосписе</string>
-    <string name="claims">Заявки</string>
-    <string name="claim">Заявка</string>
     <string name="cancellation">Изменения не будут сохранены. Вы действительно хотите выйти?</string>
     <string name="error">Что-то пошло не так. Попробуйте позднее.</string>
     <string name="retry_loading">Повторить</string>
@@ -46,7 +44,6 @@
     <string name="not_assigned">НЕ НАЗНАЧЕН</string>
     <string name="our_mission">Наша Миссия</string>
     <string name="take_to_work">В работу</string>
-    <string name="cancel_claim">Отменить</string>
     <string name="to_execute">Исполнить</string>
     <string name="throw_off">Сбросить</string>
     <string name="news_item_title">Заголовок</string>
@@ -86,9 +83,7 @@
     <string name="app_background_image">Подложка основных экранов приложения</string>
     <string name="filtering">Фильтрация</string>
     <string name="status_claim_canceled">Отменена</string>
-    <string name="claim_comments_load_error">Ошибка при загрузке комментариев</string>
     <string name="main_menu">Главное меню</string>
-    <string name="add_claim_button">Кнопка добавления новой заявки</string>
     <string name="filter_claim_list_menu_button">Меню фильтрации списка заявок</string>
     <string name="sort_news_list_button">Кнопка сортировки списка новостей</string>
     <string name="add_news_button">Кнопка добавления новости</string>
